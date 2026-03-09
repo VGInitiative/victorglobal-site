@@ -3,23 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victor Global Initiative | From Victim to Victor</title>
+    <title>Victor Global Initiative | Official Site</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- CSS MASTER STYLES (Self-Contained) --- */
+        :root {
+            --primary: #0a7d8c; 
+            --secondary: #32c6a6;
+            --dark: #222;
+            --light: #f4f7f8;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .logo { height: 50px; margin-right: 15px; }
+        .org-title { font-size: 1.4rem; font-weight: 700; }
+
+        nav { display: flex; align-items: center; }
+        nav a {
+            color: white;
+            margin-left: 25px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        nav a:hover { color: var(--secondary); }
+
+        .donate-btn-nav {
+            background: var(--secondary);
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/impact.jpg') center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-title { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-btn {
+            background: var(--secondary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* --- THE ALIGNMENT GRID --- */
+        
+        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* FORCES 3 COLUMNS ON DESKTOP */
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary);
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+
+        /* --- IMPACT STATS --- */
+        .counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
+
+        /* --- FOOTER --- */
+        footer { background: #1a1a1a; color: #ccc; padding: 60px 20px; text-align: center; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1000px; margin: auto; text-align: left; }
+        .footer-links a { display: block; color: #aaa; text-decoration: none; margin-bottom: 10px; }
+        .footer-bottom { border-top: 1px solid #333; margin-top: 40px; padding-top: 20px; font-size: 0.8rem; }
+
+        /* --- MOBILE BREAKPOINT --- */
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                padding: 20px 0;
+            }
+            nav.active { display: flex; }
+            nav a { margin: 10px 0; }
+            .grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="header-container">
             <a href="index.html" class="brand">
-                <img src="images/logo.png" class="logo" alt="VGI Logo">
+                <img src="images/logo.png" class="logo" alt="Logo">
                 <span class="org-title">Victor Global Initiative</span>
             </a>
-
             <div class="hamburger" onclick="toggleMenu()">☰</div>
-
             <nav id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
@@ -30,92 +159,52 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content" data-aos="fade-up">
-                <h1 class="hero-title">Empowering the Next Generation of Victors</h1>
-                <p>Transforming lives from the streets to the stage through resilience and leadership.</p>
-                <br>
-                <a href="#mission" class="hero-btn">Explore Our Mission</a>
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="hero-title">A Victor, Not a Victim</h1>
+            <p>Empowering the next generation to overcome their hardship.</p><br>
+            <a href="#impact" class="hero-btn">See Our Impact</a>
+        </div>
+    </section>
+
+    <section class="section-padding" id="impact">
+        <h2 style="text-align: center;">Our Real-World Impact</h2>
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <h3 class="counter" data-target="500">0</h3>
+                <p>Youth Reached</p>
             </div>
-        </section>
-
-        <section class="section-padding" id="mission" data-aos="fade-up">
-            <div class="grid">
-                <div class="card">
-                    <span class="card-icon">🦅</span>
-                    <h3>A Victor, Not a Victim</h3>
-                    <p>Hardship does not define your finish line. We help youth keep their eyes forward on the mission.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">⚔️</span>
-                    <h3>The "X" Promise</h3>
-                    <p>Founded in honor of Lucianne Horace, proving that resilience is an active choice made every day.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🤝</span>
-                    <h3>Community Leadership</h3>
-                    <p>Building a foundation for success through youth shelters and JROTC mentorship.</p>
-                </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="counter" data-target="25">0</h3>
+                <p>Community Partnerships</p>
             </div>
-        </section>
-
-        <section class="section-padding" style="background: var(--light);" data-aos="fade-up">
-            <h2 class="text-center" style="margin-bottom: 50px;">Our Impact</h2>
-            <div class="grid">
-                <div class="text-center">
-                    <h3 class="counter" data-target="500">0</h3>
-                    <p>Youth Reached</p>
-                </div>
-                <div class="text-center">
-                    <h3 class="counter" data-target="25">0</h3>
-                    <p>Community Partnerships</p>
-                </div>
-                <div class="text-center">
-                    <h3 class="counter" data-target="12">0</h3>
-                    <p>Programs Supported</p>
-                </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="counter" data-target="12">0</h3>
+                <p>Programs Supported</p>
             </div>
-        </section>
-
-        <section class="newsletter" data-aos="zoom-in">
-            <h2>Stay Connected</h2>
-            <p>Join our community of supporters helping transform victims into Victors.</p>
-            <form action="https://forms.office.com/r/Ve1thcJPT5" method="POST" class="newsletter-form">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Join Newsletter</button>
-            </form>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div>
-                    <h3>VGI</h3>
-                    <p>Empowering at-risk youth and foster children.</p>
-                    <p>EIN: 41-3649085</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="initiatives.html">Programs</a>
-                    <a href="leadership.html">Leadership</a>
-                    <a href="donate.html">Donate</a>
-                </div>
-                <div>
-                    <h4>Transparency</h4>
-                    <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
-                        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal">
-                    </a>
-                </div>
+        <div class="footer-grid">
+            <div>
+                <h3>VGI</h3>
+                <p>Transforming lives through resilience and service.</p>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
-                <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.6;">FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352).</p>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="initiatives.html">Programs</a>
+                <a href="donate.html">Donate</a>
             </div>
+            <div>
+                <h4>Contact</h4>
+                <p>info@victorglobal.org</p>
+                <p>(760) 842-8677</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
         </div>
     </footer>
 
@@ -123,35 +212,31 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Mobile Menu Logic
         function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            nav.classList.toggle('nav-active');
+            document.getElementById('nav-menu').classList.toggle('active');
         }
 
-        // Counter Animation
+        // Counter Logic
         const counters = document.querySelectorAll('.counter');
-        const countObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if(entry.isIntersecting) {
                     const counter = entry.target;
                     const target = +counter.getAttribute('data-target');
                     const update = () => {
                         const c = +counter.innerText;
-                        const inc = target / 80;
-                        if (c < target) {
-                            counter.innerText = `${Math.ceil(c + inc)}`;
+                        const inc = target / 100;
+                        if(c < target) {
+                            counter.innerText = Math.ceil(c + inc);
                             setTimeout(update, 20);
-                        } else {
-                            counter.innerText = target;
-                        }
+                        } else { counter.innerText = target; }
                     };
                     update();
-                    countObserver.unobserve(counter);
+                    observer.unobserve(counter);
                 }
             });
         }, { threshold: 0.5 });
-        counters.forEach(c => countObserver.observe(c));
+        counters.forEach(c => observer.observe(c));
     </script>
 </body>
 </html>
