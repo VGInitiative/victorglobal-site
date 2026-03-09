@@ -82,17 +82,17 @@ footer {
     .footer-top { text-align: center; }
 }
 
-.logo { 
-    height: 50px; 
-    width: auto; 
+.logo {
+    height: 50px;       /* Keeps it aligned with the text */
+    width: auto;        /* Prevents stretching */
     display: block;
-    margin-right: 15px; 
+    margin-right: 15px;
 }
 
-.brand { 
-    display: flex; 
-    align-items: center; 
-    text-decoration: none; 
+.brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .logo {
