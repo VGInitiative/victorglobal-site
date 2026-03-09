@@ -3,108 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leadership - Victor Global Initiative</title>
-<link rel="stylesheet" href="assets/css/style.css">
+<title>Victor Global Initiative</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 <body>
-<header>
+<header class="header">
+<div class="container nav">
 
-<div class="header-container">
-
-<div class="brand">
-
-<img src="assets/images/logo.png" class="logo">
-
-<span class="org-title">Victor Global Initiative</span>
-
+<div class="logo-area">
+<img src="images/logo.png" class="logo">
+<span class="org-name">Victor Global Initiative</span>
 </div>
 
-<nav>
-
+<nav id="nav-menu">
 <a href="index.html">Home</a>
 <a href="about.html">About</a>
 <a href="initiatives.html">Initiatives</a>
 <a href="leadership.html">Leadership</a>
-<a href="donate.html">Donate</a>
-
+<a href="donate.html" class="donate-btn">Donate</a>
 </nav>
 
+<div class="hamburger" onclick="toggleMenu()">
+☰
 </div>
 
+</div>
 </header>
 
 <main>
-  <section class="board">
-    <h1>Guided by Integrity and Service</h1>
-    <p>Victor Global Initiative is governed by a dedicated Board of Directors committed to transparency, ethical stewardship, and the unwavering belief that every child deserves a champion. Our collective goal is to empower at-risk youth to transform their lives from the streets to the stage, providing mentorship, sanctuary, and resources to prove they are Victors, not victims.</p>
+  <section>
 
-   <h2>Board of Directors</h2>
+<h1>Guided by Integrity and Service</h1>
 
 <div class="board-grid">
 
-<div class="board-card">
-
-<img src="assets/images/leadership/pierre.jpg">
-
+<div class="board-card" data-aos="zoom-in">
+<img src="images/pierre.jpg">
 <h3>Pierre-Richard Victor</h3>
-
 <p>Founder & President</p>
-
+<p>pierre@victorglobal.org</p>
 </div>
 
-
-<div class="board-card">
-
-<img src="assets/images/leadership/joel.jpg">
-
+<div class="board-card" data-aos="zoom-in">
+<img src="images/joel.jpg">
 <h3>Joel Garcia</h3>
-
 <p>Secretary</p>
-
+<p>joel@victorglobal.org</p>
 </div>
 
-
-<div class="board-card">
-
-<img src="assets/images/leadership/mildred.jpg">
-
+<div class="board-card" data-aos="zoom-in">
+<img src="images/mildred.jpg">
 <h3>Mildred Burgos</h3>
-
 <p>Treasurer</p>
-
+<p>mildred@victorglobal.org</p>
 </div>
 
-
-<div class="board-card">
-
-<img src="assets/images/leadership/martine.jpg">
-
+<div class="board-card" data-aos="zoom-in">
+<img src="images/martine.jpg">
 <h3>Martine Joseph</h3>
-
 <p>Trustee</p>
-
+<p>martine@victorglobal.org</p>
 </div>
 
-
-<div class="board-card">
-
-<img src="assets/images/leadership/daphney.jpg">
-
+<div class="board-card" data-aos="zoom-in">
+<img src="images/daphney.jpg">
 <h3>Daphney Kercy</h3>
-
 <p>Trustee</p>
-
+<p>daphney@victorglobal.org</p>
 </div>
 
-
-<div class="board-card">
-
-<img src="assets/images/leadership/jayson.jpg">
-
+<div class="board-card" data-aos="zoom-in">
+<img src="images/jayson.jpg">
 <h3>Jayson Dimanche</h3>
-
 <p>Special Advisor</p>
+<p>jayson@victorglobal.org</p>
+</div>
 
+<div class="board-card" data-aos="zoom-in">
+<img src="images/jeremiah.jpg">
+<h3>Jeremiah Victor</h3>
+<p>Youth Ambassador</p>
+<p>jeremiah@victorglobal.org</p>
+</div>
+
+<div class="board-card" data-aos="zoom-in">
+<img src="images/jeremiah.jpg">
+<h3>Matthew Victor</h3>
+<p>Youth Ambassador</p>
+<p>matthew@victorglobal.org</p>
 </div>
 
 </div>
@@ -112,25 +103,74 @@
 </section>
 </main>
 
-<footer>
-  <div class="container" style="flex-direction: column;">
-    <p>11507 Dr MLK Blvd Unit 34, Mango, FL 33550 | (760) 842-8677 | EIN: 41-3649085</p>
-    
-    <div class="legal-links">
-      <a href="contact.html">Contact Us</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
-    </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <div class="transparency-seal">
-      <a aria-label="Victor Global Initiative" href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/?pkId=0888bd34-1904-408f-b6d2-2dfa31eb5395" target="_blank"> 
-        <img alt="Candid Silver Seal" src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" style="height: 80px;" /> 
-      </a>
-    </div>
+<script>
+AOS.init({
+duration:1000,
+once:true
+});
+</script>
 
-    <p style="font-size: 0.7rem; margin-top: 20px; max-width: 800px;">
-      FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE.
-    </p>
-    <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
-  </div>
+<footer class="footer">
+
+<div class="footer-grid">
+
+<div>
+<h3>Victor Global Initiative</h3>
+<p>Empowering youth to transform their lives from the streets to the stage.</p>
+</div>
+
+<div>
+<h4>Quick Links</h4>
+<a href="about.html">About</a>
+<a href="initiatives.html">Programs</a>
+<a href="leadership.html">Leadership</a>
+<a href="donate.html">Donate</a>
+</div>
+
+<div>
+<h4>Contact</h4>
+
+<p>11507 Dr MLK Blvd Unit 34  
+Mango, FL 33550</p>
+
+<p>(760) 842-8677</p>
+
+<p>info@victorglobal.org</p>
+
+<p>EIN: 41-3649085</p>
+
+</div>
+
+<div>
+
+<h4>Transparency</h4>
+
+<a aria-label="Victor Global Initiative" href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/?pkId=0888bd34-1904-408f-b6d2-2dfa31eb5395" target="_blank">
+
+<img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg">
+
+</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+© 2026 Victor Global Initiative | 501(c)(3) Nonprofit
+</p>
+
+<p>
+FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352). REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
+</p>
+
+<a href="privacy.html">Privacy Policy</a> |
+<a href="terms.html">Terms of Service</a> |
+<a href="https://forms.office.com/YOURFORM">Contact Us</a>
+
+</div>
+
 </footer>

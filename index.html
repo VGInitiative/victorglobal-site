@@ -6,57 +6,124 @@
 
 <title>Victor Global Initiative</title>
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
 </head>
 
 <body>
 
-<header>
+<header class="header">
+<div class="container nav">
 
-<div class="header-container">
-
-<div class="brand">
-
-<img src="assets/images/logo.png" class="logo">
-
-<span class="org-title">Victor Global Initiative</span>
-
+<div class="logo-area">
+<img src="images/logo.png" class="logo">
+<span class="org-name">Victor Global Initiative</span>
 </div>
 
-<nav>
-
+<nav id="nav-menu">
 <a href="index.html">Home</a>
 <a href="about.html">About</a>
 <a href="initiatives.html">Initiatives</a>
 <a href="leadership.html">Leadership</a>
-<a href="donate.html">Donate</a>
-
+<a href="donate.html" class="donate-btn">Donate</a>
 </nav>
 
+<div class="hamburger" onclick="toggleMenu()">
+☰
 </div>
 
+</div>
 </header>
 
 
+<body>
+
+<header>...</header>
+
+<!-- HERO SECTION -->
 <section class="hero">
+...
+</section>
 
-<div class="hero-overlay">
+<!-- PHILOSOPHY SECTION (PUT YOUR CODE HERE) -->
+<section class="philosophy">
+<section class="philosophy" data-aos="fade-up">
 
-<h1 class="hero-title">
-Empowering the Next Generation of Victors
-</h1>
-
-<p class="hero-text">
-Turning obstacles into stepping stones for youth.
-Turning Victims into <strong>VICTORS</strong>.
+</section>
+<div class="card">
+<img src="images/victor.png">
+<h3>A Victor, Not a Victim</h3>
+<p>
+Hardship does not define your finish line...
 </p>
+</div>
 
-<a href="donate.html" class="hero-button">
-Support the Mission
-</a>
+<div class="card">
+<img src="images/promise.png">
+<h3>The "X" Promise</h3>
+<p>
+Founded in honor of Lucianne Horace...
+</p>
+</div>
+
+<div class="card">
+<img src="images/community.png">
+<h3>Community Leadership</h3>
+<p>
+We believe in active service...
+</p>
+</div>
+
+</section>
+
+<!-- IMPACT SECTION -->
+<section class="impact">
+<section class="impact" data-aos="fade-up">
+
+</section>
+<h2>Our Impact</h2>
+
+<div class="impact-grid">
+
+<div>
+<h3 class="counter" data-target="500">0</h3>
+<p>Youth Reached</p>
+</div>
+
+<div>
+<h3 class="counter" data-target="25">0</h3>
+<p>Community Partnerships</p>
+</div>
+
+<div>
+<h3 class="counter" data-target="12">0</h3>
+<p>Programs Supported</p>
+</div>
 
 </div>
+
+<section class="donor-wall" data-aos="fade-up">
+
+<h2>Our Supporters</h2>
+
+<p>
+We are grateful to the individuals and organizations who help empower the next generation of Victors.
+</p>
+
+<div class="sponsor-grid">
+
+<img src="images/sponsor1.png">
+<img src="images/sponsor2.png">
+<img src="images/sponsor3.png">
+<img src="images/sponsor4.png">
+
+</div>
+
+</section>
 
 </section>
 
@@ -164,49 +231,129 @@ target="_blank">
 
 </section>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+<script>
+AOS.init({
+duration:1000,
+once:true
+});
+</script>
 
-<footer>
+<footer>...</footer>
+
+<script>
+
+const counters=document.querySelectorAll('.counter');
+
+counters.forEach(counter=>{
+counter.innerText='0';
+
+const update=()=>{
+const target=+counter.getAttribute('data-target');
+const c=+counter.innerText;
+
+const inc=target/100;
+
+if(c<target){
+counter.innerText=`${Math.ceil(c+inc)}`;
+setTimeout(update,20);
+}else{
+counter.innerText=target;
+}
+};
+
+update();
+});
+
+</script>
+
+</body>
+
+<section class="newsletter" data-aos="fade-up">
+
+<h2>Stay Connected</h2>
 
 <p>
+Join our community of supporters and volunteers helping transform victims into Victors.
+</p>
 
-Victor Global Initiative<br>
+<form action="https://forms.office.com/r/Ve1thcJPT5?origin=lprLink" method="POST">
 
-11507 Dr MLK Blvd Unit 34<br>
-Mango, FL 33550<br>
+<input type="email" name="email" placeholder="Enter your email" required>
 
-Phone: (760) 842-8677<br>
+<button type="submit">Join Newsletter</button>
 
-EIN: 41-3649085
+</form>
 
+<br>
+
+<a href="https://forms.office.com/" class="volunteer-btn">
+Become a Volunteer
+</a>
+
+</section>
+
+<footer class="footer">
+
+<div class="footer-grid">
+
+<div>
+<h3>Victor Global Initiative</h3>
+<p>Empowering youth to transform their lives from the streets to the stage.</p>
+</div>
+
+<div>
+<h4>Quick Links</h4>
+<a href="about.html">About</a>
+<a href="initiatives.html">Programs</a>
+<a href="leadership.html">Leadership</a>
+<a href="donate.html">Donate</a>
+</div>
+
+<div>
+<h4>Contact</h4>
+
+<p>11507 Dr MLK Blvd Unit 34  
+Mango, FL 33550</p>
+
+<p>(760) 842-8677</p>
+
+<p>info@victorglobal.org</p>
+
+<p>EIN: 41-3649085</p>
+
+</div>
+
+<div>
+
+<h4>Transparency</h4>
+
+<a aria-label="Victor Global Initiative" href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/?pkId=0888bd34-1904-408f-b6d2-2dfa31eb5395" target="_blank">
+
+<img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg">
+
+</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+© 2026 Victor Global Initiative | 501(c)(3) Nonprofit
 </p>
 
 <p>
+FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352). REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
+</p>
 
 <a href="privacy.html">Privacy Policy</a> |
 <a href="terms.html">Terms of Service</a> |
-<a href="https://forms.microsoft.com/">Contact Us</a>
+<a href="https://forms.office.com/YOURFORM">Contact Us</a>
 
-</p>
-
-<p>
-
-© 2026 Victor Global Initiative | 501(c)(3) Nonprofit
-
-</p>
-
-<p class="disclaimer">
-
-FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL
-INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY
-CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE.
-
-REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY
-THE STATE.
-
-</p>
+</div>
 
 </footer>
 
-</body>
-</html>
