@@ -4,130 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate | Victor Global Initiative</title>
-    
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
+        :root { --primary: #0a7d8c; --secondary: #32c6a6; --dark: #222; --light: #f4f7f8; --white: #ffffff; --shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--dark); background: var(--white); }
+        
+        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .logo { height: 50px; margin-right: 15px; }
+        nav { display: flex; align-items: center; }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; }
+
+        .section-padding { padding: 100px 20px; text-align: center; }
+        .donation-card { background: var(--white); padding: 50px 30px; border-radius: 20px; box-shadow: var(--shadow); max-width: 600px; margin: 40px auto; }
+        .donate-btn { background: var(--secondary); color: white; padding: 20px 50px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block; transition: 0.3s; }
+        .donate-btn:hover { background: #28a88d; transform: translateY(-3px); }
+        
+        .tax-disclaimer { margin-top: 30px; font-size: 0.85rem; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
+        footer { background: #1a1a1a; color: #ccc; padding: 40px 20px; text-align: center; }
+    </style>
 </head>
 <body>
-
-    <header class="header">
+    <header>
         <div class="header-container">
-            <a href="index.html" class="brand">
-                <img src="images/logo.png" class="logo" alt="VGI Logo">
-                <span class="org-title">Victor Global Initiative</span>
-            </a>
-
-            <nav id="nav-menu">
+            <a href="index.html" class="brand"><img src="images/logo.png" class="logo"> <span class="org-title">VGI</span></a>
+            <nav>
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="initiatives.html">Initiatives</a>
                 <a href="leadership.html">Leadership</a>
-                <a href="donate.html" class="active-link">Donate</a>
             </nav>
-
-            <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
     </header>
 
-    <main>
-        <section class="donation-hero section-padding" data-aos="fade-up">
-            <div class="donation-container">
-                <h1>Support Our Mission</h1>
-                <p>Your contribution directly empowers at-risk youth to transition from "Victim to Victor" through mentorship, leadership training, and essential resources.</p>
+    <main class="section-padding">
+        <h1 style="color:var(--primary)">Support Our Mission</h1>
+        <p>Your contribution directly empowers at-risk youth to transform their lives.</p>
 
-                <div class="donation-card">
-                    <h3>Choose an Amount</h3>
-                    <div class="donation-options">
-                        <button class="donate-amount" onclick="selectAmount(this)">$25</button>
-                        <button class="donate-amount" onclick="selectAmount(this)">$50</button>
-                        <button class="donate-amount active" onclick="selectAmount(this)">$100</button>
-                        <button class="donate-amount" onclick="selectAmount(this)">$250</button>
-                        <button class="donate-amount" onclick="selectAmount(this)">Other</button>
-                    </div>
+        <div class="donation-card" data-aos="zoom-in">
+            <h2>Make a Difference</h2>
+            <p style="margin-bottom: 30px;">Choose a donation level to help provide mentorship and stability.</p>
+            
+            <a href="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" class="donate-btn" target="_blank">
+                Donate Securely via Stripe
+            </a>
 
-                    <a href="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" class="donate-main-button">
-                        Donate Securely via Stripe
-                    </a>
-
-                    <p class="tax-text">
-                        <strong>Victor Global Initiative</strong> is a 501(c)(3) nonprofit organization. 
-                        Your donations are 100% tax-deductible to the extent allowed by law.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding" style="background: var(--light);" data-aos="fade-up">
-            <h2 style="text-align: center;">Where Your Money Goes</h2>
-            <div class="grid">
-                <div class="card impact-card">
-                    <span class="impact-icon">🎒</span>
-                    <h4>Educational Support</h4>
-                    <p>Providing books and supplies for JROTC and leadership training programs.</p>
-                </div>
-                <div class="card impact-card">
-                    <span class="impact-icon">🤝</span>
-                    <h4>Mentorship</h4>
-                    <p>Supporting travel and workshops for veterans to mentor youth in shelters.</p>
-                </div>
-                <div class="card impact-card">
-                    <span class="impact-icon">🏢</span>
-                    <h4>Stability</h4>
-                    <p>Assisting transitional programs that help youth secure permanent housing.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div>
-                    <h3>Victor Global Initiative</h3>
-                    <p>Empowering youth to transform their lives from the streets to the stage.</p>
-                </div>
-                <div>
-                    <h4>Quick Links</h4>
-                    <a href="about.html">About</a>
-                    <a href="initiatives.html">Programs</a>
-                    <a href="leadership.html">Leadership</a>
-                    <a href="donate.html">Donate</a>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <p>11507 Dr MLK Blvd Unit 34, Mango, FL 33550</p>
-                    <p>info@victorglobal.org | (760) 842-8677</p>
-                </div>
-                <div>
-                    <h4>Transparency</h4>
-                    <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
-                        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal">
-                    </a>
-                </div>
-            </div>
-            <div class="disclaimer">
-                <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
-                <p style="font-size: 0.7rem;">FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352).</p>
+            <div class="tax-disclaimer">
+                <p>Victor Global Initiative is a 501(c)(3) nonprofit organization.</p>
+                <p>Donations are tax-deductible to the extent allowed by law.</p>
+                <p>EIN: 41-3649085</p>
             </div>
         </div>
-    </footer>
+    </main>
 
+    <footer><p>© 2026 Victor Global Initiative | Empowering Future Leaders</p></footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-
-        // Amount Selection UI logic
-        function selectAmount(btn) {
-            document.querySelectorAll('.donate-amount').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        // Hamburger Menu logic
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            nav.classList.toggle('nav-active');
-        }
-    </script>
+    <script>AOS.init();</script>
 </body>
 </html>
