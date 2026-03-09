@@ -1,0 +1,109 @@
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+main h1, main h2 {
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+main ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+main ul li {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+header {
+    background: #004080;
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav a {
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffcc00; /* subtle highlight on hover */
+}
+
+.logo {
+    max-height: 60px;
+    width: auto;
+}
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(to right, #004080, #0066cc);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero .btn {
+    padding: 15px 30px;
+    margin: 10px;
+    background: #ffcc00;
+    color: #004080;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.hero .btn:hover {
+    transform: scale(1.05);
+}
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin: 40px 0;
+}
+
+.stats div {
+    background: #f2f2f2;
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stats h3 {
+    font-size: 2rem;
+    color: #004080;
+    margin-bottom: 5px;
+}
+footer { background:#004080; color:white; text-align:center; padding:15px; }
+main h1, main h2 { text-align:center; margin-top:20px; }
+main ul { list-style:none; text-align:center; padding:0; }
+main ul li { margin:5px 0; }
+form { display:flex; flex-direction:column; max-width:400px; margin:auto; }
+form label { margin-top:10px; }
+form input, form textarea { padding:8px; margin-top:5px; }
+form button { margin-top:15px; padding:10px; background:#004080; color:white; border:none; border-radius:5px; cursor:pointer; }

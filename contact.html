@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Victor Global</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Victor Global</title>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header>
-    <img src="assets/images/logo.png" alt="Victor Global Logo" class="logo">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="programs.html">Programs</a>
-      <a href="donate.html">Donate</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<header>
+  <img src="assets/images/logo.png" alt="Victor Global Logo" class="logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="programs.html">Programs</a>
+    <a href="donate.html">Donate</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <main>
+<main>
+  <section class="hero">
     <h1>Contact Us</h1>
-    <p>Email: info@victorglobal.org</p>
-    <p>Phone: (123) 456-7890</p>
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <label>Name:</label><input type="text" name="name" required>
-      <label>Email:</label><input type="email" name="_replyto" required>
-      <label>Message:</label><textarea name="message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </main>
+    <p>We’d love to hear from you — volunteers, donors, or community partners.</p>
+  </section>
 
-  <footer>
-    <p>© 2026 Victor Global | <a href="contact.html">Contact Us</a></p>
-  </footer>
+  <section class="content">
+    <form action="mailto:info@victorglobal.org" method="post" enctype="text/plain">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required><br>
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="6" required></textarea><br>
+      <input type="submit" value="Send" class="btn">
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Victor Global | <a href="contact.html">Contact Us</a></p>
+</footer>
 </body>
 </html>
