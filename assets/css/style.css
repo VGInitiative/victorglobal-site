@@ -1,57 +1,29 @@
-/* VICTOR GLOBAL INITIATIVE - Unified Stylesheet 
-    Fixes: Desktop visibility and Mobile-First responsiveness
-*/
-
 :root {
-    --primary: #0a7d8c; /* VGI Deep Teal */
-    --secondary: #32c6a6; /* VGI Accent Mint */
+    --primary: #0a7d8c;
+    --secondary: #32c6a6;
     --dark: #222;
     --light: #f9f9f9;
     --white: #ffffff;
     --shadow: 0 4px 15px rgba(0,0,0,0.1);
-    --transition: all 0.3s ease;
 }
 
-/* --- BASE STYLES --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.7;
     color: var(--dark);
-    background-color: var(--white);
+    background: var(--white);
     overflow-x: hidden;
 }
 
-h1, h2, h3 { line-height: 1.2; margin-bottom: 1.5rem; }
-a { text-decoration: none; transition: var(--transition); }
-img { max-width: 100%; border-radius: 8px; }
-
-/* --- LAYOUT UTILITIES --- */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.section-padding { padding: 100px 20px; max-width: 1100px; margin: auto; }
-.text-center { text-align: center; }
-.subtitle {
-    display: block;
-    text-transform: uppercase;
-    color: var(--secondary);
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-/* --- NAVIGATION (The Desktop View) --- */
+/* --- HEADER & NAV --- */
 header {
     background: var(--primary);
     padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow);
 }
 
 .header-container {
@@ -63,11 +35,11 @@ header {
     padding: 0 20px;
 }
 
-.brand { display: flex; align-items: center; }
-.logo { height: 50px; }
 .org-title { color: white; font-size: 1.4rem; font-weight: bold; margin-left: 15px; }
+.logo { height: 50px; }
+.brand { display: flex; align-items: center; text-decoration: none; }
 
-/* Desktop Menu - Visible by default */
+/* Desktop Menu Styles */
 #nav-menu {
     display: flex;
     align-items: center;
@@ -76,28 +48,27 @@ header {
 #nav-menu a {
     color: white;
     margin-left: 25px;
+    text-decoration: none;
     font-weight: 500;
 }
 
-#nav-menu a:hover, #nav-menu a.active-link { color: var(--secondary); }
+#nav-menu a:hover { color: var(--secondary); }
 
-/* The Mobile Hamburger - Hidden on Desktop */
+.donate-btn-nav {
+    background: var(--secondary);
+    padding: 8px 20px !important;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
 .hamburger {
-    display: none;
+    display: none; /* Hidden on Desktop */
     font-size: 2rem;
     color: white;
     cursor: pointer;
 }
 
-.donate-btn-nav {
-    background: var(--secondary);
-    padding: 10px 25px !important;
-    border-radius: 50px;
-    font-weight: bold;
-    color: white !important;
-}
-
-/* --- HERO SECTION --- */
+/* --- SECTIONS --- */
 .hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/impact.jpg') center/cover;
     height: 70vh;
@@ -107,55 +78,46 @@ header {
     text-align: center;
     color: white;
 }
-.hero-title { font-size: 3.5rem; margin-bottom: 1rem; }
-.hero-btn {
-    background: var(--secondary);
-    color: white;
-    padding: 15px 40px;
-    border-radius: 50px;
-    font-weight: bold;
-    display: inline-block;
+
+.hero-title { font-size: 3.5rem; }
+
+.section-padding { padding: 80px 20px; max-width: 1100px; margin: auto; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns on Desktop */
+    gap: 30px;
+    margin-top: 40px;
 }
 
-/* --- GRID & CARDS --- */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
 .card {
     background: var(--light);
     padding: 40px;
-    border-radius: 15px;
-    border-bottom: 4px solid var(--primary);
+    border-radius: 12px;
     text-align: center;
-    transition: var(--transition);
+    border-bottom: 4px solid var(--primary);
 }
-.card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
 
-/* Flex rows for "About" and "Initiatives" */
-.flex-row { display: flex; align-items: center; gap: 50px; margin-bottom: 60px; }
-.flex-row img { width: 45%; box-shadow: var(--shadow); }
-.reverse { flex-direction: row-reverse; }
+.counter { font-size: 3rem; color: var(--primary); }
 
-/* --- DONATION OPTIONS --- */
-.donation-card { background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); max-width: 500px; margin: auto; }
-.donation-options { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
-.donate-amount { padding: 10px 20px; border: 2px solid #eee; border-radius: 10px; cursor: pointer; font-weight: bold; }
-.donate-amount.active { background: var(--primary); color: white; border-color: var(--primary); }
+.newsletter { background: var(--primary); color: white; text-align: center; padding: 80px 20px; }
+.newsletter input { padding: 12px; width: 300px; border-radius: 5px; border: none; }
+.newsletter button { padding: 12px 25px; background: var(--secondary); border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 5px; }
 
 /* --- FOOTER --- */
-footer { background: #1a1a1a; color: #ddd; padding: 60px 20px 20px; }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-.footer-links a { display: block; color: #bbb; margin-bottom: 10px; }
-.footer-links a:hover { color: var(--secondary); }
-.candid-seal { height: 80px; filter: grayscale(100%); transition: 0.3s; margin-top: 15px; }
+footer { background: #1a1a1a; color: #ddd; padding: 60px 20px 20px; text-align: center; }
+.footer-links a { color: var(--secondary); text-decoration: none; margin: 0 10px; }
+.candid-seal { height: 80px; margin-top: 20px; filter: grayscale(100%); transition: 0.3s; }
 .candid-seal:hover { filter: none; }
-.footer-bottom { border-top: 1px solid #333; padding-top: 20px; text-align: center; font-size: 0.8rem; }
 
-/* --- RESPONSIVE DESIGN (The Mobile View) --- */
-@media (max-width: 768px) {
-    /* Show Hamburger, Hide Nav Menu */
-    .hamburger { display: block; }
+/* --- MOBILE RESPONSIVE (Fixes the "Mobile on Computer" issue) --- */
+@media (max-width: 992px) {
+    .grid { grid-template-columns: 1fr; } /* Stack cards only on small screens */
+    
+    .hamburger { display: block; } /* Show menu icon */
 
     #nav-menu {
-        display: none; /* Hidden on mobile until toggled */
+        display: none; /* Hide menu links */
         flex-direction: column;
         position: absolute;
         top: 80px;
@@ -163,19 +125,14 @@ footer { background: #1a1a1a; color: #ddd; padding: 60px 20px 20px; }
         width: 100%;
         background: var(--primary);
         padding: 20px 0;
-        text-align: center;
     }
 
-    /* Class added by JavaScript to show the menu */
     #nav-menu.nav-active {
-        display: flex;
+        display: flex; /* Show menu when clicked */
     }
 
-    #nav-menu a { margin: 15px 0; margin-left: 0; font-size: 1.2rem; }
-
-    .hero-title { font-size: 2.5rem; }
-    .flex-row { flex-direction: column; text-align: center; }
-    .flex-row img { width: 100%; }
+    #nav-menu a { margin: 15px 0; margin-left: 0; }
     
-    .section-padding { padding: 60px 20px; }
+    .hero-title { font-size: 2.5rem; }
+    .newsletter input { width: 100%; margin-bottom: 10px; }
 }
