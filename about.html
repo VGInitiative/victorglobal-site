@@ -4,100 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About the Founder | Victor Global Initiative</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
     <style>
-        :root { --primary: #0a7d8c; --secondary: #32c6a6; --dark: #222; --light: #f4f7f8; --white: #ffffff; --shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* --- MASTER CSS (Shared with Index) --- */
+        :root { 
+            --primary: #0a7d8c; 
+            --secondary: #32c6a6; 
+            --dark: #222; 
+            --light: #f4f7f8; 
+            --white: #ffffff; 
+            --shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--dark); overflow-x: hidden; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: var(--white);
+            overflow-x: hidden; 
+        }
+
+        /* Navigation Styles (For the injected header) */
         header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
         .brand { display: flex; align-items: center; text-decoration: none; color: white; }
-        .logo { height: 50px; margin-right: 15px; }
+        .logo { height: 50px; width: auto; margin-right: 15px; }
+        .org-title { font-size: 1.2rem; font-weight: 700; }
         nav { display: flex; align-items: center; }
-        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--secondary); }
         .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
         .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+
+        /* About Page Content Styles */
         .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
         .flex-row { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
         .founder-img { width: 45%; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); }
         .medal-list { list-style: none; margin-top: 20px; }
-        .medal-list li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; }
-        footer { background: #1a1a1a; color: #ccc; padding: 60px 20px; text-align: center; }
-        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1000px; margin: auto; text-align: left; }
-        @media (max-width: 900px) { .hamburger { display: block; } nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; } nav.active { display: flex; } .flex-row { flex-direction: column; } .founder-img { width: 100%; } .footer-grid { grid-template-columns: 1fr; } }
+        .medal-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: 500; }
+
+        /* Footer Styles (For the injected footer) */
+        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
+        .footer-bottom { padding-top: 30px; text-align: center; }
+        .candid-seal { height: 80px; filter: grayscale(100%); transition: 0.3s; margin-top: 15px; }
+        .candid-seal:hover { filter: none; }
+        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
+
+        @media (max-width: 900px) { 
+            .hamburger { display: block; } 
+            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; } 
+            nav.active { display: flex; } 
+            .flex-row { flex-direction: column; text-align: center; } 
+            .founder-img { width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.1); } 
+            .footer-top { grid-template-columns: 1fr; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="brand"><img src="images/logo.png" class="logo"> <span class="org-title">VGI</span></a>
-            <div class="hamburger" onclick="toggleMenu()">☰</div>
-            <nav id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="initiatives.html">Initiatives</a>
-                <a href="leadership.html">Leadership</a>
-                <a href="donate.html" class="donate-btn-nav">Donate</a>
-            </nav>
-        </div>
-    </header>
+
+    <div id="header-placeholder"></div>
+
     <main class="section-padding">
         <div class="flex-row" data-aos="fade-up">
             <img src="assets/images/founder.jpg" class="founder-img" alt="Pierre-Richard Victor">
             <div>
-                <h1 style="color:var(--primary)">Pierre-Richard Victor</h1>
-                <h3>Founder & President</h3>
+                <h1 style="color:var(--primary); font-size: 2.5rem; margin-bottom: 10px;">Pierre-Richard Victor</h1>
+                <h3 style="color:var(--secondary); margin-bottom: 25px;">Founder & President</h3>
+                
                 <p>Born in Haiti and raised in the systems of NY/NJ, Pierre-Richard knows resilience firsthand. Arriving at 15, he navigated shelters while honoring his mother’s sacrifice.</p>
-                <p style="margin-top:15px">Today he is a U.S. Army veteran and United Airlines Flight Attendant of 25+ years.</p>
-                <h3 style="margin-top:30px">Service Medals</h3>
+                <p style="margin-top:15px">Today he is a U.S. Army veteran and United Airlines Flight Attendant of 25+ years, bringing a unique perspective on global service and discipline to VGI.</p>
+                
+                <h3 style="margin-top:40px; border-left: 4px solid var(--secondary); padding-left: 15px;">U.S. Army Service Medals</h3>
                 <ul class="medal-list">
                     <li>🎖️ Joint Service Commendation Medal</li>
                     <li>🎖️ Army Commendation Medal</li>
                     <li>🎖️ Global War on Terrorism Medal</li>
+                    <li>🎖️ National Defense Service Medal</li>
                 </ul>
             </div>
         </div>
     </main>
-    <footer class="footer">
-    <div class="footer-container">
-        
-        <div class="footer-top">
-            <div class="footer-brand">
-                <h3>Victor Global Initiative</h3>
-                <p>Empowering youth to transform their lives from the streets to the stage.</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
-                        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal" alt="Candid Silver Transparency 2026 Seal">
-                    </a>
-                </div>
-            </div>
 
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p><strong>Address:</strong> 11507 Dr MLK Blvd Unit 34, Mango, FL 33550</p>
-                <p><strong>Phone:</strong> +1 (760) 842-8677 (VICTORS)</p>
-                <p><strong>Email:</strong> <a href="mailto:info@victorglobal.org" style="color:var(--secondary); text-decoration:none;">info@victorglobal.org</a></p>
-            </div>
+    <div id="footer-placeholder"></div>
 
-            <div class="footer-links">
-                <h4>Legal & Support</h4>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="donate.html" style="color:var(--secondary); font-weight:bold;">Donate to the Mission</a>
-            </div>
-        </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 1. COMPONENT LOADER (Header/Footer)
+        async function loadComponents() {
+            try {
+                // Fetch Header
+                const headerResp = await fetch('header.html');
+                if (!headerResp.ok) throw new Error('header.html missing');
+                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
+                
+                // Fetch Footer
+                const footerResp = await fetch('footer.html');
+                if (!footerResp.ok) throw new Error('footer.html missing');
+                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
+                
+                // Re-initialize AOS after content injection
+                AOS.init({ duration: 1000, once: true });
+            } catch (err) {
+                console.error("Component load failed:", err);
+            }
+        }
 
-        <div class="footer-bottom">
-            <p class="footer-copyright">
-                © 2026 Victor Global Initiative | 501(c)(3) Nonprofit | <strong>EIN: 41-3649085</strong>
-            </p>
-            
-            <p class="legal-disclaimer">
-                FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
-            </p>
-        </div>
+        // 2. NAVIGATION TOGGLE (Required for Mobile)
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
 
-    </div>
-</footer>
+        // Initialize on Load
+        window.onload = loadComponents;
+    </script>
+</body>
+</html>
