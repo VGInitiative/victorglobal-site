@@ -1,359 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Victor Global Initiative</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Global Initiative | From Victim to Victor</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="header">
-<div class="container nav">
-
-<div class="logo-area">
-<img src="images/logo.png" class="logo">
-<span class="org-name">Victor Global Initiative</span>
-</div>
-
-<nav id="nav-menu">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="initiatives.html">Initiatives</a>
-<a href="leadership.html">Leadership</a>
-<a href="donate.html" class="donate-btn">Donate</a>
-</nav>
-
-<div class="hamburger" onclick="toggleMenu()">
-☰
-</div>
-
-</div>
-</header>
-
-
-<body>
-
-<header>...</header>
-
-<!-- HERO SECTION -->
-<section class="hero">
-...
-</section>
-
-<!-- PHILOSOPHY SECTION (PUT YOUR CODE HERE) -->
-<section class="philosophy">
-<section class="philosophy" data-aos="fade-up">
-
-</section>
-<div class="card">
-<img src="images/victor.png">
-<h3>A Victor, Not a Victim</h3>
-<p>
-Hardship does not define your finish line...
-</p>
-</div>
-
-<div class="card">
-<img src="images/promise.png">
-<h3>The "X" Promise</h3>
-<p>
-Founded in honor of Lucianne Horace...
-</p>
-</div>
-
-<div class="card">
-<img src="images/community.png">
-<h3>Community Leadership</h3>
-<p>
-We believe in active service...
-</p>
-</div>
-
-</section>
-
-<!-- IMPACT SECTION -->
-<section class="impact">
-<section class="impact" data-aos="fade-up">
-
-</section>
-<h2>Our Impact</h2>
-
-<div class="impact-grid">
-
-<div>
-<h3 class="counter" data-target="500">0</h3>
-<p>Youth Reached</p>
-</div>
-
-<div>
-<h3 class="counter" data-target="25">0</h3>
-<p>Community Partnerships</p>
-</div>
-
-<div>
-<h3 class="counter" data-target="12">0</h3>
-<p>Programs Supported</p>
-</div>
-
-</div>
-
-<section class="donor-wall" data-aos="fade-up">
-
-<h2>Our Supporters</h2>
-
-<p>
-We are grateful to the individuals and organizations who help empower the next generation of Victors.
-</p>
-
-<div class="sponsor-grid">
-
-<img src="images/sponsor1.png">
-<img src="images/sponsor2.png">
-<img src="images/sponsor3.png">
-<img src="images/sponsor4.png">
-
-</div>
-
-</section>
-
-</section>
-
-
-
-<section class="content-section">
-
-<img src="assets/images/victor-not-victim.jpg">
-
-<div>
-
-<h2>A Victor, Not a Victim</h2>
-
-<p>
-Hardship does not define your finish line.
-Being a Victor means keeping your eyes forward and moving toward the mission,
-no matter what lies behind you.
-</p>
-
-</div>
-
-</section>
-
-
-
-<section class="content-section alt">
-
-<img src="assets/images/x-promise.jpg">
-
-<div>
-
-<h2>The "X" Promise</h2>
-
-<p>
-Founded in honor of Lucianne Horace, whose sacrifice proved that resilience is an action.
-Her legacy is the heartbeat of this organization.
-</p>
-
-</div>
-
-</section>
-
-
-
-<section class="content-section">
-
-<img src="assets/images/community-leadership.jpg">
-
-<div>
-
-<h2>Community Leadership</h2>
-
-<p>
-We believe in active service. From mentorship in youth shelters to supporting disciplined
-growth in JROTC, we are building a foundation for success.
-</p>
-
-</div>
-
-</section>
-
-
-
-<section class="impact">
-
-<h2>Our Impact</h2>
-
-<p>
-Victor Global Initiative is committed to empowering at-risk youth by providing
-mentorship, stability, and opportunity.
-</p>
-
-<ul>
-
-<li>Supporting youth shelters and transitional programs</li>
-
-<li>Developing mentorship programs for young leaders</li>
-
-<li>Supporting school JROTC leadership programs</li>
-
-<li>Promoting resilience and responsibility in the next generation</li>
-
-</ul>
-
-</section>
-
-
-
-<section class="transparency">
-
-<h2>Transparency & Accountability</h2>
-
-<p>
-Victor Global Initiative is committed to transparency and responsible stewardship
-of donor contributions.
-</p>
-
-<a aria-label="Victor Global Initiative"
-href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/?pkId=0888bd34-1904-408f-b6d2-2dfa31eb5395"
-target="_blank">
-
-<img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg">
-
-</a>
-
-</section>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<script>
-AOS.init({
-duration:1000,
-once:true
-});
-</script>
-
-<footer>...</footer>
-
-<script>
-
-const counters=document.querySelectorAll('.counter');
-
-counters.forEach(counter=>{
-counter.innerText='0';
-
-const update=()=>{
-const target=+counter.getAttribute('data-target');
-const c=+counter.innerText;
-
-const inc=target/100;
-
-if(c<target){
-counter.innerText=`${Math.ceil(c+inc)}`;
-setTimeout(update,20);
-}else{
-counter.innerText=target;
-}
-};
-
-update();
-});
-
-</script>
-
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="brand">
+                <img src="images/logo.png" class="logo" alt="VGI Logo">
+                <span class="org-title">Victor Global Initiative</span>
+            </a>
+
+            <nav id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="initiatives.html">Initiatives</a>
+                <a href="leadership.html">Leadership</a>
+                <a href="donate.html" style="color: var(--secondary); font-weight: bold;">Donate</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="hero-title">Empowering the Next Generation of Victors</h1>
+            <p>Transforming lives from the streets to the stage through resilience and leadership.</p>
+            <br>
+            <a href="#about" class="hero-btn">Learn Our Mission</a>
+        </div>
+    </section>
+
+    <section class="section-padding" id="about" data-aos="fade-up">
+        <div class="grid">
+            <div class="card">
+                <h3>A Victor, Not a Victim</h3>
+                <p>Hardship does not define your finish line. Being a Victor means keeping your eyes forward and moving toward the mission.</p>
+            </div>
+
+            <div class="card">
+                <h3>The "X" Promise</h3>
+                <p>Founded in honor of Lucianne Horace, whose sacrifice proved that resilience is an action. Her legacy is our heartbeat.</p>
+            </div>
+
+            <div class="card">
+                <h3>Community Leadership</h3>
+                <p>From youth shelters to JROTC mentorship, we build foundations for disciplined growth and active service.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding flex-row" data-aos="fade-right">
+        <img src="assets/images/victor-not-victim.jpg" alt="Resilience">
+        <div>
+            <h2>Eyes on the Mission</h2>
+            <p>We provide at-risk youth with the stability and mentorship they need to realize that their past experiences are stepping stones, not anchors.</p>
+        </div>
+    </section>
+
+    <section class="section-padding flex-row reverse" data-aos="fade-left">
+        <img src="assets/images/x-promise.jpg" alt="Legacy">
+        <div>
+            <h2>The Power of "X"</h2>
+            <p>The "X" represents the intersection of struggle and opportunity. We help youth navigate this crossroad to find their true potential.</p>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: var(--light);" data-aos="fade-up">
+        <h2 style="text-align: center; margin-bottom: 40px;">Our Impact</h2>
+        <div class="grid" style="text-align: center;">
+            <div>
+                <h3 class="counter" data-target="500" style="font-size: 3rem; color: var(--primary);">0</h3>
+                <p>Youth Reached</p>
+            </div>
+            <div>
+                <h3 class="counter" data-target="25" style="font-size: 3rem; color: var(--primary);">0</h3>
+                <p>Partnerships</p>
+            </div>
+            <div>
+                <h3 class="counter" data-target="12" style="font-size: 3rem; color: var(--primary);">0</h3>
+                <p>Active Programs</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding donor-wall" data-aos="fade-up">
+        <h2>Our Supporters</h2>
+        <div class="sponsor-grid">
+            <img src="images/sponsor1.png" alt="Partner">
+            <img src="images/sponsor2.png" alt="Partner">
+            <img src="images/sponsor3.png" alt="Partner">
+            <img src="images/sponsor4.png" alt="Partner">
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div data-aos="zoom-in">
+            <h2>Stay Connected</h2>
+            <p>Join our community of supporters helping transform victims into Victors.</p>
+            <form action="https://forms.office.com/r/Ve1thcJPT5" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Join Newsletter</button>
+            </form>
+            <br>
+            <a href="https://forms.office.com/" class="volunteer-btn">Become a Volunteer</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Victor Global Initiative</h3>
+                <p>11507 Dr MLK Blvd Unit 34, Mango, FL 33550 | (760) 842-8677</p>
+                <p>info@victorglobal.org | EIN: 41-3649085</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="initiatives.html">Programs</a>
+                <a href="leadership.html">Leadership</a>
+                <a href="donate.html">Donate</a>
+            </div>
+
+            <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
+                <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal" alt="Candid Platinum Seal">
+            </a>
+
+            <div class="disclaimer">
+                <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
+                <p>FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352). REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({ duration: 1000, once: true });
+
+        // Counter Animation with Intersection Observer
+        const counters = document.querySelectorAll('.counter');
+        const countOptions = { threshold: 0.5 };
+
+        const startCount = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const update = () => {
+                        const c = +counter.innerText;
+                        const inc = target / 80; // Speed of count
+                        if (c < target) {
+                            counter.innerText = `${Math.ceil(c + inc)}`;
+                            setTimeout(update, 20);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    update();
+                    observer.unobserve(counter);
+                }
+            });
+        };
+
+        const countObserver = new IntersectionObserver(startCount, countOptions);
+        counters.forEach(counter => countObserver.observe(counter));
+    </script>
 </body>
-
-<section class="newsletter" data-aos="fade-up">
-
-<h2>Stay Connected</h2>
-
-<p>
-Join our community of supporters and volunteers helping transform victims into Victors.
-</p>
-
-<form action="https://forms.office.com/r/Ve1thcJPT5?origin=lprLink" method="POST">
-
-<input type="email" name="email" placeholder="Enter your email" required>
-
-<button type="submit">Join Newsletter</button>
-
-</form>
-
-<br>
-
-<a href="https://forms.office.com/" class="volunteer-btn">
-Become a Volunteer
-</a>
-
-</section>
-
-<footer class="footer">
-
-<div class="footer-grid">
-
-<div>
-<h3>Victor Global Initiative</h3>
-<p>Empowering youth to transform their lives from the streets to the stage.</p>
-</div>
-
-<div>
-<h4>Quick Links</h4>
-<a href="about.html">About</a>
-<a href="initiatives.html">Programs</a>
-<a href="leadership.html">Leadership</a>
-<a href="donate.html">Donate</a>
-</div>
-
-<div>
-<h4>Contact</h4>
-
-<p>11507 Dr MLK Blvd Unit 34  
-Mango, FL 33550</p>
-
-<p>(760) 842-8677</p>
-
-<p>info@victorglobal.org</p>
-
-<p>EIN: 41-3649085</p>
-
-</div>
-
-<div>
-
-<h4>Transparency</h4>
-
-<a aria-label="Victor Global Initiative" href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/?pkId=0888bd34-1904-408f-b6d2-2dfa31eb5395" target="_blank">
-
-<img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg">
-
-</a>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<p>
-© 2026 Victor Global Initiative | 501(c)(3) Nonprofit
-</p>
-
-<p>
-FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352). REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
-</p>
-
-<a href="privacy.html">Privacy Policy</a> |
-<a href="terms.html">Terms of Service</a> |
-<a href="https://forms.office.com/YOURFORM">Contact Us</a>
-
-</div>
-
-</footer>
-
+</html>

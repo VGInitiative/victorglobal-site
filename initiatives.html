@@ -1,174 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Victor Global Initiative</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiatives | Victor Global Initiative</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 <body>
-<header class="header">
-<div class="container nav">
 
-<div class="logo-area">
-<img src="images/logo.png" class="logo">
-<span class="org-name">Victor Global Initiative</span>
-</div>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="brand">
+                <img src="images/logo.png" class="logo" alt="VGI Logo">
+                <span class="org-name">Victor Global Initiative</span>
+            </a>
 
-<nav id="nav-menu">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="initiatives.html">Initiatives</a>
-<a href="leadership.html">Leadership</a>
-<a href="donate.html" class="donate-btn">Donate</a>
-</nav>
+            <nav id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="initiatives.html" class="active-link">Initiatives</a>
+                <a href="leadership.html">Leadership</a>
+                <a href="donate.html" class="donate-btn-nav">Donate</a>
+            </nav>
 
-<div class="hamburger" onclick="toggleMenu()">
-☰
-</div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+    </header>
 
-</div>
-</header>
+    <main>
+        <section class="section-padding text-center" data-aos="fade-up">
+            <span class="subtitle">What We Do</span>
+            <h1>Our Initiatives</h1>
+            <p class="lead-text">Empowering at-risk youth and foster children through structured support, military-grade discipline, and professional mentorship.</p>
+        </section>
 
-<main>
-  <section class="programs">
+        <section class="section-padding" style="padding-top: 0;">
+            <div class="grid">
+                <div class="card initiative-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="initiative-icon">🏠</div>
+                    <h3>Supporting Vulnerable Youth</h3>
+                    <p>We partner with youth shelters and transitional programs to provide the stability needed for a successful transition to adulthood and independence.</p>
+                </div>
 
-<h2>Our Initiatives</h2>
+                <div class="card initiative-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="initiative-icon">🛡️</div>
+                    <h3>Fostering Discipline & Duty</h3>
+                    <p>By supporting JROTC programs, we encourage the next generation to embrace leadership, civic responsibility, and the discipline required for success.</p>
+                </div>
 
-<h3>Supporting Vulnerable Youth</h3>
+                <div class="card initiative-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="initiative-icon">🎓</div>
+                    <h3>The Victor Mentorship Model</h3>
+                    <p>A holistic approach focusing on emotional resilience, financial literacy, and career preparation—mentoring the whole individual, not just their circumstances.</p>
+                </div>
+            </div>
+        </section>
 
-<p>
-Victor Global Initiative partners with youth shelters to provide
-stability and pathways to independence.
-</p>
+        <section class="section-padding donor-wall">
+            <div class="container">
+                <h2 class="text-center">Programs in Action</h2>
+                <p class="text-center" style="margin-bottom: 40px;">Seeing the transformation from Victim to Victor.</p>
+                
+                <div class="gallery">
+                    <div class="gallery-item" data-aos="zoom-in"><img src="images/program1.jpg" alt="VGI Mentorship Session"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="images/program2.jpg" alt="JROTC Support"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="images/program3.jpg" alt="Shelter Outreach"></div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="images/program4.jpg" alt="Community Event"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<h3>Fostering Discipline & Duty</h3>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Victor Global Initiative</h3>
+                    <p>Empowering youth to transform their lives from the streets to the stage.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About</a>
+                    <a href="initiatives.html">Programs</a>
+                    <a href="leadership.html">Leadership</a>
+                    <a href="donate.html">Donate</a>
+                </div>
+                <div>
+                    <h4>Transparency</h4>
+                    <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
+                        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal">
+                    </a>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
+                <p style="font-size: 0.7rem;">FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING (800-435-7352).</p>
+            </div>
+        </div>
+    </footer>
 
-<p>
-We support school JROTC programs to encourage leadership,
-discipline, and civic responsibility.
-</p>
-
-<h3>The Victor Mentorship Model</h3>
-
-<p>
-Mentorship programs focusing on emotional resilience,
-financial literacy, and career preparation.
-</p>
-
-</section>
-
-<body>
-
-<header>...</header>
-
-<section>
-
-<h1>Our Initiatives</h1>
-
-<p>Supporting Vulnerable Youth...</p>
-
-<p>Fostering Discipline & Duty...</p>
-
-<p>The Victor Mentorship Model...</p>
-
-</section>
-
-<!-- PROGRAMS GALLERY -->
-<section>
-
-<h2>Programs in Action</h2>
-
-<div class="gallery">
-
-<img src="images/program1.jpg" data-aos="fade-up">
-<img src="images/program2.jpg" data-aos="fade-up">
-<img src="images/program3.jpg" data-aos="fade-up">
-<img src="images/program4.jpg" data-aos="fade-up">
-
-</div>
-
-</section>
-
-<footer>...</footer>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('nav-active');
+        }
+    </script>
 </body>
-
-</main>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<script>
-AOS.init({
-duration:1000,
-once:true
-});
-</script>
-
-<footer class="footer">
-
-<div class="footer-grid">
-
-<div>
-<h3>Victor Global Initiative</h3>
-<p>Empowering youth to transform their lives from the streets to the stage.</p>
-</div>
-
-<div>
-<h4>Quick Links</h4>
-<a href="about.html">About</a>
-<a href="initiatives.html">Programs</a>
-<a href="leadership.html">Leadership</a>
-<a href="donate.html">Donate</a>
-</div>
-
-<div>
-<h4>Contact</h4>
-
-<p>11507 Dr MLK Blvd Unit 34  
-Mango, FL 33550</p>
-
-<p>(760) 842-8677</p>
-
-<p>info@victorglobal.org</p>
-
-<p>EIN: 41-3649085</p>
-
-</div>
-
-<div>
-
-<h4>Transparency</h4>
-
-<a aria-label="Victor Global Initiative" href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/?pkId=0888bd34-1904-408f-b6d2-2dfa31eb5395" target="_blank">
-
-<img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg">
-
-</a>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<p>
-© 2026 Victor Global Initiative | 501(c)(3) Nonprofit
-</p>
-
-<p>
-FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352). REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
-</p>
-
-<a href="privacy.html">Privacy Policy</a> |
-<a href="terms.html">Terms of Service</a> |
-<a href="https://forms.office.com/YOURFORM">Contact Us</a>
-
-</div>
-
-</footer>
+</html>
