@@ -1,119 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy - Victor Global Initiative</title>
-<link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Victor Global Initiative</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <style>
+        /* --- MASTER CSS (Consistent with Index) --- */
+        :root {
+            --primary: #0a7d8c; 
+            --secondary: #32c6a6;
+            --dark: #222;
+            --light: #f4f7f8;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Placeholder & Nav Styles */
+        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .logo { height: 50px; margin-right: 15px; }
+        .org-title { font-size: 1.2rem; font-weight: 700; }
+        nav { display: flex; align-items: center; }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        nav a:hover, nav a.active-link { color: var(--secondary); }
+        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
+        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+
+        /* Legal Content Formatting */
+        .legal-page-header { background: var(--light); text-align: center; padding: 80px 20px; }
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        .legal-content h2 { color: var(--primary); font-size: 1.4rem; margin: 40px 0 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .legal-content p, .legal-content li { font-size: 1rem; margin-bottom: 15px; color: #444; }
+        .legal-content ul { margin-bottom: 20px; padding-left: 25px; }
+        .last-updated { font-size: 0.9rem; color: #888; font-style: italic; }
+
+        /* Footer Alignment Styles */
+        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
+        .footer-bottom { padding-top: 30px; text-align: center; }
+
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
+            nav.active { display: flex; }
+            nav a { margin: 10px 0; margin-left: 0; }
+            .footer-top { text-align: center; }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <img src="assets/images/logo.png" alt="Victor Global Initiative Logo" class="logo">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="initiatives.html">Initiatives</a>
-    <a href="donate.html">Donate</a>
-    <a href="contact.html">Contact</a>
-    <a href="leadership.html">Leadership</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Service</a>
-  </nav>
-</header>
 
-<main>
-  <section>
-    <h1>Privacy Policy</h1>
+    <div id="header-placeholder"></div>
 
-    <h2>1. Introduction</h2>
-    <p>Victor Global Initiative (“we,” “our,” or “us”) respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard information from visitors and donors on our website (www.victorglobal.org).</p>
-    <p>By using our website, you consent to the practices described in this policy.</p>
+    <main>
+        <section class="legal-page-header" data-aos="fade-up">
+            <span style="text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 2px;">Transparency</span>
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Effective Date: March 2026</p>
+        </section>
 
-    <h2>2. Information We Collect</h2>
-    <p>We may collect personal information when you:</p>
-    <ul>
-      <li>Make a donation</li>
-      <li>Sign up for newsletters or volunteer opportunities</li>
-      <li>Contact us via forms or email</li>
-    </ul>
-    <p>Types of information collected:</p>
-    <ul>
-      <li>Name, email address, mailing address, phone number</li>
-      <li>Payment information (processed securely by Stripe or PayPal Giving Fund)</li>
-      <li>IP address and browser type for website analytics</li>
-    </ul>
+        <section class="legal-container" data-aos="fade-up">
+            <div class="legal-content">
+                <h2>1. Introduction</h2>
+                <p>Victor Global Initiative (“we,” “our,” or “us”) respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard information from visitors and donors on our website (www.victorglobal.org).</p>
+                <p>By using our website, you consent to the practices described in this policy.</p>
 
-    <h2>3. How We Use Your Information</h2>
-    <ul>
-      <li>Processing donations and sending receipts</li>
-      <li>Sending updates, newsletters, or event invitations (if you opt-in)</li>
-      <li>Responding to inquiries or volunteer applications</li>
-      <li>Improving our website and services</li>
-    </ul>
-    <p>We will never sell, rent, or trade your personal information.</p>
+                <h2>2. Information We Collect</h2>
+                <p>We may collect personal information when you perform the following actions:</p>
+                <ul>
+                    <li>Make a donation</li>
+                    <li>Sign up for newsletters or volunteer opportunities</li>
+                    <li>Contact us via forms or email</li>
+                </ul>
+                <p><strong>Types of information collected:</strong> Name, email address, mailing address, phone number, and secure payment information (processed by Stripe or PayPal Giving Fund).</p>
 
-    <h2>4. Cookies and Tracking</h2>
-    <p>Our website may use cookies or analytics tools (e.g., Google Analytics) to:</p>
-    <ul>
-      <li>Understand website traffic and user behavior</li>
-      <li>Improve website performance and content</li>
-    </ul>
-    <p>You may disable cookies in your browser settings, but some features may not function properly.</p>
+                <h2>3. How We Use Your Information</h2>
+                <ul>
+                    <li>Processing donations and sending tax-compliant receipts.</li>
+                    <li>Sending updates or newsletters (only if you opt-in).</li>
+                    <li>Improving our services and responding to inquiries.</li>
+                </ul>
+                <p><strong>We will never sell, rent, or trade your personal information.</strong></p>
 
-    <h2>5. Third-Party Services</h2>
-    <p>We may use third-party service providers for:</p>
-    <ul>
-      <li>Payment processing (Stripe, PayPal Giving Fund)</li>
-      <li>Email communications (Mailchimp, Google Workspace)</li>
-      <li>Analytics (Google Analytics)</li>
-    </ul>
-    <p>These providers are authorized to use your personal information only to perform services on our behalf.</p>
+                <h2>4. Cookies and Tracking</h2>
+                <p>Our website may use cookies to understand website traffic and improve performance. You may disable cookies in your browser settings, though some features may be affected.</p>
 
-    <h2>6. Data Security</h2>
-    <ul>
-      <li>We implement reasonable security measures to protect your information.</li>
-      <li>Personal data is encrypted during online transmission using SSL.</li>
-      <li>While we strive to protect your information, no website is completely secure.</li>
-    </ul>
+                <h2>5. Third-Party Services</h2>
+                <p>We use trusted partners for payment processing (Stripe), email (Mailchimp), and analytics. These providers are authorized to use your information only to perform services on our behalf.</p>
 
-    <h2>7. Sharing Information</h2>
-    <p>We do not sell or share your personal information with third parties for marketing purposes. We may share information with:</p>
-    <ul>
-      <li>Legal authorities if required by law</li>
-      <li>Service providers to process donations or support website functionality</li>
-    </ul>
+                <h2>6. Data Security</h2>
+                <p>Personal data is encrypted during transmission using SSL. While we implement reasonable security measures, no website is completely secure.</p>
 
-    <h2>8. Your Rights</h2>
-    <p>Depending on your location, you may have the right to:</p>
-    <ul>
-      <li>Access and review your personal information</li>
-      <li>Request corrections to your personal information</li>
-      <li>Opt-out of receiving marketing communications</li>
-    </ul>
-    <p>To exercise these rights, contact us at: <a href="mailto:victorp@victorglobal.org">victorp@victorglobal.org</a></p>
+                <h2>7. Sharing Information</h2>
+                <p>We may share information with legal authorities if required by law or with service providers necessary to process donations.</p>
 
-    <h2>9. Children’s Privacy</h2>
-    <p>Our website and programs are intended for individuals 18 years and older. We do not knowingly collect personal information from children under 13.</p>
+                <h2>8. Your Rights</h2>
+                <p>You have the right to access, review, or request corrections to your data. To exercise these rights, contact us at: <a href="mailto:info@victorglobal.org">info@victorglobal.org</a></p>
 
-    <h2>10. Updates to this Privacy Policy</h2>
-    <p>We may update this Privacy Policy from time to time. The most current version will always be posted on this page with the date updated.</p>
+                <h2>9. Children’s Privacy</h2>
+                <p>Our website is intended for individuals 18 years and older. We do not knowingly collect personal information from children under 13.</p>
 
-    <h2>11. Contact Information</h2>
-    <p>For questions about this Privacy Policy or your personal data:</p>
-    <p>
-      Victor Global Initiative<br>
-      Email: <a href="mailto:info@victorglobal.org">info@victorglobal.org</a><br>
-      Phone: +1 (706) 842-8677 (VICTORS)<br>
-      Address: 11507 Dr MLK Blvd Unit 34, Mango, FL 33550
-    </p>
-  </section>
-</main>
+                <h2>10. Updates</h2>
+                <p>We may update this policy periodically. The current version will always be posted here with the update date.</p>
 
-<footer>
-  <p>Victor Global Initiative</p>
-  <p>11507 Dr MLK Blvd Unit 34, Mango, FL 33550 | Phone: (760) 842-8677 | EIN: 41-3649085</p>
-  <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
-  <p>FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.</p>
-</footer>
+                <h2>11. Contact Information</h2>
+                <div style="background: var(--light); padding: 25px; border-radius: 12px; border-left: 5px solid var(--primary);">
+                    <p><strong>Victor Global Initiative</strong></p>
+                    <p>Email: <a href="mailto:info@victorglobal.org">info@victorglobal.org</a></p>
+                    <p>Phone: +1 (760) 842-8677 (VICTORS)</p>
+                    <p>Address: 11507 Dr MLK Blvd Unit 34, Mango, FL 33550</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        async function loadComponents() {
+            try {
+                const header = await fetch('header.html');
+                document.getElementById('header-placeholder').innerHTML = await header.text();
+                
+                const footer = await fetch('footer.html');
+                document.getElementById('footer-placeholder').innerHTML = await footer.text();
+                
+                AOS.init({ duration: 1000, once: true });
+            } catch (err) {
+                console.error("Component load failed:", err);
+            }
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
+
+        window.onload = loadComponents;
+    </script>
 </body>
 </html>
