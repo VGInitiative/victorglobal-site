@@ -1,4 +1,4 @@
-fix the other pages to math index complete all in one. we start with terms.html: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@ fix the other pages to math index complete all in one. we start with terms.html:
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* --- CSS MASTER STYLES --- */
+        /* --- MASTER CSS --- */
         :root {
             --primary: #0a7d8c; 
             --secondary: #32c6a6;
@@ -29,139 +29,35 @@ fix the other pages to math index complete all in one. we start with terms.html:
             overflow-x: hidden;
         }
 
-        /* --- NAVIGATION --- */
-        header {
-            background: var(--primary);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 2000;
-            box-shadow: var(--shadow);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
+        /* Nav & Footer Styles (Required in main page for injected content) */
+        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
         .brand { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo { height: 50px; margin-right: 15px; }
         .org-title { font-size: 1.2rem; font-weight: 700; }
-
         nav { display: flex; align-items: center; }
-        nav a {
-            color: white;
-            margin-left: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        nav a:hover { color: var(--secondary); }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        nav a:hover, nav a.active-link { color: var(--secondary); }
         .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
-
         .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
-        /* --- LEGAL CONTENT --- */
-        .legal-page-header {
-            background: var(--light);
-            text-align: center;
-            padding: 80px 20px;
-        }
+        /* Legal Content Styles */
+        .legal-page-header { background: var(--light); text-align: center; padding: 80px 20px; }
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        .legal-content h2 { color: var(--primary); font-size: 1.4rem; margin: 40px 0 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .legal-content p { font-size: 1rem; margin-bottom: 20px; color: #444; }
+        .last-updated { font-size: 0.9rem; color: #888; font-style: italic; }
 
-        .legal-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .legal-content h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin: 40px 0 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        .legal-content p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-            color: #444;
-        }
-
-        .last-updated {
-            font-size: 0.9rem;
-            color: #888;
-            font-style: italic;
-        }
-
-        /* --- FOOTER STYLES --- */
-        footer {
-            background: #1a1a1a;
-            color: #bbb;
-            padding: 60px 20px 30px;
-            font-size: 0.85rem;
-        }
-
+        /* Footer Alignment */
+        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
         .footer-container { max-width: 1100px; margin: 0 auto; }
-        
-        .footer-top {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #333;
-        }
-
-        .footer-brand h3, .footer-contact h4, .footer-links h4 {
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            display: block;
-            color: #aaa;
-            text-decoration: none;
-            margin-bottom: 10px;
-        }
-
-        .footer-links a:hover { color: var(--secondary); }
-
-        .candid-seal {
-            height: 80px;
-            filter: grayscale(100%);
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        .candid-seal:hover { filter: none; }
-
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
         .footer-bottom { padding-top: 30px; text-align: center; }
-        
-        .legal-disclaimer {
-            font-size: 0.7rem;
-            color: #777;
-            max-width: 800px;
-            margin: 15px auto 0;
-            line-height: 1.4;
-        }
+        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
 
-        /* --- MOBILE --- */
         @media (max-width: 900px) {
             .hamburger { display: block; }
-            nav {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--primary);
-                padding: 20px 0;
-                text-align: center;
-            }
+            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
             nav.active { display: flex; }
             nav a { margin: 10px 0; margin-left: 0; }
             .footer-top { text-align: center; }
@@ -170,22 +66,7 @@ fix the other pages to math index complete all in one. we start with terms.html:
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="brand">
-                <img src="images/logo.png" class="logo" alt="VGI Logo">
-                <span class="org-title">Victor Global Initiative</span>
-            </a>
-            <div class="hamburger" onclick="toggleMenu()">☰</div>
-            <nav id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="initiatives.html">Initiatives</a>
-                <a href="leadership.html">Leadership</a>
-                <a href="donate.html" class="donate-btn-nav">Donate</a>
-            </nav>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <main>
         <section class="legal-page-header" data-aos="fade-up">
@@ -226,52 +107,38 @@ fix the other pages to math index complete all in one. we start with terms.html:
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <h3>Victor Global Initiative</h3>
-                    <p>Empowering youth to transform their lives from the streets to the stage.</p>
-                    <div style="margin-top: 20px;">
-                        <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
-                            <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal" alt="Candid Silver Transparency 2026 Seal">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><strong>Address:</strong> 11507 Dr MLK Blvd Unit 34, Mango, FL 33550</p>
-                    <p><strong>Phone:</strong> +1 (760) 842-8677 (VICTORS)</p>
-                    <p><strong>Email:</strong> info@victorglobal.org</p>
-                </div>
-
-                <div class="footer-links">
-                    <h4>Legal & Support</h4>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                    <a href="contact.html">Contact Us</a>
-                    <a href="donate.html" style="color:var(--secondary); font-weight:bold;">Donate to the Mission</a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p style="margin-bottom: 5px; color: #fff; font-weight: 600;">
-                    © 2026 Victor Global Initiative | 501(c)(3) Nonprofit | EIN: 41-3649085
-                </p>
-                <p class="legal-disclaimer">
-                    FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
-                </p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-        function toggleMenu() {
-            document.getElementById('nav-menu').classList.toggle('active');
+        async function loadComponents() {
+            try {
+                // Fetch and inject Header
+                const headerResp = await fetch('header.html');
+                const headerHTML = await headerResp.text();
+                document.getElementById('header-placeholder').innerHTML = headerHTML;
+                
+                // Fetch and inject Footer
+                const footerResp = await fetch('footer.html');
+                const footerHTML = await footerResp.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHTML;
+                
+                // Initialize AOS animations after content is ready
+                AOS.init({ duration: 1000, once: true });
+
+            } catch (err) {
+                console.error("Component loading failed:", err);
+            }
         }
+
+        // Mobile Navigation Toggle (Global scope)
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
+
+        // Initialize on Load
+        window.onload = loadComponents;
     </script>
 </body>
 </html>
