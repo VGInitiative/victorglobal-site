@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* --- CSS MASTER STYLES (Self-Contained) --- */
+        /* --- CSS MASTER STYLES --- */
         :root {
             --primary: #0a7d8c; 
             --secondary: #32c6a6;
@@ -50,7 +50,7 @@
 
         .brand { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo { height: 50px; margin-right: 15px; }
-        .org-title { font-size: 1.4rem; font-weight: 700; }
+        .org-title { font-size: 1.2rem; font-weight: 700; }
 
         nav { display: flex; align-items: center; }
         nav a {
@@ -58,14 +58,10 @@
             margin-left: 25px;
             text-decoration: none;
             font-weight: 600;
+            transition: 0.3s;
         }
         nav a:hover { color: var(--secondary); }
-
-        .donate-btn-nav {
-            background: var(--secondary);
-            padding: 8px 20px;
-            border-radius: 50px;
-        }
+        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
 
         .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
@@ -78,8 +74,9 @@
             justify-content: center;
             text-align: center;
             color: white;
+            padding: 0 20px;
         }
-        .hero-title { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-title { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
         .hero-btn {
             background: var(--secondary);
             color: white;
@@ -90,13 +87,12 @@
             display: inline-block;
         }
 
-        /* --- THE ALIGNMENT GRID --- */
-        
+        /* --- ALIGNMENT GRID --- */
         .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
         
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* FORCES 3 COLUMNS ON DESKTOP */
+            grid-template-columns: repeat(3, 1fr); /* 3 COLUMNS ON DESKTOP */
             gap: 30px;
             margin-top: 40px;
         }
@@ -114,11 +110,59 @@
         /* --- IMPACT STATS --- */
         .counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
 
-        /* --- FOOTER --- */
-        footer { background: #1a1a1a; color: #ccc; padding: 60px 20px; text-align: center; }
-        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1000px; margin: auto; text-align: left; }
-        .footer-links a { display: block; color: #aaa; text-decoration: none; margin-bottom: 10px; }
-        .footer-bottom { border-top: 1px solid #333; margin-top: 40px; padding-top: 20px; font-size: 0.8rem; }
+        /* --- UNIVERSAL FOOTER STYLES --- */
+        footer {
+            background: #1a1a1a;
+            color: #bbb;
+            padding: 60px 20px 30px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+            text-align: left;
+        }
+
+        .footer-brand h3, .footer-contact h4, .footer-links h4 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--secondary); }
+
+        .candid-seal {
+            height: 80px;
+            filter: grayscale(100%);
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+        .candid-seal:hover { filter: none; }
+
+        .footer-bottom { padding-top: 30px; text-align: center; }
+
+        .legal-disclaimer {
+            font-size: 0.7rem;
+            color: #777;
+            max-width: 800px;
+            margin: 15px auto 0;
+            line-height: 1.4;
+        }
 
         /* --- MOBILE BREAKPOINT --- */
         @media (max-width: 900px) {
@@ -132,11 +176,13 @@
                 width: 100%;
                 background: var(--primary);
                 padding: 20px 0;
+                text-align: center;
             }
             nav.active { display: flex; }
-            nav a { margin: 10px 0; }
-            .grid, .footer-grid { grid-template-columns: 1fr; }
+            nav a { margin: 10px 0; margin-left: 0; }
+            .grid, .footer-top { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.2rem; }
+            .footer-top { text-align: center; }
         }
     </style>
 </head>
@@ -145,7 +191,7 @@
     <header>
         <div class="header-container">
             <a href="index.html" class="brand">
-                <img src="images/logo.png" class="logo" alt="Logo">
+                <img src="images/logo.png" class="logo" alt="VGI Logo">
                 <span class="org-title">Victor Global Initiative</span>
             </a>
             <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -159,52 +205,74 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <h1 class="hero-title">A Victor, Not a Victim</h1>
-            <p>Empowering the next generation to overcome their hardship.</p><br>
-            <a href="#impact" class="hero-btn">See Our Impact</a>
-        </div>
-    </section>
+    <main>
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">A Victor, Not a Victim</h1>
+                <p>Empowering the next generation to overcome their hardship.</p><br>
+                <a href="#impact" class="hero-btn">See Our Impact</a>
+            </div>
+        </section>
 
-    <section class="section-padding" id="impact">
-        <h2 style="text-align: center;">Our Real-World Impact</h2>
-        <div class="grid">
-            <div class="card" data-aos="fade-up">
-                <h3 class="counter" data-target="500">0</h3>
-                <p>Youth Reached</p>
+        <section class="section-padding" id="impact">
+            <h2 style="text-align: center; margin-bottom: 40px;">Our Real-World Impact</h2>
+            <div class="grid">
+                <div class="card" data-aos="fade-up">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Youth Reached</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="counter" data-target="25">0</h3>
+                    <p>Community Partnerships</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="counter" data-target="12">0</h3>
+                    <p>Programs Supported</p>
+                </div>
             </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="counter" data-target="25">0</h3>
-                <p>Community Partnerships</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="counter" data-target="12">0</h3>
-                <p>Programs Supported</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h3>VGI</h3>
-                <p>Transforming lives through resilience and service.</p>
+    <footer class="footer">
+        <div class="footer-container">
+            
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Victor Global Initiative</h3>
+                    <p>Empowering youth to transform their lives from the streets to the stage.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
+                            <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal" alt="Candid Silver Transparency 2026 Seal">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><strong>Address:</strong> 11507 Dr MLK Blvd Unit 34, Mango, FL 33550</p>
+                    <p><strong>Phone:</strong> +1 (760) 842-8677 (VICTORS)</p>
+                    <p><strong>Email:</strong> info@victorglobal.org</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Legal & Support</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="donate.html" style="color:var(--secondary); font-weight:bold;">Donate to the Mission</a>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="about.html">About</a>
-                <a href="initiatives.html">Programs</a>
-                <a href="donate.html">Donate</a>
+
+            <div class="footer-bottom">
+                <p style="margin-bottom: 5px; color: #fff; font-weight: 600;">
+                    © 2026 Victor Global Initiative | 501(c)(3) Nonprofit | EIN: 41-3649085
+                </p>
+                
+                <p class="legal-disclaimer">
+                    FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
+                </p>
             </div>
-            <div>
-                <h4>Contact</h4>
-                <p>info@victorglobal.org</p>
-                <p>(760) 842-8677</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
+
         </div>
     </footer>
 
