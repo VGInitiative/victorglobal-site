@@ -81,3 +81,16 @@ footer {
 @media (max-width: 768px) {
     .footer-top { text-align: center; }
 }
+
+.logo { 
+    height: 50px; 
+    width: auto; 
+    display: block;
+    margin-right: 15px; 
+}
+
+.brand { 
+    display: flex; 
+    align-items: center; 
+    text-decoration: none; 
+}
