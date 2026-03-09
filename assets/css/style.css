@@ -94,3 +94,17 @@ footer {
     align-items: center; 
     text-decoration: none; 
 }
+
+.logo {
+    height: 60px !important; /* Forces a height */
+    width: auto !important;   /* Keeps it from squishing */
+    display: inline-block !important;
+    vertical-align: middle;
+    background-color: transparent; /* Ensures no weird background hides it */
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
