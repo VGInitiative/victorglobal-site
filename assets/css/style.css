@@ -1,29 +1,31 @@
+/* --- VGI CORE VARIABLES --- */
 :root {
-    --primary: #0a7d8c;
+    --primary: #0a7d8c; 
     --secondary: #32c6a6;
     --dark: #222;
-    --light: #f9f9f9;
+    --light: #f4f7f8;
     --white: #ffffff;
-    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
+/* --- RESET & DEFAULTS --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.7;
-    color: var(--dark);
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    line-height: 1.6; 
+    color: var(--dark); 
     background: var(--white);
     overflow-x: hidden;
 }
 
-/* --- HEADER & NAV --- */
+/* --- HEADER & NAVIGATION --- */
 header {
     background: var(--primary);
     padding: 15px 0;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 2000;
+    box-shadow: var(--shadow);
 }
 
 .header-container {
@@ -35,104 +37,114 @@ header {
     padding: 0 20px;
 }
 
-.org-title { color: white; font-size: 1.4rem; font-weight: bold; margin-left: 15px; }
-.logo { height: 50px; }
 .brand { display: flex; align-items: center; text-decoration: none; }
+.logo { height: 55px; border-radius: 5px; }
+.org-title { color: white; font-size: 1.4rem; font-weight: 700; margin-left: 15px; }
 
-/* Desktop Menu Styles */
-#nav-menu {
-    display: flex;
-    align-items: center;
-}
-
+/* Desktop Navigation */
+#nav-menu { display: flex; align-items: center; }
 #nav-menu a {
     color: white;
-    margin-left: 25px;
+    margin-left: 30px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    transition: 0.3s;
 }
-
 #nav-menu a:hover { color: var(--secondary); }
 
 .donate-btn-nav {
     background: var(--secondary);
-    padding: 8px 20px !important;
+    color: white !important;
+    padding: 10px 25px;
     border-radius: 50px;
-    font-weight: bold;
 }
 
 .hamburger {
     display: none; /* Hidden on Desktop */
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: white;
     cursor: pointer;
 }
 
-/* --- SECTIONS --- */
+/* --- HERO SECTION --- */
 .hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/impact.jpg') center/cover;
-    height: 70vh;
+    height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    padding: 0 20px;
+}
+.hero-title { font-size: 3.8rem; margin-bottom: 20px; line-height: 1.1; }
+.hero-btn {
+    background: var(--secondary);
+    color: white;
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.hero-title { font-size: 3.5rem; }
-
-.section-padding { padding: 80px 20px; max-width: 1100px; margin: auto; }
-
+/* --- GRID SYSTEM --- */
+.section-padding { padding: 100px 20px; max-width: 1200px; margin: auto; }
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 Columns on Desktop */
-    gap: 30px;
-    margin-top: 40px;
+    grid-template-columns: repeat(3, 1fr); /* FORCED 3-COL ON DESKTOP */
+    gap: 40px;
 }
 
 .card {
     background: var(--light);
-    padding: 40px;
-    border-radius: 12px;
+    padding: 50px 30px;
+    border-radius: 15px;
     text-align: center;
-    border-bottom: 4px solid var(--primary);
+    transition: 0.3s;
+    border-bottom: 5px solid var(--primary);
 }
+.card:hover { transform: translateY(-10px); background: white; box-shadow: var(--shadow); }
+.card-icon { font-size: 3rem; display: block; margin-bottom: 20px; }
 
-.counter { font-size: 3rem; color: var(--primary); }
+/* --- IMPACT STATS --- */
+.counter { font-size: 3.5rem; color: var(--primary); font-weight: 700; }
 
-.newsletter { background: var(--primary); color: white; text-align: center; padding: 80px 20px; }
-.newsletter input { padding: 12px; width: 300px; border-radius: 5px; border: none; }
-.newsletter button { padding: 12px 25px; background: var(--secondary); border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 5px; }
+/* --- NEWSLETTER --- */
+.newsletter { background: var(--primary); color: white; text-align: center; padding: 100px 20px; }
+.newsletter-form { margin-top: 30px; }
+.newsletter input { padding: 15px; width: 350px; border-radius: 5px; border: none; margin-right: 10px; }
+.newsletter button { padding: 15px 30px; background: var(--secondary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 700; }
 
 /* --- FOOTER --- */
-footer { background: #1a1a1a; color: #ddd; padding: 60px 20px 20px; text-align: center; }
-.footer-links a { color: var(--secondary); text-decoration: none; margin: 0 10px; }
-.candid-seal { height: 80px; margin-top: 20px; filter: grayscale(100%); transition: 0.3s; }
+footer { background: #1a1a1a; color: #ccc; padding: 80px 20px 30px; }
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; max-width: 1200px; margin: 0 auto 50px; }
+.footer-links a { display: block; color: #aaa; text-decoration: none; margin-bottom: 12px; }
+.footer-links a:hover { color: var(--secondary); }
+.candid-seal { height: 90px; filter: grayscale(100%); transition: 0.3s; }
 .candid-seal:hover { filter: none; }
+.footer-bottom { border-top: 1px solid #333; padding-top: 30px; text-align: center; font-size: 0.8rem; }
 
-/* --- MOBILE RESPONSIVE (Fixes the "Mobile on Computer" issue) --- */
+/* --- MOBILE RESPONSIVE (BREAKPOINTS) --- */
 @media (max-width: 992px) {
-    .grid { grid-template-columns: 1fr; } /* Stack cards only on small screens */
+    .hero-title { font-size: 2.8rem; }
+    .grid, .footer-grid { grid-template-columns: 1fr; } /* Stack on smaller screens */
     
-    .hamburger { display: block; } /* Show menu icon */
-
+    .hamburger { display: block; }
+    
     #nav-menu {
-        display: none; /* Hide menu links */
+        display: none; /* Hide default nav */
         flex-direction: column;
         position: absolute;
-        top: 80px;
+        top: 85px;
         left: 0;
         width: 100%;
         background: var(--primary);
-        padding: 20px 0;
+        padding: 30px 0;
+        text-align: center;
     }
-
-    #nav-menu.nav-active {
-        display: flex; /* Show menu when clicked */
-    }
-
-    #nav-menu a { margin: 15px 0; margin-left: 0; }
     
-    .hero-title { font-size: 2.5rem; }
-    .newsletter input { width: 100%; margin-bottom: 10px; }
+    #nav-menu.nav-active { display: flex; }
+    #nav-menu a { margin: 15px 0; margin-left: 0; font-size: 1.2rem; }
+    .newsletter input { width: 100%; margin-bottom: 15px; margin-right: 0; }
 }

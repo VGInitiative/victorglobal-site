@@ -18,144 +18,127 @@
                 <span class="org-title">Victor Global Initiative</span>
             </a>
 
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+
             <nav id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="initiatives.html">Initiatives</a>
                 <a href="leadership.html">Leadership</a>
-                <a href="donate.html" style="color: var(--secondary); font-weight: bold;">Donate</a>
+                <a href="donate.html" class="donate-btn-nav">Donate</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <h1 class="hero-title">Empowering the Next Generation of Victors</h1>
-            <p>Transforming lives from the streets to the stage through resilience and leadership.</p>
-            <br>
-            <a href="#about" class="hero-btn">Learn Our Mission</a>
-        </div>
-    </section>
-
-    <section class="section-padding" id="about" data-aos="fade-up">
-        <div class="grid">
-            <div class="card">
-                <h3>A Victor, Not a Victim</h3>
-                <p>Hardship does not define your finish line. Being a Victor means keeping your eyes forward and moving toward the mission.</p>
+    <main>
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">Empowering the Next Generation of Victors</h1>
+                <p>Transforming lives from the streets to the stage through resilience and leadership.</p>
+                <br>
+                <a href="#mission" class="hero-btn">Explore Our Mission</a>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>The "X" Promise</h3>
-                <p>Founded in honor of Lucianne Horace, whose sacrifice proved that resilience is an action. Her legacy is our heartbeat.</p>
+        <section class="section-padding" id="mission" data-aos="fade-up">
+            <div class="grid">
+                <div class="card">
+                    <span class="card-icon">🦅</span>
+                    <h3>A Victor, Not a Victim</h3>
+                    <p>Hardship does not define your finish line. We help youth keep their eyes forward on the mission.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">⚔️</span>
+                    <h3>The "X" Promise</h3>
+                    <p>Founded in honor of Lucianne Horace, proving that resilience is an active choice made every day.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">🤝</span>
+                    <h3>Community Leadership</h3>
+                    <p>Building a foundation for success through youth shelters and JROTC mentorship.</p>
+                </div>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>Community Leadership</h3>
-                <p>From youth shelters to JROTC mentorship, we build foundations for disciplined growth and active service.</p>
+        <section class="section-padding" style="background: var(--light);" data-aos="fade-up">
+            <h2 class="text-center" style="margin-bottom: 50px;">Our Impact</h2>
+            <div class="grid">
+                <div class="text-center">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Youth Reached</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="counter" data-target="25">0</h3>
+                    <p>Community Partnerships</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="counter" data-target="12">0</h3>
+                    <p>Programs Supported</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section-padding flex-row" data-aos="fade-right">
-        <img src="assets/images/victor-not-victim.jpg" alt="Resilience">
-        <div>
-            <h2>Eyes on the Mission</h2>
-            <p>We provide at-risk youth with the stability and mentorship they need to realize that their past experiences are stepping stones, not anchors.</p>
-        </div>
-    </section>
-
-    <section class="section-padding flex-row reverse" data-aos="fade-left">
-        <img src="assets/images/x-promise.jpg" alt="Legacy">
-        <div>
-            <h2>The Power of "X"</h2>
-            <p>The "X" represents the intersection of struggle and opportunity. We help youth navigate this crossroad to find their true potential.</p>
-        </div>
-    </section>
-
-    <section class="section-padding" style="background: var(--light);" data-aos="fade-up">
-        <h2 style="text-align: center; margin-bottom: 40px;">Our Impact</h2>
-        <div class="grid" style="text-align: center;">
-            <div>
-                <h3 class="counter" data-target="500" style="font-size: 3rem; color: var(--primary);">0</h3>
-                <p>Youth Reached</p>
-            </div>
-            <div>
-                <h3 class="counter" data-target="25" style="font-size: 3rem; color: var(--primary);">0</h3>
-                <p>Partnerships</p>
-            </div>
-            <div>
-                <h3 class="counter" data-target="12" style="font-size: 3rem; color: var(--primary);">0</h3>
-                <p>Active Programs</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding donor-wall" data-aos="fade-up">
-        <h2>Our Supporters</h2>
-        <div class="sponsor-grid">
-            <img src="images/sponsor1.png" alt="Partner">
-            <img src="images/sponsor2.png" alt="Partner">
-            <img src="images/sponsor3.png" alt="Partner">
-            <img src="images/sponsor4.png" alt="Partner">
-        </div>
-    </section>
-
-    <section class="newsletter">
-        <div data-aos="zoom-in">
+        <section class="newsletter" data-aos="zoom-in">
             <h2>Stay Connected</h2>
             <p>Join our community of supporters helping transform victims into Victors.</p>
-            <form action="https://forms.office.com/r/Ve1thcJPT5" method="POST">
+            <form action="https://forms.office.com/r/Ve1thcJPT5" method="POST" class="newsletter-form">
                 <input type="email" name="email" placeholder="Enter your email" required>
                 <button type="submit">Join Newsletter</button>
             </form>
-            <br>
-            <a href="https://forms.office.com/" class="volunteer-btn">Become a Volunteer</a>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-container">
-            <div class="footer-contact">
-                <h3>Victor Global Initiative</h3>
-                <p>11507 Dr MLK Blvd Unit 34, Mango, FL 33550 | (760) 842-8677</p>
-                <p>info@victorglobal.org | EIN: 41-3649085</p>
+            <div class="footer-grid">
+                <div>
+                    <h3>VGI</h3>
+                    <p>Empowering at-risk youth and foster children.</p>
+                    <p>EIN: 41-3649085</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="initiatives.html">Programs</a>
+                    <a href="leadership.html">Leadership</a>
+                    <a href="donate.html">Donate</a>
+                </div>
+                <div>
+                    <h4>Transparency</h4>
+                    <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
+                        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal">
+                    </a>
+                </div>
             </div>
-
-            <div class="footer-links">
-                <a href="about.html">About</a>
-                <a href="initiatives.html">Programs</a>
-                <a href="leadership.html">Leadership</a>
-                <a href="donate.html">Donate</a>
-            </div>
-
-            <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
-                <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal" alt="Candid Platinum Seal">
-            </a>
-
-            <div class="disclaimer">
+            <div class="footer-bottom">
                 <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
-                <p>FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352). REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.</p>
+                <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.6;">FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352).</p>
             </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Animations
         AOS.init({ duration: 1000, once: true });
 
-        // Counter Animation with Intersection Observer
-        const counters = document.querySelectorAll('.counter');
-        const countOptions = { threshold: 0.5 };
+        // Mobile Menu Logic
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('nav-active');
+        }
 
-        const startCount = (entries, observer) => {
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const countObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const counter = entry.target;
                     const target = +counter.getAttribute('data-target');
                     const update = () => {
                         const c = +counter.innerText;
-                        const inc = target / 80; // Speed of count
+                        const inc = target / 80;
                         if (c < target) {
                             counter.innerText = `${Math.ceil(c + inc)}`;
                             setTimeout(update, 20);
@@ -164,17 +147,11 @@
                         }
                     };
                     update();
-                    observer.unobserve(counter);
+                    countObserver.unobserve(counter);
                 }
             });
-        };
-
-        const countObserver = new IntersectionObserver(startCount, countOptions);
-        counters.forEach(counter => countObserver.observe(counter));
+        }, { threshold: 0.5 });
+        counters.forEach(c => countObserver.observe(c));
     </script>
 </body>
 </html>
-function toggleMenu() {
-    const nav = document.getElementById('nav-menu');
-    nav.classList.toggle('nav-active'); // This matches the CSS above
-}
