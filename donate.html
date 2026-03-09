@@ -4,101 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate | Victor Global Initiative</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
     <style>
-        :root { --primary: #0a7d8c; --secondary: #32c6a6; --dark: #222; --light: #f4f7f8; --white: #ffffff; --shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        /* --- MASTER CSS --- */
+        :root {
+            --primary: #0a7d8c; 
+            --secondary: #32c6a6;
+            --dark: #222;
+            --light: #f4f7f8;
+            --white: #ffffff;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--dark); background: var(--white); }
         
-        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Nav & Footer Styles (Required in main page for injected content) */
+        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
         .brand { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo { height: 50px; margin-right: 15px; }
+        .org-title { font-size: 1.2rem; font-weight: 700; }
         nav { display: flex; align-items: center; }
-        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        nav a:hover, nav a.active-link { color: var(--secondary); }
+        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
+        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
-        .section-padding { padding: 100px 20px; text-align: center; }
-        .donation-card { background: var(--white); padding: 50px 30px; border-radius: 20px; box-shadow: var(--shadow); max-width: 600px; margin: 40px auto; }
-        .donate-btn { background: var(--secondary); color: white; padding: 20px 50px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block; transition: 0.3s; }
-        .donate-btn:hover { background: #28a88d; transform: translateY(-3px); }
+        /* Donation Page Content */
+        .section-padding { padding: 80px 20px; text-align: center; max-width: 1200px; margin: auto; }
         
-        .tax-disclaimer { margin-top: 30px; font-size: 0.85rem; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
-        footer { background: #1a1a1a; color: #ccc; padding: 40px 20px; text-align: center; }
+        .donation-card { 
+            background: var(--white); 
+            padding: 60px 40px; 
+            border-radius: 20px; 
+            box-shadow: var(--shadow); 
+            max-width: 600px; 
+            margin: 40px auto; 
+            border-top: 8px solid var(--secondary);
+        }
+
+        .donate-btn { 
+            background: var(--secondary); 
+            color: white; 
+            padding: 20px 50px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 1.2rem; 
+            display: inline-block; 
+            transition: 0.3s; 
+            box-shadow: 0 4px 15px rgba(50, 198, 166, 0.3);
+        }
+
+        .donate-btn:hover { 
+            background: #28a88d; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(50, 198, 166, 0.4);
+        }
+        
+        .tax-disclaimer { 
+            margin-top: 40px; 
+            font-size: 0.85rem; 
+            color: #777; 
+            border-top: 1px solid #eee; 
+            padding-top: 25px; 
+            line-height: 1.5;
+        }
+
+        /* Footer Alignment */
+        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
+        .footer-bottom { padding-top: 30px; text-align: center; }
+        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
+
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
+            nav.active { display: flex; }
+            nav a { margin: 10px 0; margin-left: 0; }
+            .footer-top { text-align: center; }
+            .donation-card { padding: 40px 20px; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="brand"><img src="images/logo.png" class="logo"> <span class="org-title">VGI</span></a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="initiatives.html">Initiatives</a>
-                <a href="leadership.html">Leadership</a>
-            </nav>
-        </div>
-    </header>
+
+    <div id="header-placeholder"></div>
 
     <main class="section-padding">
-        <h1 style="color:var(--primary)">Support Our Mission</h1>
-        <p>Your contribution directly empowers at-risk youth to transform their lives.</p>
+        <div data-aos="fade-up">
+            <h1 style="color:var(--primary); font-size: 2.5rem; margin-bottom: 15px;">Support Our Mission</h1>
+            <p style="font-size: 1.1rem; color: #555;">Your contribution directly empowers at-risk youth to transform their lives from the streets to the stage.</p>
+        </div>
 
         <div class="donation-card" data-aos="zoom-in">
-            <h2>Make a Difference</h2>
-            <p style="margin-bottom: 30px;">Choose a donation level to help provide mentorship and stability.</p>
+            <h2 style="margin-bottom: 20px;">Make a Difference</h2>
+            <p style="margin-bottom: 35px; color: #666;">Every dollar provides mentorship, stability, and leadership training for the next generation of Victors.</p>
             
             <a href="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" class="donate-btn" target="_blank">
                 Donate Securely via Stripe
             </a>
 
             <div class="tax-disclaimer">
-                <p>Victor Global Initiative is a 501(c)(3) nonprofit organization.</p>
+                <p><strong>Victor Global Initiative</strong> is a 501(c)(3) nonprofit organization.</p>
                 <p>Donations are tax-deductible to the extent allowed by law.</p>
-                <p>EIN: 41-3649085</p>
+                <p style="margin-top: 10px; font-weight: 700; color: #444;">EIN: 41-3649085</p>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-    <div class="footer-container">
-        
-        <div class="footer-top">
-            <div class="footer-brand">
-                <h3>Victor Global Initiative</h3>
-                <p>Empowering youth to transform their lives from the streets to the stage.</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
-                        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal" alt="Candid Silver Transparency 2026 Seal">
-                    </a>
-                </div>
-            </div>
+    <div id="footer-placeholder"></div>
 
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p><strong>Address:</strong> 11507 Dr MLK Blvd Unit 34, Mango, FL 33550</p>
-                <p><strong>Phone:</strong> +1 (760) 842-8677 (VICTORS)</p>
-                <p><strong>Email:</strong> <a href="mailto:info@victorglobal.org" style="color:var(--secondary); text-decoration:none;">info@victorglobal.org</a></p>
-            </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        async function loadComponents() {
+            try {
+                // Fetch and inject Header
+                const headerResp = await fetch('header.html');
+                const headerHTML = await headerResp.text();
+                document.getElementById('header-placeholder').innerHTML = headerHTML;
+                
+                // Fetch and inject Footer
+                const footerResp = await fetch('footer.html');
+                const footerHTML = await footerResp.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHTML;
+                
+                // Initialize AOS animations after content is ready
+                AOS.init({ duration: 1000, once: true });
 
-            <div class="footer-links">
-                <h4>Legal & Support</h4>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="donate.html" style="color:var(--secondary); font-weight:bold;">Donate to the Mission</a>
-            </div>
-        </div>
+            } catch (err) {
+                console.error("Component loading failed:", err);
+            }
+        }
 
-        <div class="footer-bottom">
-            <p class="footer-copyright">
-                © 2026 Victor Global Initiative | 501(c)(3) Nonprofit | <strong>EIN: 41-3649085</strong>
-            </p>
-            
-            <p class="legal-disclaimer">
-                FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.
-            </p>
-        </div>
+        // Mobile Navigation Toggle (Global scope)
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
 
-    </div>
-</footer>
+        // Initialize on Load
+        window.onload = loadComponents;
+    </script>
+</body>
+</html>
