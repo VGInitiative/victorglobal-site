@@ -4,115 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About the Founder | Victor Global Initiative</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --primary: #0a7d8c; --secondary: #32c6a6; --dark: #222; --light: #f4f7f8; --white: #ffffff; --shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--dark); overflow-x: hidden; }
+        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .logo { height: 50px; margin-right: 15px; }
+        nav { display: flex; align-items: center; }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; }
+        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
+        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        .flex-row { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
+        .founder-img { width: 45%; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); }
+        .medal-list { list-style: none; margin-top: 20px; }
+        .medal-list li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; }
+        footer { background: #1a1a1a; color: #ccc; padding: 60px 20px; text-align: center; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1000px; margin: auto; text-align: left; }
+        @media (max-width: 900px) { .hamburger { display: block; } nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; } nav.active { display: flex; } .flex-row { flex-direction: column; } .founder-img { width: 100%; } .footer-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
-
-    <header class="header">
+    <header>
         <div class="header-container">
-            <a href="index.html" class="brand">
-                <img src="images/logo.png" class="logo" alt="VGI Logo">
-                <span class="org-title">Victor Global Initiative</span>
-            </a>
-
+            <a href="index.html" class="brand"><img src="images/logo.png" class="logo"> <span class="org-title">VGI</span></a>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
             <nav id="nav-menu">
                 <a href="index.html">Home</a>
-                <a href="about.html" class="active-link">About</a>
+                <a href="about.html">About</a>
                 <a href="initiatives.html">Initiatives</a>
                 <a href="leadership.html">Leadership</a>
                 <a href="donate.html" class="donate-btn-nav">Donate</a>
             </nav>
-
-            <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
     </header>
-
-    <main>
-        <section class="section-padding flex-row founder-section">
-            <div class="founder-image-container" data-aos="fade-right">
-                <img src="assets/images/founder.jpg" class="founder-img" alt="Pierre-Richard Victor">
-                <div class="founder-badge">Veteran Owned</div>
-            </div>
-
-            <div class="founder-text" data-aos="fade-left">
-                <span class="subtitle">Our Leadership</span>
-                <h2>Pierre-Richard Victor</h2>
-                <h3 class="accent-text">Founder & President</h3>
-                
-                <p>
-                    Born in Port-au-Prince, Haiti and raised in the systems of New York and
-                    New Jersey, Pierre-Richard knows the power of resilience firsthand.
-                </p>
-                <p>
-                    Arriving in the United States at age 15, he navigated homelessness and
-                    shelters while carrying the memory of his mother’s sacrifice.
-                </p>
-                <p>
-                    Today, he is a U.S. Army veteran and a dedicated United Airlines Flight Attendant
-                    with over 25 years of service. His journey is the blueprint for the "Victor, Not a Victim" philosophy.
-                </p>
-
-                <div class="service-record">
-                    <h3>Service Record & Medals</h3>
-                    <ul class="medal-list">
-                        <li><span>🎖️</span> Joint Service Commendation Medal</li>
-                        <li><span>🎖️</span> Army Commendation Medal</li>
-                        <li><span>🎖️</span> Global War on Terrorism Expeditionary Medal</li>
-                        <li><span>🎖️</span> Saint Christopher Medal</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div>
-                    <h3>Victor Global Initiative</h3>
-                    <p>Empowering youth to transform their lives from the streets to the stage.</p>
-                </div>
-                <div>
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="initiatives.html">Programs</a>
-                    <a href="donate.html">Donate</a>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <p>11507 Dr MLK Blvd Unit 34, Mango, FL 33550</p>
-                    <p>(760) 842-8677 | info@victorglobal.org</p>
-                </div>
-                <div>
-                    <h4>Transparency</h4>
-                    <a href="https://app.candid.org/profile/16535316/victor-global-initiative-41-3649085/" target="_blank">
-                        <img src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16535316/svg" class="candid-seal">
-                    </a>
-                </div>
-            </div>
-            <div class="disclaimer">
-                <p>© 2026 Victor Global Initiative | 501(c)(3) Nonprofit</p>
-                <p>FLORIDA REGISTRATION: A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352).</p>
+    <main class="section-padding">
+        <div class="flex-row" data-aos="fade-up">
+            <img src="assets/images/founder.jpg" class="founder-img" alt="Pierre-Richard Victor">
+            <div>
+                <h1 style="color:var(--primary)">Pierre-Richard Victor</h1>
+                <h3>Founder & President</h3>
+                <p>Born in Haiti and raised in the systems of NY/NJ, Pierre-Richard knows resilience firsthand. Arriving at 15, he navigated shelters while honoring his mother’s sacrifice.</p>
+                <p style="margin-top:15px">Today he is a U.S. Army veteran and United Airlines Flight Attendant of 25+ years.</p>
+                <h3 style="margin-top:30px">Service Medals</h3>
+                <ul class="medal-list">
+                    <li>🎖️ Joint Service Commendation Medal</li>
+                    <li>🎖️ Army Commendation Medal</li>
+                    <li>🎖️ Global War on Terrorism Medal</li>
+                </ul>
             </div>
         </div>
+    </main>
+    <footer>
+        <div class="footer-grid">
+            <div><h3>VGI</h3><p>From Victim to Victor.</p></div>
+            <div><h4>Links</h4><a href="initiatives.html" style="color:#aaa; text-decoration:none">Programs</a></div>
+            <div><h4>Contact</h4><p>info@victorglobal.org</p></div>
+        </div>
     </footer>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            nav.classList.toggle('nav-active');
-            
-            // Optional: Toggle hamburger icon from ☰ to ✕
-            const hamburger = document.querySelector('.hamburger');
-            hamburger.innerText = nav.classList.contains('nav-active') ? '✕' : '☰';
-        }
-    </script>
+    <script>AOS.init(); function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }</script>
 </body>
 </html>
