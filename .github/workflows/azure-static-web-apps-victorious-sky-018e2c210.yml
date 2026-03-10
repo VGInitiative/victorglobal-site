@@ -30,9 +30,10 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations ######
           app_location: "/" 
           api_location: "api" 
           output_location: "/" 
-          skip_api_build: false 
-          ###### End of Repository/Build Configurations ######
+          # --- CHANGE THESE TWO LINES ---
+          skip_app_build: false
+          skip_api_build: true  # This tells Azure "Don't overthink the API, just zip it."
+          # ------------------------------
