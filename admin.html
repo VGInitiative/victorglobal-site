@@ -33,166 +33,91 @@
 <body>
     <div id="header-placeholder"></div>
 
-    <main class="admin-container">
-        <h1 style="color: var(--primary); margin-bottom: 5px;">VGI Control Tower</h1>
-        <p style="margin-bottom: 30px;">Manage global initiatives, board members, and real-world impact.</p>
-
-        <div class="tab-menu">
-            <button class="tab-link active" onclick="openTab(event, 'impact')">Impact & News</button>
-            <button class="tab-link" onclick="openTab(event, 'board')">Board Members</button>
-            <button class="tab-link" onclick="openTab(event, 'initiatives')">Initiatives & Programs</button>
-        </div>
-
-        <section id="impact" class="tab-content active">
-            <div class="admin-card">
-                <h3>📈 Real-World Impact & Global News</h3>
-                <div class="admin-group">
-                    <label>Youth Reached</label>
-                    <input type="number" id="stat-youth" class="admin-input" value="5">
-                </div>
-                <div class="admin-group">
-                    <label>Latest News Headline</label>
-                    <input type="text" id="news-title" class="admin-input" placeholder="e.g. New Partnership in Tampa">
-                </div>
-                <button class="btn-save" onclick="saveData('impact')">Update Live Site</button>
-            </div>
-        </section>
-
-        <section id="board" class="tab-content">
-            <div class="admin-card">
-                <h3>👥 Board Member Management</h3>
-                <div class="admin-group">
-                    <label>Select Member to Edit (or add new)</label>
-                    <select id="board-select" class="admin-select" onchange="loadMemberData()">
-                        <option value="new">+ Add New Member</option>
-                        <option value="pierre">Pierre-Richard Victor</option>
-                    </select>
-                </div>
-                <div class="admin-group">
-                    <label>Full Name</label>
-                    <input type="text" id="board-name" class="admin-input">
-                </div>
-                <div class="admin-group">
-                    <label>Position/Role</label>
-                    <input type="text" id="board-role" class="admin-input">
-                </div>
-                <div class="admin-group">
-                    <label>Profile Image</label>
-                    <input type="file" id="board-photo" class="admin-input" accept="image/*" onchange="previewImage(this, 'board-preview')">
-                    <div class="img-preview-container">
-                        <img id="board-preview" src="assets/images/placeholder-user.jpg" class="img-preview">
-                        <small>Recommended: Square JPG/PNG</small>
-                    </div>
-                </div>
-                <div class="admin-group">
-                    <label>Biography</label>
-                    <textarea id="board-bio" class="admin-textarea"></textarea>
-                </div>
-                <button class="btn-save" onclick="saveData('leadership')">Save Board Member</button>
-            </div>
-        </section>
-
-        <section id="initiatives" class="tab-content">
-            <div class="admin-card">
-                <h3>🛡️ Initiatives & Programs in Action</h3>
-                <div class="admin-group">
-                    <label>Initiative Title</label>
-                    <input type="text" id="init-title" class="admin-input" placeholder="e.g. The Victor Mentorship Model">
-                </div>
-                <div class="admin-group">
-                    <label>Icon (Emoji or Icon Name)</label>
-                    <input type="text" id="init-icon" class="admin-input" value="🎓">
-                </div>
-                <div class="admin-group">
-                    <label>Program Photo (Programs in Action Gallery)</label>
-                    <input type="file" id="init-photo" class="admin-input" accept="image/*" onchange="previewImage(this, 'init-preview')">
-                    <div class="img-preview-container">
-                        <img id="init-preview" src="assets/images/placeholder-impact.jpg" class="img-preview" style="border-radius: 8px; width: 120px; height: auto;">
-                    </div>
-                </div>
-                <div class="admin-group">
-                    <label>Description / Impact Details</label>
-                    <textarea id="init-desc" class="admin-textarea" placeholder="Describe the mission and the action..."></textarea>
-                </div>
-                <button class="btn-save" onclick="saveData('initiatives')">Update Initiatives</button>
-            </div>
-        </section>
-
-        <div id="status-msg" class="save-status"></div>
-    </main>
+   </main>
 
     <div id="footer-placeholder"></div>
 
     <script>
-       // 1. TAB NAVIGATION
-function openTab(evt, tabName) {
-    document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-    document.getElementById(tabName).style.display = 'block';
-    document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
-    evt.currentTarget.classList.add('active');
-}
-
-// 2. IMAGE PREVIEW
-function previewImage(input, previewId) {
-    const preview = document.getElementById(previewId);
-    const file = input.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => { preview.src = reader.result; }
-    if (file) { reader.readAsDataURL(file); }
-}
-
-// 3. THE UNIVERSAL SAVE FUNCTION (Handles Text & Photos)
-async function saveData(category) {
-    const msg = document.getElementById('status-msg');
-    msg.innerText = "🛰️ Connecting to VGI Cloud Vault...";
-    msg.style.color = "var(--primary)";
-
-    const formData = new FormData();
-    formData.append('type', category);
-
-    // Dynamic Data Collection based on which tab you are on
-    if (category === 'impact') {
-        formData.append('youth', document.getElementById('stat-youth').value);
-        formData.append('news', document.getElementById('news-title').value);
-    } else if (category === 'leadership') {
-        formData.append('name', document.getElementById('board-name').value);
-        formData.append('role', document.getElementById('board-role').value);
-        formData.append('bio', document.getElementById('board-bio').value);
-        formData.append('image', document.getElementById('board-photo').files[0]);
-    } else if (category === 'initiatives') {
-        formData.append('title', document.getElementById('init-title').value);
-        formData.append('desc', document.getElementById('init-desc').value);
-        formData.append('image', document.getElementById('init-photo').files[0]);
-    }
-
-    try {
-        const response = await fetch(`/api/UpdateSiteContent`, {
-            method: 'POST',
-            body: formData // No headers needed; FormData sets them automatically
-        });
-
-        if (response.ok) {
-            alert("✅ MISSION SUCCESS: The VGI Live Site has been updated!");
-            msg.innerText = "Update successful.";
-            msg.style.color = "#28a745";
-        } else {
-            const errorText = await response.text();
-            alert("❌ AZURE REJECTION: " + response.status + " - " + errorText);
-            msg.innerText = "Vault Refused Connection: " + response.status;
+        // 1. TAB NAVIGATION - Controls which card is visible
+        function openTab(evt, tabName) {
+            const contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].style.display = "none";
+            }
+            const links = document.getElementsByClassName("tab-link");
+            for (let i = 0; i < links.length; i++) {
+                links[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
         }
-    } catch (e) {
-        alert("❌ OFFLINE: Could not reach the Azure API. Check your internet or Azure Portal status.");
-        console.error("VGI Sync Error:", e);
-    }
-}
 
-// 4. LOAD HEADER/FOOTER
-async function loadComponents() {
-    try {
-        const header = await fetch('header.html').then(r => r.text());
-        const footer = await fetch('footer.html').then(r => r.text());
-        document.getElementById('header-placeholder').innerHTML = header;
-        document.getElementById('footer-placeholder').innerHTML = footer;
-    } catch (err) { console.warn("Layout components not found."); }
-}
-window.onload = loadComponents;
+        // 2. IMAGE PREVIEW - Shows the photo before you upload
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => { preview.src = reader.result; }
+            if (file) { reader.readAsDataURL(file); }
+        }
+
+        // 3. THE UNIVERSAL SAVE FUNCTION - The "Cargo Plane" for your data
+        async function saveData(category) {
+            const msg = document.getElementById('status-msg');
+            msg.innerText = "🛰️ Connecting to VGI Cloud Vault...";
+            msg.style.color = "#003087";
+
+            const formData = new FormData();
+            formData.append('type', category);
+
+            // Pack the cargo based on which tab you are on
+            if (category === 'impact') {
+                formData.append('youth', document.getElementById('stat-youth').value);
+                formData.append('news', document.getElementById('news-title').value);
+            } else if (category === 'leadership') {
+                formData.append('name', document.getElementById('board-name').value);
+                formData.append('role', document.getElementById('board-role').value);
+                formData.append('bio', document.getElementById('board-bio').value);
+                const photo = document.getElementById('board-photo').files[0];
+                if(photo) formData.append('image', photo);
+            } else if (category === 'initiatives') {
+                formData.append('title', document.getElementById('init-title').value);
+                formData.append('desc', document.getElementById('init-desc').value);
+                const photo = document.getElementById('init-photo').files[0];
+                if(photo) formData.append('image', photo);
+            }
+
+            try {
+                const response = await fetch('/api/UpdateSiteContent', {
+                    method: 'POST',
+                    body: formData // Note: No headers! FormData handles that.
+                });
+
+                if (response.ok) {
+                    alert("✅ MISSION SUCCESS: The VGI Live Site has been updated!");
+                    msg.innerText = "Update successful.";
+                    msg.style.color = "#28a745";
+                } else {
+                    const errorMsg = await response.text();
+                    alert("❌ VAULT REJECTION: " + response.status + " - " + errorMsg);
+                }
+            } catch (e) {
+                alert("❌ OFFLINE: Could not reach the Azure API.");
+                console.error("VGI Sync Error:", e);
+            }
+        }
+
+        // 4. COMPONENT LOADER - Grabs your Header/Footer
+        async function loadComponents() {
+            try {
+                const header = await fetch('header.html').then(r => r.text());
+                const footer = await fetch('footer.html').then(r => r.text());
+                document.getElementById('header-placeholder').innerHTML = header;
+                document.getElementById('footer-placeholder').innerHTML = footer;
+            } catch (err) { console.warn("Layout components loading..."); }
+        }
+        
+        window.onload = loadComponents;
+    </script>
+</body>
+</html>
