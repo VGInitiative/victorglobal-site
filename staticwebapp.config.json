@@ -2,7 +2,7 @@
   "routes": [
     {
       "route": "/admin.html",
-      "allowedRoles": ["authenticated"],
+      "allowedRoles": ["administrator"],
       "unauthenticatedRedirect": "/.auth/login/github"
     }
   ],
