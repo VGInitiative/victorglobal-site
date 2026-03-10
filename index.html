@@ -65,7 +65,7 @@
                 <div class="flip-card" data-aos="fade-up" onclick="handleFlip(this)">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <h3 class="counter" data-target="6">0</h3>
+                            <h3 class="counter" data-target="6"></h3>
                             <p>Youth Reached</p>
                             <div class="goal-tracker">
                                 <div class="goal-bar"><div class="goal-progress" style="width: 24%;"></div></div>
@@ -127,61 +127,79 @@
             crossorigin="anonymous"></script>
 
     <script>
-        // COMPONENT LOADER
-        async function loadComponents() {
-            try {
-                const headerResp = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
-                const footerResp = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
-                AOS.init({ duration: 1000, once: true });
-                setTimeout(() => { initCounters(); }, 150);
-            } catch (err) { console.error("Load failed:", err); }
-        }
+        <script>
+    // 1. COMPONENT LOADER
+    async function loadComponents() {
+        try {
+            const headerResp = await fetch('header.html');
+            document.getElementById('header-placeholder').innerHTML = await headerResp.text();
+            
+            const footerResp = await fetch('footer.html');
+            document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
+            
+            // Initialize AOS
+            AOS.init({ duration: 1000, once: true });
 
-        // COUNTER ENGINE
-        function initCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        const duration = 2000; 
-                        const stepTime = 30;
-                        const steps = duration / stepTime;
-                        const increment = target / steps;
-                        let current = 0;
-                        const timer = setInterval(() => {
-                            current += increment;
-                            if (current >= target) {
-                                counter.innerText = target;
-                                clearInterval(timer);
-                            } else { counter.innerText = Math.ceil(current); }
-                        }, stepTime);
-                        observer.unobserve(counter);
-                    }
-                });
-            }, { threshold: 0.1 });
-            counters.forEach(c => observer.observe(c));
-        }
+            // WAIT for AOS to finish its first move, then start counters
+            document.addEventListener('aos:in', ({ detail }) => {
+                // If the element coming into view has a counter, trigger it
+                if (detail.querySelector('.counter')) {
+                    initCounters();
+                }
+            });
 
-        // FLIP ENGINE
-        function handleFlip(card) {
-            if (card.classList.contains('is-flipped')) {
-                card.classList.remove('is-flipped');
-                return;
-            }
-            card.classList.add('is-flipped');
-            setTimeout(() => { card.classList.remove('is-flipped'); }, 8000);
-        }
+            // Fallback: Check for counters after a short delay
+            setTimeout(initCounters, 500);
 
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
-        }
+        } catch (err) { console.error("Load failed:", err); }
+    }
 
-        window.onload = loadComponents;
-    </script>
+    // 2. RESILIENT COUNTER ENGINE
+    function initCounters() {
+        const counters = document.querySelectorAll('.counter:not(.counted)');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            if (isNaN(target)) return;
+
+            // Mark as 'counted' so we don't restart it multiple times
+            counter.classList.add('counted');
+
+            const duration = 2000; 
+            const stepTime = 40;
+            const steps = duration / stepTime;
+            const increment = target / steps;
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.innerText = target;
+                    clearInterval(timer);
+                } else {
+                    counter.innerText = Math.ceil(current);
+                }
+            }, stepTime);
+        });
+    }
+
+    // 3. FLIP LOGIC
+    function handleFlip(card) {
+        if (card.classList.contains('is-flipped')) {
+            card.classList.remove('is-flipped');
+            return;
+        }
+        card.classList.add('is-flipped');
+        setTimeout(() => { card.classList.remove('is-flipped'); }, 8000);
+    }
+
+    // 4. NAV TOGGLE
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        if(nav) nav.classList.toggle('active');
+    }
+
+    window.onload = loadComponents;
+</script>
 </body>
 </html>
