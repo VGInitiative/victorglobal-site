@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VGI Admin | Control Tower</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .admin-container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .admin-card { background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); margin-bottom: 30px; border-top: 5px solid var(--secondary); }
+        .admin-group { margin-bottom: 20px; }
+        .admin-group label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
+        .admin-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .save-status { margin-top: 10px; font-size: 0.9rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="admin-container">
+        <h1 style="color: var(--primary); margin-bottom: 10px;">VGI Admin Dashboard</h1>
+        <p>Manage real-world impact and board member details.</p>
+
+        <section class="admin-card">
+            <h3>📈 Update Real-World Impact</h3>
+            <div class="admin-group">
+                <label>Youth Reached</label>
+                <input type="number" id="youthCount" class="admin-input" value="5">
+            </div>
+            <div class="admin-group">
+                <label>Community Partnerships</label>
+                <input type="number" id="partnerCount" class="admin-input" value="2">
+            </div>
+            <div class="admin-group">
+                <label>Programs Supported</label>
+                <input type="number" id="programCount" class="admin-input" value="3">
+            </div>
+            <button class="donate-btn-nav" style="border:none; cursor:pointer;" onclick="saveImpact()">Update Live Stats</button>
+            <div id="impactStatus" class="save-status"></div>
+        </section>
+
+        <section class="admin-card">
+            <h3>👥 Board Member Management</h3>
+            <div id="board-admin-list">
+                </div>
+            <button class="btn-outline" style="margin-top:20px;">+ Add New Member</button>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Logic to talk to your Azure Functions API
+        async function saveImpact() {
+            const status = document.getElementById('impactStatus');
+            status.innerText = "Saving to Azure...";
+            status.style.color = "var(--primary)";
+
+            const data = {
+                youth: document.getElementById('youthCount').value,
+                partners: document.getElementById('partnerCount').value,
+                programs: document.getElementById('programCount').value
+            };
+
+            // In a real Azure setup, this points to your API folder
+            try {
+                const response = await fetch('/api/UpdateImpact', {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                });
+                if(response.ok) {
+                    status.innerText = "✅ Live Site Updated Successfully!";
+                    status.style.color = "var(--secondary)";
+                }
+            } catch (err) {
+                status.innerText = "❌ Connection Error. Check Azure Portal.";
+                status.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
