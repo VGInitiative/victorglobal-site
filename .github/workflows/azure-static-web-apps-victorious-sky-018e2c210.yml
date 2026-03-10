@@ -14,10 +14,8 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event_name != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
-    # --- ADD THESE TWO LINES BELOW ---
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-    # ---------------------------------
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -36,4 +34,5 @@ jobs:
           app_location: "/" 
           api_location: "api" 
           output_location: "/" 
+          skip_api_build: false 
           ###### End of Repository/Build Configurations ######
