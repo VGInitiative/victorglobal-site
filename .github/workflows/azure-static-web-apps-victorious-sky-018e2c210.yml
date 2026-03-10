@@ -15,11 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     env:
-      # This line kills the Node.js 20 warning
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
@@ -35,6 +33,7 @@ jobs:
           app_location: "/" 
           api_location: "api" 
           output_location: "/" 
-          # This tells Azure: "Just take my files, don't try to install things during the zip phase"
-          skip_api_build: true 
+          # --- THE NUCLEAR OVERRIDES ---
+          skip_api_build: true
+          api_build_command: "echo 'Skipping API build to avoid zipping error'"
           ###### End of Repository/Build Configurations ######
