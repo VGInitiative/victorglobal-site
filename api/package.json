@@ -1,19 +1,7 @@
 {
-  "name": "vgi-api-engine",
-  "version": "1.0.0",
-  "description": "API Engine for Victor Global Initiative",
-  "main": "index.js",
-  "scripts": {
-    "start": "func start",
-    "test": "echo \"No tests yet\" && exit 0"
-  },
   "dependencies": {
     "@azure/storage-blob": "^12.12.0",
     "@azure/data-tables": "^13.2.0",
     "parse-multipart-data": "^1.5.0"
-  },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=18.0.0"
   }
 }
