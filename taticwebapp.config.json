@@ -1,18 +1,5 @@
 {
-  "routes": [
-    {
-      "route": "/admin.html",
-      "allowedRoles": ["none"] 
-    }
-  ],
-  "responseOverrides": {
-    "403": {
-      "redirect": "/index.html",
-      "statusCode": 302
-    },
-    "401": {
-      "redirect": "/index.html",
-      "statusCode": 302
-    }
+  "navigationFallback": {
+    "rewrite": "/index.html"
   }
 }
