@@ -14,8 +14,13 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event_name != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+    # --- ADD THESE TWO LINES BELOW ---
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    # ---------------------------------
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
