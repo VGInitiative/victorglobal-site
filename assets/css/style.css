@@ -111,22 +111,31 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 /* ==========================================================================
    6. FOOTER & ALIGNMENT
    ========================================================================== */
-footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
-.footer-container { max-width: 1100px; margin: 0 auto; }
+footer { 
+    background: #1a1a1a; 
+    color: #bbb; 
+    padding: 35px 20px 20px; /* Reduced padding to lower overall height */
+    font-size: 0.85rem; 
+}
+
+.footer-container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+}
 
 .footer-top { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 40px; 
     border-bottom: 1px solid #333; 
-    padding-bottom: 40px; 
+    padding-bottom: 20px; /* Reduced gap to lower height */
     align-items: start; 
 }
 
 .footer-brand { display: flex; justify-content: flex-start; align-items: flex-start; }
 
 .candid-seal { 
-    height: 90px; 
+    height: 75px; /* Slightly smaller seal for a more compact footer */
     width: auto;
     filter: grayscale(100%); 
     transition: 0.3s; 
@@ -134,8 +143,44 @@ footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0
 }
 
 .candid-seal:hover { filter: none; opacity: 1; }
-.footer-bottom { padding-top: 30px; text-align: center; }
-.legal-disclaimer { color: #777; margin-top: 15px; }
+
+.footer-contact p {
+    margin-bottom: 8px; /* Tighter line spacing */
+    line-height: 1.4;
+}
+
+.footer-links h4 {
+    color: var(--white);
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+/* Fix for bunched up links and poor visibility */
+.footer-links a {
+    display: block;
+    color: #ffffff; /* Pure white for maximum contrast and readability */
+    text-decoration: none;
+    margin-bottom: 12px; /* Increased spacing between links */
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    color: var(--secondary); /* High visibility teal on hover */
+}
+
+.footer-bottom { 
+    padding-top: 15px; /* Reduced from 30px to lower height */
+    text-align: center; 
+}
+
+/* Consolidated disclaimer styling */
+.legal-disclaimer { 
+    color: #777; 
+    margin-top: 10px; 
+    font-size: 0.65rem;
+    line-height: 1.3;
+}
 
 /* ==========================================================================
    7. RESPONSIVE BREAKPOINTS
