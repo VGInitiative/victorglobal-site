@@ -56,10 +56,15 @@ module.exports = async function (context, req) {
         };
 
     } catch (err) {
-        context.log.error("VGI Vault Sync Error:", err);
+        // This is the "Diagnostic" part that talks to the Azure Logs
+        context.log.error("--- VGI VAULT ERROR REPORT ---");
+        context.log.error("Error Message:", err.message);
+        context.log.error("Error Code:", err.code || "N/A");
+        context.log.error("Status Code:", err.statusCode || "N/A");
+        
         context.res = { 
-            status: 500, 
-            body: `❌ Error: ${err.message}` 
+            status: err.statusCode || 500, 
+            body: `VAULT_REJECTION: ${err.message}` 
         };
     }
 };
