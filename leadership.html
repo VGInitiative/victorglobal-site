@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* --- MASTER CSS --- */
+        /* --- MASTER CSS (Hybrid Hierarchy Specific) --- */
         :root {
             --primary: #0a7d8c; 
             --secondary: #32c6a6;
@@ -20,16 +20,9 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            line-height: 1.6; 
-            color: var(--dark); 
-            background: var(--white);
-            overflow-x: hidden;
-        }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--dark); background: var(--white); overflow-x: hidden; }
 
-        /* Nav & Footer Styles (Required in main page for injected content) */
+        /* Header/Nav Placeholder Styles */
         header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
         .brand { display: flex; align-items: center; text-decoration: none; color: white; }
@@ -41,28 +34,41 @@
         .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
         .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
-        /* Leadership Content Styles */
-        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        .board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; }
-        .board-card { background: var(--white); padding: 30px 20px; border-radius: 15px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
-        .board-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: var(--secondary); }
-        .profile-frame { width: 140px; height: 140px; margin: 0 auto 20px; border-radius: 50%; border: 3px solid var(--secondary); overflow: hidden; }
-        .profile-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .role { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px; }
+        /* --- HYBRID HIERARCHY GRIDS --- */
+        .section-padding { padding: 60px 20px; max-width: 1200px; margin: auto; }
+        .tier-label { text-align: center; color: var(--secondary); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 30px; display: block; }
+        
+        /* Tier 1: Founder (Large Center) */
+        .grid-tier-1 { display: flex; justify-content: center; margin-bottom: 60px; }
+        .grid-tier-1 .flip-card { width: 350px; height: 450px; }
 
-        /* Footer Alignment */
-        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
-        .footer-container { max-width: 1100px; margin: 0 auto; }
-        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
-        .footer-bottom { padding-top: 30px; text-align: center; }
-        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
+        /* Tier 2: Officers & Trustees */
+        .grid-tier-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
 
+        /* Tier 3: Advisors & Junior */
+        .grid-tier-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+
+        /* --- INTERACTIVE FLIP CARDS --- */
+        .flip-card { background-color: transparent; perspective: 1000px; cursor: pointer; height: 380px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; box-shadow: var(--shadow); border: 1px solid #eee; }
+        .flip-card-front { background: var(--white); border-bottom: 5px solid var(--primary); }
+        .flip-card-back { background: var(--primary); color: white; transform: rotateY(180deg); }
+
+        .profile-img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--secondary); object-fit: cover; margin-bottom: 15px; }
+        .role { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 5px; }
+        .flip-card-back h3 { margin-bottom: 15px; border-bottom: 1px solid var(--secondary); padding-bottom: 5px; }
+        .bio-text { font-size: 0.9rem; line-height: 1.4; }
+
+        /* Responsive */
         @media (max-width: 900px) {
+            .grid-tier-2, .grid-tier-3 { grid-template-columns: 1fr; }
+            .grid-tier-1 .flip-card { width: 100%; }
             .hamburger { display: block; }
             nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
             nav.active { display: flex; }
-            nav a { margin: 10px 0; margin-left: 0; }
-            .board-grid, .footer-top { grid-template-columns: 1fr; }
+            nav a { margin: 15px 0; }
         }
     </style>
 </head>
@@ -73,64 +79,116 @@
     <main class="section-padding">
         <div class="text-center" data-aos="fade-up">
             <h1 style="color:var(--primary); margin-bottom: 10px;">Guided by Integrity & Service</h1>
-            <p style="margin-bottom: 40px;">Our dedicated board of directors and advisors.</p>
+            <p style="margin-bottom: 60px;">Click a card to learn more about our team.</p>
         </div>
         
-        <div class="board-grid">
-            <div class="board-card" data-aos="fade-up">
-                <div class="profile-frame"><img src="assets/images/pierre.jpg" alt="Pierre-Richard Victor"></div>
-                <h3>Pierre-Richard Victor</h3>
-                <p class="role">Founder & President</p>
-                <p style="font-size:0.9rem">pierre@victorglobal.org</p>
+        <span class="tier-label" data-aos="fade-up">Executive Leadership</span>
+        <div class="grid-tier-1">
+            <div class="flip-card" data-aos="zoom-in" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/pierre.jpg" class="profile-img" alt="Founder">
+                        <h3>Pierre-Richard Victor</h3>
+                        <p class="role">Founder & President</p>
+                        <small style="color: #888;">(Click to flip)</small>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>About Vic</h3>
+                        <p class="bio-text">U.S. Army Veteran and United Airlines Flight Attendant with 25+ years of experience. Dedicated to mentoring at-risk youth through the Victor Mentorship Model.</p>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="board-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="profile-frame"><img src="assets/images/joel.jpg" alt="Joel Garcia"></div>
-                <h3>Joel Garcia</h3>
-                <p class="role">Secretary</p>
-                <p style="font-size:0.9rem">joel@victorglobal.org</p>
+        <span class="tier-label" data-aos="fade-up">The Board of Directors</span>
+        <div class="grid-tier-2">
+            <div class="flip-card" data-aos="fade-up" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/joel.jpg" class="profile-img">
+                        <h3>Joel Garcia</h3>
+                        <p class="role">Secretary</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="bio-text">Oversees administrative governance and official record-keeping for the Victor Global Initiative.</p>
+                    </div>
+                </div>
             </div>
+            <div class="flip-card" data-aos="fade-up" data-aos-delay="100" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/mildred.jpg" class="profile-img">
+                        <h3>Mildred Burgos</h3>
+                        <p class="role">Treasurer</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="bio-text">Manages financial strategy and fiscal transparency for our 501(c)(3) mission.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card" data-aos="fade-up" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/martine.jpg" class="profile-img">
+                        <h3>Martine Joseph</h3>
+                        <p class="role">Trustee</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="bio-text">Providing strategic oversight and ensuring the mission reaches vulnerable communities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card" data-aos="fade-up" data-aos-delay="100" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/daphney.jpg" class="profile-img">
+                        <h3>Daphney Kercy</h3>
+                        <p class="role">Trustee</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="bio-text">Dedicated to program advocacy and supporting the growth of our youth initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <div class="board-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="profile-frame"><img src="assets/images/mildred.jpg" alt="Mildred Burgos"></div>
-                <h3>Mildred Burgos</h3>
-                <p class="role">Treasurer</p>
-                <p style="font-size:0.9rem">mildred@victorglobal.org</p>
+        <span class="tier-label" data-aos="fade-up">Advisors & Junior Board</span>
+        <div class="grid-tier-3">
+            <div class="flip-card" data-aos="fade-up" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/jayson.jpg" class="profile-img">
+                        <h3>Jayson Dimanche</h3>
+                        <p class="role">Special Advisor</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="bio-text">Provides expertise on youth engagement and strategic community outreach.</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="board-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="profile-frame"><img src="assets/images/martine.jpg" alt="Martine Joseph"></div>
-                <h3>Martine Joseph</h3>
-                <p class="role">Trustee</p>
-                <p style="font-size:0.9rem">martine@victorglobal.org</p>
+            <div class="flip-card" data-aos="fade-up" data-aos-delay="100" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/matthew.jpg" class="profile-img">
+                        <h3>Matthew Victor</h3>
+                        <p class="role">Special Advisor</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="bio-text">Advises on mentorship delivery and organizational development.</p>
+                    </div>
+                </div>
             </div>
-
-             <div class="board-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="profile-frame"><img src="assets/images/daphney.jpg" alt="Daphney Kercy"></div>
-                <h3>Daphney Kercy</h3>
-                <p class="role">Trustee</p>
-                <p style="font-size:0.9rem">daphney@victorglobal.org</p>
-            </div>
-
-             <div class="board-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="profile-frame"><img src="assets/images/jayson.jpg" alt="Jayson Dimanche"></div>
-                <h3>Jayson Dimanche</h3>
-                <p class="role">Special Advisor</p>
-                <p style="font-size:0.9rem">jayson@victorglobal.org</p>
-            </div>
-            
-            <div class="board-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="profile-frame"><img src="assets/images/jeremiah.jpg" alt="Jeremiah Victor"></div>
-                <h3>Jeremiah Victor</h3>
-                <p class="role">Junior Board Member</p>
-                <p style="font-size:0.9rem">jeremiah@victorglobal.org</p>
-            </div>
-
-            <div class="board-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="profile-frame"><img src="assets/images/matthew.jpg" alt="Matthew Victor"></div>
-                <h3> Matthew Victor</h3>
-                <p class="role">Special Advisor</p>
-                <p style="font-size:0.9rem">matthew@victorglobal.org</p>
+            <div class="flip-card" data-aos="fade-up" data-aos-delay="200" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/jeremiah.jpg" class="profile-img">
+                        <h3>Jeremiah Victor</h3>
+                        <p class="role">Junior Board Member</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="bio-text">Representing the voice of the youth and assisting in community service events.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -141,39 +199,30 @@
     <script>
         async function loadComponents() {
             try {
-                // Fetch and inject Header
                 const headerResp = await fetch('header.html');
-                const headerHTML = await headerResp.text();
-                document.getElementById('header-placeholder').innerHTML = headerHTML;
+                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
                 
-                // Fetch and inject Footer
                 const footerResp = await fetch('footer.html');
-                const footerHTML = await footerResp.text();
-                document.getElementById('footer-placeholder').innerHTML = footerHTML;
+                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
                 
-                // Initialize AOS animations after content is ready
                 AOS.init({ duration: 1000, once: true });
 
-                // Highlight Active Link for Leadership
                 const links = document.querySelectorAll('nav a');
                 links.forEach(link => {
                     if(link.getAttribute('href') === 'leadership.html') {
                         link.classList.add('active-link');
                     }
                 });
-
             } catch (err) {
-                console.error("Component loading failed:", err);
+                console.error("Loading failed:", err);
             }
         }
 
-        // Mobile Navigation Toggle
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             if(nav) nav.classList.toggle('active');
         }
 
-        // Initialize on Load
         window.onload = loadComponents;
     </script>
 </body>
