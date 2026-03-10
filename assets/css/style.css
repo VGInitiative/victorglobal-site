@@ -1,102 +1,102 @@
 /* ==========================================================================
-   1. CORE THEME & VARIABLES
-   ========================================================================== */
-:root {
-    --primary: #0a7d8c; 
-    --secondary: #32c6a6;
-    --dark: #222;
-    --light: #f4f7f8;
-    --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body { 
-    font-family: 'Montserrat', sans-serif; 
-    line-height: 1.6; 
-    color: var(--dark); 
-    background: var(--white); 
-    overflow-x: hidden; 
-}
-
-/* ==========================================================================
-   2. NAVIGATION BAR
-   ========================================================================== */
-header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
-.header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-.brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
-.logo { height: 60px !important; width: auto !important; display: inline-block !important; vertical-align: middle; }
-.org-title { font-size: 1.2rem; font-weight: 700; }
-nav { display: flex; align-items: center; }
-nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-nav a:hover, nav a.active-link { color: var(--secondary); }
-.donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
-.hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
-
-/* ==========================================================================
-   3. BOARD & IMPACT CARDS (FLIP EFFECT)
-   ========================================================================== */
-.board-grid, .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; perspective: 1000px; }
-.flip-card { background-color: transparent; width: 100%; height: 400px; cursor: pointer; }
-.flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
-.flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
-.flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-shadow: var(--shadow); }
-.flip-card-front { background-color: var(--white); border-bottom: 5px solid var(--primary); }
-.flip-card-back { background-color: var(--primary); color: white; transform: rotateY(180deg); }
-
-/* ==========================================================================
-   4. DONATION PAGE COMPONENTS
-   ========================================================================== */
-.donation-card { background: var(--white); padding: 60px 40px; border-radius: 20px; box-shadow: var(--shadow); max-width: 650px; width: 100%; border-top: 8px solid var(--secondary); }
-.donate-btn-large { background: var(--secondary); color: white; padding: 22px 60px; border-radius: 50px; font-weight: 700; font-size: 1.3rem; transition: 0.3s; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(50, 198, 166, 0.3); }
-.donate-btn-large:hover { background: #28a88d; transform: translateY(-3px); }
-.ein-badge { background: var(--light); color: var(--primary); padding: 5px 15px; border-radius: 5px; font-weight: 700; margin-top: 10px; display: inline-block; }
-
-/* ==========================================================================
-   5. DONATION MODAL (THE POPUP)
-   ========================================================================== */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 3000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.85); /* Black background with opacity */
-}
-
-.modal-content {
-    background-color: var(--white);
-    margin: 5vh auto;
-    padding: 10px;
-    width: 95%;
-    max-width: 800px;
-    height: 85vh;
-    border-radius: 15px;
-    position: relative;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
-
-.close-modal {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 35px;
-    font-weight: bold;
-    cursor: pointer;
-    color: var(--primary);
-    z-index: 3001;
-}
-
-/* ==========================================================================
    6. FOOTER & MISC
    ========================================================================== */
-footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
-.footer-container { max-width: 1100px; margin: 0 auto; }
-.footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; }
-.footer-bottom { padding-top: 30px; text-align: center; }
+footer { 
+    background: #1a1a1a; 
+    color: #bbb; 
+    padding: 60px 20px 30px; 
+    font-size: 0.85rem; 
+}
 
+.footer-container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+}
+
+.footer-top { 
+    display: grid; 
+    /* This creates three equal columns */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px; 
+    border-bottom: 1px solid #333; 
+    padding-bottom: 40px; 
+    align-items: start; /* Ensures items align at the top */
+}
+
+/* Specific sizing for the Candid Seal column */
+.footer-brand {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.candid-seal { 
+    height: 90px; /* Controlled height for balance */
+    width: auto;
+    filter: grayscale(100%); 
+    transition: 0.3s; 
+    opacity: 0.8;
+}
+
+.candid-seal:hover { 
+    filter: none; 
+    opacity: 1;
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.footer-links h4 {
+    color: var(--white);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.footer-links a {
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--secondary);
+}
+
+.footer-bottom { 
+    padding-top: 30px; 
+    text-align: center; 
+}
+
+.legal-disclaimer { 
+    color: #777; 
+    margin-top: 15px; 
+}
+
+/* Responsive adjustment for mobile phones */
 @media (max-width: 900px) {
+    .footer-top { 
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+        text-align: center; 
+    }
+    
+    .footer-brand {
+        justify-content: center; /* Center seal on mobile */
+    }
+    
     .hamburger { display: block; }
-    nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; }
+    nav { 
+        display: none; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 80px; 
+        left: 0; 
+        width: 100%; 
+        background: var(--primary); 
+        padding: 20px 0; 
+    }
     nav.active { display: flex; }
 }
