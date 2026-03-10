@@ -8,21 +8,59 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <style>
+        /* Center everything perfectly */
+        .donation-page-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* Ensure the card itself is centered and spaced */
+        .donation-card {
+            margin: 40px auto !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive Modal Fixes */
+        .modal-content {
+            background-color: var(--white);
+            margin: 5vh auto;
+            width: 95%;
+            max-width: 500px; /* Stripe checkout looks best in a narrower column */
+            height: 85vh;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #stripe-iframe {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
 
     <div id="header-placeholder"></div>
 
-    <main style="padding: 100px 20px; text-align: center;">
+    <main class="donation-page-wrapper">
         <div data-aos="fade-up">
             <h1 style="color:var(--primary); font-size: 2.8rem; margin-bottom: 15px;">A Victor, Not a Victim</h1>
-            <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto 40px;">
+            <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto;">
                 Your investment directly supports at-risk youth and foster children.
             </p>
         </div>
 
-        <div class="donation-card" data-aos="zoom-in">
-            <h2 style="margin-bottom: 20px;">Make Your Impact</h2>
+        <div class="donation-card" data-aos="zoom-in" data-aos-delay="200">
+            <h2 style="margin-bottom: 20px; color: var(--dark);">Make Your Impact</h2>
             <p style="margin-bottom: 35px; color: #666;">Support our mission securely via Stripe checkout below.</p>
             
             <button onclick="openDonate()" class="donate-btn-large">
@@ -32,6 +70,11 @@
             <div style="margin-top: 30px; font-size: 0.85rem; color: #777;">
                 <p>Victor Global Initiative is a 501(c)(3) nonprofit.</p>
                 <div class="ein-badge">EIN: 41-3649085</div>
+                <p style="margin-top: 15px;">
+                    <a href="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" target="_blank" style="color: var(--primary); text-decoration: underline;">
+                        Trouble with the popup? Click here to donate directly.
+                    </a>
+                </p>
             </div>
         </div>
     </main>
@@ -40,11 +83,12 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeDonate()">&times;</span>
             <iframe 
+                id="stripe-iframe"
                 src="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" 
                 width="100%" 
                 height="100%" 
                 frameborder="0"
-                style="border-radius: 10px;">
+                title="Stripe Donation Checkout">
             </iframe>
         </div>
     </div>
@@ -55,18 +99,20 @@
     <script>
         // Modal Logic
         function openDonate() {
-            document.getElementById('donateModal').style.display = "block";
-            document.body.style.overflow = "hidden"; // Prevent background scroll
+            const modal = document.getElementById('donateModal');
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Disable scrolling on the main page
         }
 
         function closeDonate() {
-            document.getElementById('donateModal').style.display = "none";
-            document.body.style.overflow = "auto";
+            const modal = document.getElementById('donateModal');
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
         }
 
-        // Close modal if user clicks outside of the white box
+        // Close modal on outside click
         window.onclick = function(event) {
-            let modal = document.getElementById('donateModal');
+            const modal = document.getElementById('donateModal');
             if (event.target == modal) {
                 closeDonate();
             }
@@ -75,12 +121,27 @@
         // Component Loader
         async function loadComponents() {
             try {
-                const header = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await header.text();
-                const footer = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footer.text();
+                const headerResp = await fetch('header.html');
+                if (headerResp.ok) {
+                    document.getElementById('header-placeholder').innerHTML = await headerResp.text();
+                }
+                const footerResp = await fetch('footer.html');
+                if (footerResp.ok) {
+                    document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
+                }
+                
                 AOS.init({ duration: 1000, once: true });
-            } catch (err) { console.error("Load failed:", err); }
+                
+                // Highlight active link
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    if (link.innerText.toLowerCase().includes('donate')) {
+                        link.classList.add('active-link');
+                    }
+                });
+            } catch (err) { 
+                console.error("Component load failed:", err); 
+            }
         }
 
         window.onload = loadComponents;
