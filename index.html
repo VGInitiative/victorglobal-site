@@ -190,17 +190,27 @@
             crossorigin="anonymous"></script>
 
     <script>
-        // 1. COMPONENT LOADER
-        async function loadComponents() {
-            try {
-                const headerResp = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
-                const footerResp = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
-                AOS.init({ duration: 1000, once: true });
-                initCounters();
-            } catch (err) { console.error("Component load failed:", err); }
-        }
+       // 1. IMPROVED COMPONENT LOADER
+async function loadComponents() {
+    try {
+        const headerResp = await fetch('header.html');
+        document.getElementById('header-placeholder').innerHTML = await headerResp.text();
+        
+        const footerResp = await fetch('footer.html');
+        document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
+        
+        // Initialize AOS animations
+        AOS.init({ duration: 1000, once: true });
+
+        // Give the browser 100ms to "settle" before starting the counters
+        setTimeout(() => {
+            initCounters();
+        }, 100);
+
+    } catch (err) {
+        console.error("Component load failed:", err);
+    }
+}
 
         // 2. NAVIGATION TOGGLE
         function toggleMenu() {
@@ -208,29 +218,41 @@
             if(nav) nav.classList.toggle('active');
         }
 
-        // 3. COUNTER LOGIC
-        function initCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = +counter.getAttribute('data-target');
-                        const update = () => {
-                            const c = +counter.innerText;
-                            const inc = target / 100;
-                            if(c < target) {
-                                counter.innerText = Math.ceil(c + inc);
-                                setTimeout(update, 20);
-                            } else { counter.innerText = target; }
-                        };
-                        update();
-                        observer.unobserve(counter);
+        // 3. STABILIZED COUNTER LOGIC
+function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    // Lower threshold (0.1) so it triggers as soon as the card "peeks" onto the screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute('data-target'));
+                
+                // Speed adjustment: Higher number = slower climb
+                const duration = 2000; 
+                const stepTime = 30;
+                const steps = duration / stepTime;
+                const increment = target / steps;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.innerText = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.innerText = Math.ceil(current);
                     }
-                });
-            }, { threshold: 0.5 });
-            counters.forEach(c => observer.observe(c));
-        }
+                }, stepTime);
+
+                observer.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.1 }); // Trigger earlier for better reliability
+
+    counters.forEach(c => observer.observe(c));
+}
 
         // 4. AUTO-FLIP LOGIC
         function handleFlip(card) {

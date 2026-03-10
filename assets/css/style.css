@@ -27,7 +27,12 @@ header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; 
 .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
 .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
 .logo { height: 60px !important; width: auto !important; display: inline-block !important; vertical-align: middle; }
-.org-title { font-size: 1.2rem; font-weight: 700; }
+.org-title { font-size: 1.85rem; /* Increased from 1.2rem to match logo height */
+    font-weight: 700; 
+    text-transform: uppercase; /* Optional: adds a more formal, military feel */
+    letter-spacing: 1px;
+    line-height: 1; /* Ensures text is vertically centered with the logo */
+}
 nav { display: flex; align-items: center; }
 nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
 nav a:hover, nav a.active-link { color: var(--secondary); }
