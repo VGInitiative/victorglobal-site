@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Victor Global Initiative</title>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <style>
+        .success-container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: var(--light);
+        }
+
+        .success-card {
+            background: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            border-top: 8px solid var(--secondary);
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .message-box {
+            margin-bottom: 30px;
+        }
+
+        .impact-recap {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+        }
+
+        .share-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .success-card { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="success-container">
+        <div class="success-card" data-aos="zoom-in">
+            <span class="success-icon">✨</span>
+            
+            <div class="message-box">
+                <h1 style="color: var(--primary); margin-bottom: 10px;">Thank You for Your Investment</h1>
+                <p style="font-size: 1.1rem; color: #666;">You aren't just a donor—you are a partner in building <strong>Victors</strong>.</p>
+            </div>
+
+            <div class="impact-recap">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">Your Impact Today:</h4>
+                <p style="font-size: 0.95rem; color: #555;">Your contribution directly supports our current cohort of <strong>5 youth</strong> and strengthens our <strong>community partnerships</strong>. Together, we are ensuring that every child has the discipline and mentorship to overcome their hardship.</p>
+            </div>
+
+            <p style="margin-bottom: 20px;">Want to stay updated on our progress?</p>
+            
+            <div class="share-links">
+                <a href="index.html" class="btn-outline">Return Home</a>
+                <a href="news.html" class="btn-outline">Read Latest News</a>
+            </div>
+
+            <div class="signature">
+                <p>"A Victor, Not a Victim"</p>
+                <p><strong>— Pierre-Richard Victor, Founder</strong></p>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        async function loadComponents() {
+            try {
+                const header = await fetch('header.html');
+                document.getElementById('header-placeholder').innerHTML = await header.text();
+                
+                const footer = await fetch('footer.html');
+                document.getElementById('footer-placeholder').innerHTML = await footer.text();
+                
+                AOS.init({ duration: 1000, once: true });
+            } catch (err) {
+                console.error("Component load failed:", err);
+            }
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
+
+        window.onload = loadComponents;
+    </script>
+</body>
+</html>
