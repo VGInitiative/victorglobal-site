@@ -30,8 +30,17 @@ header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; 
 .org-title { font-size: 1.85rem; /* Increased from 1.2rem to match logo height */
     font-weight: 700; 
     text-transform: uppercase; /* Optional: adds a more formal, military feel */
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     line-height: 1; /* Ensures text is vertically centered with the logo */
+    colr: var(--white);
+    /* subtle shadow:  Horizontal Offset | Vertical Offset | Blur Radius | Color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3.25);
+
+    transition: 0.03s ease; /*Adds a smooth feel if you hover over it*/
+}
+.brand:hover .org-title {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px); /* A very slight 'lift' on hover */
 }
 nav { display: flex; align-items: center; }
 nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
