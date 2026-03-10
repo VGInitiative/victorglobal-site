@@ -5,43 +5,43 @@
     <title>VGI Admin | Control Tower</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .admin-container { max-width: 1000px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: 250px 1fr; gap: 30px; }
-        .admin-sidebar { background: var(--primary); padding: 20px; border-radius: 15px; color: white; height: fit-content; sticky: top 100px; }
-        .admin-sidebar h4 { margin-bottom: 20px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px; }
-        .admin-nav-link { color: #ccc; text-decoration: none; display: block; margin-bottom: 15px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        .admin-nav-link:hover, .admin-nav-link.active { color: var(--secondary); }
-        
+        .admin-container { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .admin-card { background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); margin-bottom: 30px; border-top: 5px solid var(--secondary); }
+        
+        /* Tab Styling */
+        .tab-menu { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--light); padding-bottom: 10px; }
+        .tab-link { padding: 10px 20px; cursor: pointer; font-weight: 700; color: var(--primary); border-radius: 8px; transition: 0.3s; }
+        .tab-link.active { background: var(--primary); color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
         .admin-group { margin-bottom: 20px; }
         .admin-group label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
         .admin-input, .admin-textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         .admin-textarea { height: 100px; resize: vertical; }
         
-        .entry-row { display: flex; align-items: center; gap: 15px; padding: 15px; border-bottom: 1px solid #eee; }
-        .entry-row:last-child { border-bottom: none; }
-        .entry-thumb { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
-        .action-btn { padding: 5px 12px; border-radius: 5px; cursor: pointer; border: none; font-weight: 600; }
-        .delete-btn { background: #ff4d4d; color: white; }
-        .edit-btn { background: var(--secondary); color: white; }
-        
-        .hidden { display: none; }
+        .item-list-row { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--light); border-radius: 10px; margin-bottom: 10px; }
+        .save-status { margin-top: 10px; font-size: 0.9rem; font-weight: 600; }
+        .img-preview { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary); }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <div class="admin-container">
-        <aside class="admin-sidebar">
-            <h4>Management</h4>
-            <div class="admin-nav-link active" onclick="showSection('impact-sec', this)">📈 Impact Stats</div>
-            <div class="admin-nav-link" onclick="showSection('board-sec', this)">👥 Board Members</div>
-            <div class="admin-nav-link" onclick="showSection('initiatives-sec', this)">🛡️ Initiatives</div>
-            <div class="admin-nav-link" onclick="showSection('gallery-sec', this)">📸 Gallery Images</div>
-        </aside>
+    <main class="admin-container">
+        <h1 style="color: var(--primary); margin-bottom: 5px;">VGI Control Tower</h1>
+        <p style="margin-bottom: 30px;">Manage your global mission infrastructure.</p>
 
-        <main>
-            <section id="impact-sec" class="admin-card">
-                <h3>Update Real-World Impact</h3>
+        <div class="tab-menu">
+            <div class="tab-link active" onclick="openTab(event, 'impact')">Impact Stats</div>
+            <div class="tab-link" onclick="openTab(event, 'board')">Board Members</div>
+            <div class="tab-link" onclick="openTab(event, 'initiatives')">Initiatives</div>
+            <div class="tab-link" onclick="openTab(event, 'gallery')">Programs Gallery</div>
+        </div>
+
+        <section id="impact" class="tab-content active">
+            <div class="admin-card">
+                <h3>📈 Real-World Impact</h3>
                 <div class="admin-group">
                     <label>Youth Reached</label>
                     <input type="number" id="youthCount" class="admin-input" value="5">
@@ -54,82 +54,129 @@
                     <label>Programs Supported</label>
                     <input type="number" id="programCount" class="admin-input" value="3">
                 </div>
-                <button class="donate-btn-nav" onclick="saveData('Impact')">Update Stats</button>
-            </section>
+                <button class="donate-btn-nav" onclick="saveImpact()">Update Live Stats</button>
+                <div id="impactStatus" class="save-status"></div>
+            </div>
+        </section>
 
-            <section id="board-sec" class="admin-card hidden">
-                <h3>Board Member Management</h3>
+        <section id="board" class="tab-content">
+            <div class="admin-card">
+                <h3>👥 Board Member Management</h3>
                 <div id="board-list">
-                    <div class="entry-row">
-                        <img src="assets/images/pierre.jpg" class="entry-thumb">
-                        <div style="flex-grow:1"><strong>Pierre-Richard Victor</strong><br><small>Founder & President</small></div>
-                        <button class="action-btn edit-btn">Edit</button>
+                    <div class="item-list-row">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <img src="assets/images/pierre.jpg" class="img-preview">
+                            <div>
+                                <strong>Pierre-Richard Victor</strong><br>
+                                <small>Founder & President</small>
+                            </div>
+                        </div>
+                        <button class="read-more" onclick="editMember('pierre')">Edit Bio/Photo</button>
                     </div>
                 </div>
-                <hr style="margin:20px 0; opacity:0.2">
-                <h4>Add New Member</h4>
-                <div class="admin-group"><label>Name</label><input type="text" class="admin-input"></div>
-                <div class="admin-group"><label>Role</label><input type="text" class="admin-input"></div>
-                <div class="admin-group"><label>Profile Image (Azure URL)</label><input type="text" class="admin-input"></div>
-                <div class="admin-group"><label>Bio</label><textarea class="admin-textarea"></textarea></div>
-                <button class="donate-btn-nav">Add Member</button>
-            </section>
+                <button class="btn-outline" style="margin-top:20px;">+ Add New Board Member</button>
+            </div>
+        </section>
 
-            <section id="initiatives-sec" class="admin-card hidden">
-                <h3>Manage Initiatives</h3>
-                <div id="initiatives-list">
-                    <div class="entry-row">
-                        <span>🏠 Supporting Vulnerable Youth</span>
-                        <button class="action-btn edit-btn">Edit</button>
-                    </div>
+        <section id="initiatives" class="tab-content">
+            <div class="admin-card">
+                <h3>🛡️ Initiatives Management</h3>
+                <div class="admin-group">
+                    <label>Select Initiative to Edit</label>
+                    <select class="admin-input">
+                        <option>Supporting Vulnerable Youth</option>
+                        <option>Fostering Discipline & Duty</option>
+                        <option>The Victor Mentorship Model</option>
+                    </select>
                 </div>
-                <hr style="margin:20px 0; opacity:0.2">
-                <h4>Add Initiative</h4>
-                <div class="admin-group"><label>Icon (Emoji)</label><input type="text" class="admin-input" placeholder="e.g. 🎓"></div>
-                <div class="admin-group"><label>Title</label><input type="text" class="admin-input"></div>
-                <div class="admin-group"><label>Description</label><textarea class="admin-textarea"></textarea></div>
-                <button class="donate-btn-nav">Save Initiative</button>
-            </section>
+                <div class="admin-group">
+                    <label>Initiative Icon (Emoji or Icon Name)</label>
+                    <input type="text" class="admin-input" value="🏠">
+                </div>
+                <div class="admin-group">
+                    <label>Description (Back of Card)</label>
+                    <textarea class="admin-textarea">Detailed mission text goes here...</textarea>
+                </div>
+                <button class="donate-btn-nav">Update Initiative</button>
+            </div>
+        </section>
 
-            <section id="gallery-sec" class="admin-card hidden">
-                <h3>Gallery: Programs in Action</h3>
-                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                    <div style="position:relative">
-                        <img src="assets/images/program1.jpg" style="width:100%; border-radius:5px">
-                        <button class="delete-btn" style="position:absolute; top:5px; right:5px; padding:2px 5px; font-size:10px">X</button>
-                    </div>
+        <section id="gallery" class="tab-content">
+            <div class="admin-card">
+                <h3>📸 Programs in Action Gallery</h3>
+                <p>Upload new photos from the field to display in the Initiatives gallery.</p>
+                <div class="admin-group" style="border: 2px dashed var(--secondary); padding: 40px; text-align: center; border-radius: 15px;">
+                    <input type="file" id="galleryUpload" style="display:none">
+                    <label for="galleryUpload" style="cursor:pointer; color:var(--primary)">
+                        <strong>Click to Upload Program Photo</strong><br>
+                        <small>Recommended size: 800x600px</small>
+                    </label>
                 </div>
-                <hr style="margin:20px 0; opacity:0.2">
-                <h4>Upload New Photo</h4>
-                <div class="admin-group"><label>Azure Blob URL</label><input type="text" class="admin-input"></div>
-                <button class="donate-btn-nav">Add to Gallery</button>
-            </section>
-        </main>
-    </div>
+                <div id="gallery-previews" style="display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;">
+                    </div>
+            </div>
+        </section>
+
+    </main>
 
     <div id="footer-placeholder"></div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Tab Navigation
-        function showSection(sectionId, element) {
-            document.querySelectorAll('main section').forEach(sec => sec.classList.add('hidden'));
-            document.getElementById(sectionId).classList.remove('hidden');
-            
-            document.querySelectorAll('.admin-nav-link').forEach(link => link.classList.remove('active'));
-            element.classList.add('active');
+        // 1. TAB NAVIGATION LOGIC
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
 
-        // Generic Save Logic
-        async function saveData(type) {
-            alert("Saving " + type + " data to Azure...");
-            // Logic for fetch('/api/Update' + type) goes here
+        // 2. SAVE IMPACT LOGIC (Existing)
+        async function saveImpact() {
+            const status = document.getElementById('impactStatus');
+            status.innerText = "Connecting to Azure Vault...";
+            status.style.color = "var(--primary)";
+
+            const data = {
+                youth: document.getElementById('youthCount').value,
+                partners: document.getElementById('partnerCount').value,
+                programs: document.getElementById('programCount').value
+            };
+
+            try {
+                const response = await fetch('/api/UpdateImpact', {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                });
+                if(response.ok) {
+                    status.innerText = "✅ Global Impact Stats Updated!";
+                    status.style.color = "var(--secondary)";
+                }
+            } catch (err) {
+                status.innerText = "❌ Connection Timeout. Check Azure Portal settings.";
+                status.style.color = "red";
+            }
         }
 
-        // Modular Loader
+        // 3. COMPONENT LOADER
         async function loadComponents() {
-            const h = await fetch('header.html'); document.getElementById('header-placeholder').innerHTML = await h.text();
-            const f = await fetch('footer.html'); document.getElementById('footer-placeholder').innerHTML = await f.text();
+            try {
+                const header = await fetch('header.html').then(r => r.text());
+                const footer = await fetch('footer.html').then(r => r.text());
+                document.getElementById('header-placeholder').innerHTML = header;
+                document.getElementById('footer-placeholder').innerHTML = footer;
+            } catch (err) { console.warn("Live components not found."); }
         }
+
         window.onload = loadComponents;
     </script>
 </body>
