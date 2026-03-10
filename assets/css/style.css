@@ -124,6 +124,55 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
    6. PAGE-SPECIFIC COMPONENTS
    ========================================================================== */
 
+   /* --- Hero Section (Index Page) --- */
+.hero {
+    /* Notice the updated image path: ../images/impact.jpg */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/impact.jpg') center/cover;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Forces the button to center perfectly */
+}
+
+.hero-title { 
+    font-size: 3.5rem; 
+    margin-bottom: 15px; 
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Makes text pop over the image */
+}
+
+.hero-btn { 
+    background: var(--secondary); 
+    color: var(--white); 
+    padding: 15px 40px; 
+    border-radius: 50px; 
+    text-decoration: none; 
+    font-weight: 700; 
+    display: inline-block; 
+    margin-top: 15px;
+    transition: 0.3s ease; 
+    box-shadow: var(--shadow);
+}
+
+.hero-btn:hover { 
+    background: var(--primary); 
+    transform: translateY(-3px); 
+}
+
+@media (max-width: 900px) {
+    .hero-title { font-size: 2.2rem; }
+}
 /* --- Leadership & About --- */
 .flex-row { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
 .founder-img { width: 45%; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); }
