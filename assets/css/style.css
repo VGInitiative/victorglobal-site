@@ -1,4 +1,3 @@
-
 /* ==========================================================================
    1. CORE THEME & VARIABLES
    ========================================================================== */
@@ -36,7 +35,7 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
 /* ==========================================================================
-   3. UNIVERSAL GRID SYSTEM (Fixes Leadership & Initiatives)
+   3. UNIVERSAL GRID SYSTEM
    ========================================================================== */
 .grid, .news-grid, .board-grid { 
     display: grid; 
@@ -46,10 +45,10 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 }
 
 /* ==========================================================================
-   4. FLIP CARD STABILIZATION (Fixes Initiatives)
+   4. FLIP CARD STABILIZATION & ENGINE
    ========================================================================== */
 .flip-card, .initiative-card { 
-    height: 420px; /* Forces all cards to be the exact same height */
+    height: 420px; /* Standard height for Desktop */
     perspective: 1000px; 
     background-color: transparent;
     cursor: pointer;
@@ -66,7 +65,9 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 }
 
 .flip-card.is-flipped .flip-card-inner, 
-.initiative-card.is-flipped .card-inner { transform: rotateY(180deg); }
+.initiative-card.is-flipped .card-inner { 
+    transform: rotateY(180deg); 
+}
 
 .flip-card-front, .flip-card-back, .card-front, .card-back { 
     position: absolute; 
@@ -83,8 +84,33 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
     box-shadow: var(--shadow); 
 }
 
-.flip-card-front, .card-front { background-color: var(--white); border-bottom: 5px solid var(--primary); }
-.flip-card-back, .card-back { background-color: var(--primary); color: white; transform: rotateY(180deg); text-align: left; }
+/* Front Styling */
+.flip-card-front, .card-front { 
+    background-color: var(--light); 
+    border-bottom: 5px solid var(--primary); 
+}
+
+/* Back Styling */
+.flip-card-back, .card-back { 
+    background-color: var(--primary); 
+    color: white; 
+    transform: rotateY(180deg); 
+    text-align: center; 
+}
+
+.flip-card-back h3 { 
+    margin-bottom: 10px; 
+    border-bottom: 1px solid var(--secondary); 
+    padding-bottom: 5px; 
+    width: 100%; 
+}
+
+.flip-card-back p { 
+    font-size: 0.9rem; 
+    line-height: 1.4; 
+}
+
+.counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
 
 /* ==========================================================================
    5. NEWS CARD STYLING
@@ -99,12 +125,7 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
     flex-direction: column;
 }
 
-.news-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-
+.news-image { width: 100%; height: 220px; object-fit: cover; }
 .news-content { padding: 25px; }
 .news-date { color: var(--secondary); font-weight: 700; font-size: 0.85rem; }
 .read-more { color: var(--primary); font-weight: 700; text-decoration: none; margin-top: 15px; display: inline-block; }
@@ -115,82 +136,61 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 footer { 
     background: #1a1a1a; 
     color: #bbb; 
-    padding: 35px 20px 20px; /* Reduced padding to lower overall height */
+    padding: 35px 20px 20px; 
     font-size: 0.85rem; 
 }
 
-.footer-container { 
-    max-width: 1100px; 
-    margin: 0 auto; 
-}
-
+.footer-container { max-width: 1100px; margin: 0 auto; }
 .footer-top { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 40px; 
     border-bottom: 1px solid #333; 
-    padding-bottom: 20px; /* Reduced gap to lower height */
+    padding-bottom: 20px; 
     align-items: start; 
 }
 
 .footer-brand { display: flex; justify-content: flex-start; align-items: flex-start; }
-
-.candid-seal { 
-    height: 75px; /* Slightly smaller seal for a more compact footer */
-    width: auto;
-    filter: grayscale(100%); 
-    transition: 0.3s; 
-    opacity: 0.8;
-}
-
+.candid-seal { height: 75px; width: auto; filter: grayscale(100%); transition: 0.3s; opacity: 0.8; }
 .candid-seal:hover { filter: none; opacity: 1; }
+.footer-contact p { margin-bottom: 8px; line-height: 1.4; }
 
-.footer-contact p {
-    margin-bottom: 8px; /* Tighter line spacing */
-    line-height: 1.4;
+.footer-links h4 { color: var(--white); margin-bottom: 12px; font-size: 0.95rem; }
+.footer-links a { 
+    display: block; 
+    color: #ffffff; 
+    text-decoration: none; 
+    margin-bottom: 12px; 
+    transition: 0.3s; 
+    font-weight: 500; 
 }
+.footer-links a:hover { color: var(--secondary); }
 
-.footer-links h4 {
-    color: var(--white);
-    margin-bottom: 12px;
-    font-size: 0.95rem;
-}
-
-/* Fix for bunched up links and poor visibility */
-.footer-links a {
-    display: block;
-    color: #ffffff; /* Pure white for maximum contrast and readability */
-    text-decoration: none;
-    margin-bottom: 12px; /* Increased spacing between links */
-    transition: 0.3s;
-    font-weight: 500;
-}
-
-.footer-links a:hover {
-    color: var(--secondary); /* High visibility teal on hover */
-}
-
-.footer-bottom { 
-    padding-top: 15px; /* Reduced from 30px to lower height */
-    text-align: center; 
-}
-
-/* Consolidated disclaimer styling */
-.legal-disclaimer { 
-    color: #777; 
-    margin-top: 10px; 
-    font-size: 0.65rem;
-    line-height: 1.3;
-}
+.footer-bottom { padding-top: 15px; text-align: center; }
+.legal-disclaimer { color: #777; margin-top: 10px; font-size: 0.65rem; line-height: 1.3; }
 
 /* ==========================================================================
    7. RESPONSIVE BREAKPOINTS
    ========================================================================== */
 @media (max-width: 900px) {
     .hamburger { display: block; }
-    nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; }
+    nav { 
+        display: none; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 80px; 
+        left: 0; 
+        width: 100%; 
+        background: var(--primary); 
+        padding: 20px 0; 
+    }
     nav.active { display: flex; }
     
     .footer-top { grid-template-columns: 1fr; text-align: center; }
     .footer-brand { justify-content: center; }
-}
+
+    /* Mobile height adjustment for flip cards */
+    .flip-card, .initiative-card { 
+        height: 300px; 
+    }
+} /* Closing brace added here */
