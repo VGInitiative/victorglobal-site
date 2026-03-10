@@ -5,72 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate | Victor Global Initiative</title>
     
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* --- MASTER CSS --- */
-        :root {
-            --primary: #0a7d8c; 
-            --secondary: #32c6a6;
-            --dark: #222;
-            --light: #f4f7f8;
-            --white: #ffffff;
-            --shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            line-height: 1.6; 
-            color: var(--dark); 
-            background: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Nav & Footer Styles (Required in main page for injected content) */
-        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
-        .logo { height: 50px; margin-right: 15px; }
-        .org-title { font-size: 1.2rem; font-weight: 700; }
-        nav { display: flex; align-items: center; }
-        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        nav a:hover, nav a.active-link { color: var(--secondary); }
-        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
-        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
-
-        /* Donation Page Content */
+        /* Specific Page Refinements */
         .section-padding { padding: 80px 20px; text-align: center; max-width: 1200px; margin: auto; }
         
+        .donation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
         .donation-card { 
             background: var(--white); 
             padding: 60px 40px; 
             border-radius: 20px; 
             box-shadow: var(--shadow); 
-            max-width: 600px; 
-            margin: 40px auto; 
+            max-width: 650px; 
+            width: 100%;
             border-top: 8px solid var(--secondary);
+            position: relative;
         }
 
-        .donate-btn { 
+        .donate-btn-large { 
             background: var(--secondary); 
             color: white; 
-            padding: 20px 50px; 
+            padding: 22px 60px; 
             border-radius: 50px; 
             text-decoration: none; 
             font-weight: 700; 
-            font-size: 1.2rem; 
+            font-size: 1.3rem; 
             display: inline-block; 
-            transition: 0.3s; 
+            transition: all 0.3s ease; 
             box-shadow: 0 4px 15px rgba(50, 198, 166, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
-        .donate-btn:hover { 
+        .donate-btn-large:hover { 
             background: #28a88d; 
             transform: translateY(-3px); 
-            box-shadow: 0 6px 20px rgba(50, 198, 166, 0.4);
+            box-shadow: 0 8px 25px rgba(50, 198, 166, 0.4);
         }
         
         .tax-disclaimer { 
@@ -82,20 +62,19 @@
             line-height: 1.5;
         }
 
-        /* Footer Alignment */
-        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
-        .footer-container { max-width: 1100px; margin: 0 auto; }
-        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
-        .footer-bottom { padding-top: 30px; text-align: center; }
-        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
+        .ein-badge {
+            background: var(--light);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 10px;
+        }
 
-        @media (max-width: 900px) {
-            .hamburger { display: block; }
-            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
-            nav.active { display: flex; }
-            nav a { margin: 10px 0; margin-left: 0; }
-            .footer-top { text-align: center; }
+        @media (max-width: 600px) {
             .donation-card { padding: 40px 20px; }
+            .donate-btn-large { width: 100%; padding: 20px 30px; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -104,58 +83,98 @@
     <div id="header-placeholder"></div>
 
     <main class="section-padding">
-        <div data-aos="fade-up">
-            <h1 style="color:var(--primary); font-size: 2.5rem; margin-bottom: 15px;">Support Our Mission</h1>
-            <p style="font-size: 1.1rem; color: #555;">Your contribution directly empowers at-risk youth to transform their lives from the streets to the stage.</p>
-        </div>
+        <div class="donation-container">
+            <div data-aos="fade-up">
+                <h1 style="color:var(--primary); font-size: 2.8rem; margin-bottom: 15px;">A Victor, Not a Victim</h1>
+                <p style="font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 30px;">
+                    Your investment directly supports at-risk youth and foster children, providing the mentorship and discipline needed for a successful future.
+                </p>
+            </div>
 
-        <div class="donation-card" data-aos="zoom-in">
-            <h2 style="margin-bottom: 20px;">Make a Difference</h2>
-            <p style="margin-bottom: 35px; color: #666;">Every dollar provides mentorship, stability, and leadership training for the next generation of Victors.</p>
-            
-            <a href="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" class="donate-btn" target="_blank">
-                Donate Securely via Stripe
-            </a>
+            <div class="donation-card" data-aos="zoom-in" data-aos-delay="100">
+                <h2 style="margin-bottom: 20px; color: var(--dark);">Make Your Impact</h2>
+                <p style="margin-bottom: 35px; color: #666; font-size: 1.1rem;">
+                    Join us in building a safety net of resilience. Select a donation method below.
+                </p>
+                
+                <button onclick="openDonate()" class="donate-btn-large">
+                    Donate Securely with Stripe
+                </button>
 
-            <div class="tax-disclaimer">
-                <p><strong>Victor Global Initiative</strong> is a 501(c)(3) nonprofit organization.</p>
-                <p>Donations are tax-deductible to the extent allowed by law.</p>
-                <p style="margin-top: 10px; font-weight: 700; color: #444;">EIN: 41-3649085</p>
+                <div class="tax-disclaimer">
+                    <p><strong>Victor Global Initiative</strong> is a registered 501(c)(3) nonprofit.</p>
+                    <p>Contributions are tax-deductible to the full extent of the law.</p>
+                    <div class="ein-badge">EIN: 41-3649085</div>
+                </div>
             </div>
         </div>
     </main>
+
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDonate()">&times;</span>
+            <iframe 
+                src="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" 
+                width="100%" 
+                height="100%" 
+                frameborder="0"
+                style="border-radius: 10px;">
+            </iframe>
+        </div>
+    </div>
 
     <div id="footer-placeholder"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        async function loadComponents() {
-            try {
-                // Fetch and inject Header
-                const headerResp = await fetch('header.html');
-                const headerHTML = await headerResp.text();
-                document.getElementById('header-placeholder').innerHTML = headerHTML;
-                
-                // Fetch and inject Footer
-                const footerResp = await fetch('footer.html');
-                const footerHTML = await footerResp.text();
-                document.getElementById('footer-placeholder').innerHTML = footerHTML;
-                
-                // Initialize AOS animations after content is ready
-                AOS.init({ duration: 1000, once: true });
+        // 1. MODAL LOGIC (Ensures users stay on victorglobal.org)
+        function openDonate() {
+            document.getElementById('donateModal').style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+        }
 
-            } catch (err) {
-                console.error("Component loading failed:", err);
+        function closeDonate() {
+            document.getElementById('donateModal').style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+        }
+
+        // Close modal if user clicks outside of the content box
+        window.onclick = function(event) {
+            let modal = document.getElementById('donateModal');
+            if (event.target == modal) {
+                closeDonate();
             }
         }
 
-        // Mobile Navigation Toggle (Global scope)
+        // 2. MODULAR COMPONENT LOADER
+        async function loadComponents() {
+            try {
+                const headerResp = await fetch('header.html');
+                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
+                
+                const footerResp = await fetch('footer.html');
+                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
+                
+                AOS.init({ duration: 1000, once: true });
+
+                // Highlight the "Donate" link in the nav
+                const links = document.querySelectorAll('nav a');
+                links.forEach(link => {
+                    if(link.innerText.toLowerCase().includes('donate')) {
+                        link.classList.add('active-link');
+                    }
+                });
+            } catch (err) {
+                console.error("Component load failed:", err);
+            }
+        }
+
+        // 3. NAVIGATION TOGGLE
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             if(nav) nav.classList.toggle('active');
         }
 
-        // Initialize on Load
         window.onload = loadComponents;
     </script>
 </body>
