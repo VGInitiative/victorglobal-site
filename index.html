@@ -62,6 +62,172 @@
         .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
 
+        /* --- GOAL TRACKER STYLING --- */
+.       goal-tracker {
+            width: 80%;
+            margin-top: 20px;
+}
+
+        .goal-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 8px;
+}
+
+        .goal-progress {
+            background: var(--secondary);
+            height: 100%;
+            transition: width 1.5s ease-in-out;
+}
+
+        .goal-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+        /* --- FLIP CARD ENGINE --- */
+        .flip-card { 
+            background-color: transparent; 
+            perspective: 1000px; 
+            cursor: pointer; 
+            height: 300px; 
+        }
+
+        .flip-card-inner { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            text-align: center; 
+            transition: transform 0.6s; 
+            transform-style: preserve-3d; 
+        }
+
+        /* The class added by JavaScript */
+        .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+
+        .flip-card-front, .flip-card-back { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            -webkit-backface-visibility: hidden; 
+            backface-visibility: hidden; 
+            border-radius: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 30px; 
+            box-shadow: var(--shadow); 
+        }
+
+        .flip-card-front { 
+            background: var(--light); 
+            border-bottom: 5px solid var(--primary); 
+        }
+
+        .flip-card-back { 
+            background: var(--primary); 
+            color: white; 
+            transform: rotateY(180deg); 
+        }
+
+        .counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
+        .flip-card-back h3 { color: var(--secondary); margin-bottom: 15px; }
+
+        /* Mobile Breakpoint */
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
+            nav.active { display: flex; }
+            nav a { margin: 15px 0; margin-left: 0; }
+            .grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">A Victor, Not a Victim</h1>
+                <p>Empowering the next generation to overcome their hardship.</p><br>
+                <a href="#impact" class="hero-btn">See Our Impact</a>
+            </div>
+        </section>
+
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Global Initiative | Official Site</title>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" 
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
+      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
+      crossorigin="anonymous">
+      
+    <style>
+        /* --- MASTER CSS --- */
+        :root {
+            --primary: #0a7d8c; 
+            --secondary: #32c6a6;
+            --dark: #222;
+            --light: #f4f7f8;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation Styles */
+        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .logo { height: 50px; margin-right: 15px; }
+        .org-title { font-size: 1.2rem; font-weight: 700; }
+        nav { display: flex; align-items: center; }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--secondary); }
+        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
+        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+
+        /* Hero Styles */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/impact.jpg') center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        .hero-title { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-btn { background: var(--secondary); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; }
+
+        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+
         /* --- FLIP CARD ENGINE --- */
         .flip-card { 
             background-color: transparent; 
@@ -181,6 +347,93 @@
                 </div>
             </div>
         </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" 
+            integrity="sha384-Z6H2Bsc1pntI9uH2uYy4K9iN6BfE9xR5TfI4H2B7kL7mB5l5h4T5o5p5Q5r5s5T" 
+            crossorigin="anonymous"></script>
+
+    <script>
+       // 1. IMPROVED COMPONENT LOADER
+async function loadComponents() {
+    try {
+        const headerResp = await fetch('header.html');
+        document.getElementById('header-placeholder').innerHTML = await headerResp.text();
+        
+        const footerResp = await fetch('footer.html');
+        document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
+        
+        // Initialize AOS animations
+        AOS.init({ duration: 1000, once: true });
+
+        // Give the browser 100ms to "settle" before starting the counters
+        setTimeout(() => {
+            initCounters();
+        }, 100);
+
+    } catch (err) {
+        console.error("Component load failed:", err);
+    }
+}
+
+        // 2. NAVIGATION TOGGLE
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
+
+        // 3. STABILIZED COUNTER LOGIC
+function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    // Lower threshold (0.1) so it triggers as soon as the card "peeks" onto the screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute('data-target'));
+                
+                // Speed adjustment: Higher number = slower climb
+                const duration = 2000; 
+                const stepTime = 30;
+                const steps = duration / stepTime;
+                const increment = target / steps;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.innerText = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.innerText = Math.ceil(current);
+                    }
+                }, stepTime);
+
+                observer.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.1 }); // Trigger earlier for better reliability
+
+    counters.forEach(c => observer.observe(c));
+}
+
+        // 4. AUTO-FLIP LOGIC
+        function handleFlip(card) {
+            if (card.classList.contains('is-flipped')) {
+                card.classList.remove('is-flipped');
+                return;
+            }
+            card.classList.add('is-flipped');
+            setTimeout(() => { card.classList.remove('is-flipped'); }, 8000);
+        }
+
+        window.onload = loadComponents;
+    </script>
+</body>
+</html>
     </main>
 
     <div id="footer-placeholder"></div>
