@@ -1,16 +1,203 @@
-/* --- UNIVERSAL FOOTER STYLES --- */
+/* ==========================================================================
+   1. CORE THEME & VARIABLES
+   ========================================================================== */
+:root {
+    --primary: #0a7d8c; 
+    --secondary: #32c6a6;
+    --dark: #222;
+    --light: #f4f7f8;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    line-height: 1.6; 
+    color: var(--dark); 
+    background: var(--white); 
+    overflow-x: hidden; 
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
+header {
+    background: var(--primary);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    box-shadow: var(--shadow);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    height: 60px !important;
+    width: auto !important;
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+.org-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+nav { display: flex; align-items: center; }
+
+nav a {
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover, nav a.active-link { color: var(--secondary); }
+
+.donate-btn-nav {
+    background: var(--secondary);
+    padding: 8px 20px;
+    border-radius: 50px;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   3. INTERACTIVE BOARD CARDS (FLIP EFFECT)
+   ========================================================================== */
+
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    perspective: 1000px; 
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 400px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.flip-card-front {
+    background-color: var(--white);
+    border-bottom: 5px solid var(--primary);
+}
+
+.flip-card-back {
+    background-color: var(--primary);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid var(--secondary);
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   4. DONATION MODAL (IN-SITE STRIPE)
+   ========================================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.85);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 5% auto;
+    padding: 10px;
+    width: 95%;
+    max-width: 800px;
+    height: 85vh;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--primary);
+    z-index: 10;
+}
+
+/* ==========================================================================
+   5. UNIVERSAL FOOTER
+   ========================================================================== */
 footer {
     background: #1a1a1a;
     color: #bbb;
     padding: 60px 20px 30px;
-    font-size: 0.85rem; /* Small font as requested */
+    font-size: 0.85rem;
     line-height: 1.5;
 }
 
-.footer-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
+.footer-container { max-width: 1100px; margin: 0 auto; }
 
 .footer-top {
     display: grid;
@@ -20,21 +207,9 @@ footer {
     border-bottom: 1px solid #333;
 }
 
-.footer-brand h3 {
+.footer-brand h3, .footer-links h4 {
     color: #fff;
     margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.footer-contact p {
-    margin-bottom: 8px;
-}
-
-.footer-links h4 {
-    color: #fff;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
 }
 
 .footer-links a {
@@ -45,66 +220,44 @@ footer {
     transition: 0.3s;
 }
 
-.footer-links a:hover {
-    color: var(--secondary);
-}
-
-.footer-bottom {
-    padding-top: 30px;
-    text-align: center;
-}
+.footer-links a:hover { color: var(--secondary); }
 
 .candid-seal {
     height: 80px;
-    margin-bottom: 20px;
     filter: grayscale(100%);
     transition: 0.3s;
+    margin-bottom: 15px;
 }
 
-.candid-seal:hover {
-    filter: none;
-}
+.candid-seal:hover { filter: none; }
+
+.footer-bottom { padding-top: 30px; text-align: center; }
 
 .legal-disclaimer {
-    font-size: 0.7rem; /* Extra small for legal text */
+    font-size: 0.7rem;
     color: #777;
     max-width: 800px;
     margin: 20px auto 0;
     line-height: 1.4;
 }
 
-.footer-copyright {
-    margin-bottom: 10px;
-    color: #999;
-}
-
-@media (max-width: 768px) {
+/* ==========================================================================
+   6. RESPONSIVE QUERIES
+   ========================================================================== */
+@media (max-width: 900px) {
+    .hamburger { display: block; }
+    nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--primary);
+        padding: 20px 0;
+        text-align: center;
+    }
+    nav.active { display: flex; }
+    nav a { margin: 15px 0; margin-left: 0; }
     .footer-top { text-align: center; }
-}
-
-.logo {
-    height: 50px;       /* Keeps it aligned with the text */
-    width: auto;        /* Prevents stretching */
-    display: block;
-    margin-right: 15px;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-
-.logo {
-    height: 60px !important; /* Forces a height */
-    width: auto !important;   /* Keeps it from squishing */
-    display: inline-block !important;
-    vertical-align: middle;
-    background-color: transparent; /* Ensures no weird background hides it */
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
