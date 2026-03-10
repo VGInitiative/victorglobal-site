@@ -96,19 +96,93 @@
         </section>
 
         <section class="section-padding" id="impact">
-            <h2 style="text-align: center;">Our Real-World Impact</h2>
+            <h2 style="text-align: center; margin-bottom: 10px;">Our Real-World Impact</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">Tap any card to see how we define success.</p>
+            
             <div class="grid">
-                <div class="card" data-aos="fade-up">
-                    <h3 class="counter" data-target="6">0</h3>
-                    <p>Youth Reached</p>
+                <div class="initiative-card" data-aos="fade-up" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="counter" data-target="6">0</h3>
+                            <p>Youth Reached</p>
+                            <small style="color: var(--primary); margin-top: 10px;">Tap for Detail</small>
+                        </div>
+                        <div class="card-back">
+                            <h3>Impacted Lives</h3>
+                            <p>Every number represents a student transformed through our 3-pillar mentorship model focusing on resilience and career prep.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="counter" data-target="5">0</h3>
-                    <p>Community Partnerships</p>
+
+                <div class="initiative-card" data-aos="fade-up" data-aos-delay="100" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="counter" data-target="5">0</h3>
+                            <p>Community Partnerships</p>
+                            <small style="color: var(--primary); margin-top: 10px;">Tap for Detail</small>
+                        </div>
+                        <div class="card-back">
+                            <h3>Strategic Alliances</h3>
+                            <p>We partner with local shelters, JROTC programs, and vocational centers to create a safety net for youth in transition.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="counter" data-target="2">0</h3>
-                    <p>Programs Supported</p>
+
+                <div class="initiative-card" data-aos="fade-up" data-aos-delay="200" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="counter" data-target="2">0</h3>
+                            <p>Programs Supported</p>
+                            <small style="color: var(--primary); margin-top: 10px;">Tap for Detail</small>
+                        </div>
+                        <div class="card-back">
+                            <h3>Mission Focus</h3>
+                            <p>Current support includes specialized shelter outreach and leadership workshops that instill military-grade discipline.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding" style="background: var(--light);">
+            <h2 style="text-align: center; margin-bottom: 10px;">Programs in Action</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">A look at our community engagement and mentorship highlights.</p>
+            
+            <div class="grid">
+                <div class="initiative-card" data-aos="zoom-in" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front" style="padding: 0; overflow: hidden;">
+                            <img src="assets/images/program1.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Mentorship">
+                        </div>
+                        <div class="card-back">
+                            <h3>Holistic Mentorship</h3>
+                            <p>1-on-1 sessions focusing on building emotional resilience and professional life skills for at-risk youth.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="initiative-card" data-aos="zoom-in" data-aos-delay="100" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front" style="padding: 0; overflow: hidden;">
+                            <img src="assets/images/program2.jpg" style="width:100%; height:100%; object-fit:cover;" alt="JROTC Support">
+                        </div>
+                        <div class="card-back">
+                            <h3>JROTC Leadership</h3>
+                            <p>Empowering student cadets through civic responsibility workshops and structured discipline training.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="initiative-card" data-aos="zoom-in" data-aos-delay="200" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front" style="padding: 0; overflow: hidden;">
+                            <img src="assets/images/program3.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Shelter Outreach">
+                        </div>
+                        <div class="card-back">
+                            <h3>Shelter Outreach</h3>
+                            <p>Direct engagement with transitional housing programs to provide stability for vulnerable youth.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -122,8 +196,18 @@
       crossorigin="anonymous">
       
 
-    <script>
-        // 1. COMPONENT LOADER (Header/Footer)
+   <script>
+        // 1. AUTO-FLIP LOGIC
+        function handleFlip(card) {
+            if (card.classList.contains('is-flipped')) {
+                card.classList.remove('is-flipped');
+                return;
+            }
+            card.classList.add('is-flipped');
+            setTimeout(() => { card.classList.remove('is-flipped'); }, 8000);
+        }
+
+        // 2. COMPONENT LOADER
         async function loadComponents() {
             try {
                 const headerResp = await fetch('header.html');
@@ -132,18 +216,9 @@
                 const footerResp = await fetch('footer.html');
                 document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
                 
-                // Re-initialize scripts that depend on dynamic content
                 AOS.init({ duration: 1000, once: true });
                 initCounters();
-            } catch (err) {
-                console.error("Component load failed:", err);
-            }
-        }
-
-        // 2. NAVIGATION TOGGLE (Must be global)
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
+            } catch (err) { console.error("Load failed:", err); }
         }
 
         // 3. COUNTER LOGIC
@@ -170,7 +245,11 @@
             counters.forEach(c => observer.observe(c));
         }
 
-        // Initialize on load
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
+
         window.onload = loadComponents;
     </script>
 </body>
