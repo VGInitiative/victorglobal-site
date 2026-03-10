@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News & Updates | Victor Global Initiative</title>
+    <title>News & Stories | Victor Global Initiative</title>
     
     <link rel="stylesheet" href="assets/css/style.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* Page-specific styling for the News Hub */
+        /* Page-specific layout for the News Header */
         .news-header {
             background: var(--light);
             text-align: center;
@@ -27,9 +28,8 @@
         }
         .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
         
-        /* Ensure the detailed lead article looks prominent */
         .lead-article {
-            grid-column: 1 / -1; /* Makes the first article span the full width on desktop */
+            grid-column: 1 / -1; 
             display: flex;
             flex-direction: row;
             gap: 40px;
@@ -38,10 +38,12 @@
             border-radius: 15px;
             box-shadow: var(--shadow);
             margin-bottom: 40px;
+            text-align: left;
         }
         
         @media (max-width: 900px) {
             .lead-article { flex-direction: column; padding: 20px; }
+            .lead-article img { width: 100% !important; }
         }
     </style>
 </head>
@@ -62,16 +64,14 @@
             <div class="news-grid">
                 
                 <article class="news-card lead-article" data-aos="fade-up">
-                    <img src="assets/images/launch-event.jpg" class="news-image" style="width: 45%; height: auto; border-radius: 10px;" alt="VGI Official Launch Event">
+                    <img src="assets/images/launch-event.jpg" class="news-image" style="width: 45%; height: auto; border-radius: 10px;" alt="VGI Launch Event">
                     <div class="news-content">
                         <span class="news-date">March 9, 2026</span>
                         <h3>From the Streets to the Stage: VGI Officially Launches</h3>
                         
-                        <p><strong>MANGO, FL</strong> — Today marks a pivotal milestone for the Tampa Bay community as the <strong>Victor Global Initiative (VGI)</strong> officially opens its doors. Founded by Pierre-Richard Victor, a U.S. Army veteran and veteran United Airlines Flight Attendant, the organization is built on a mission: transforming at-risk youth into "Victors."</p>
+                        <p><strong>MANGO, FL</strong> — Today marks a pivotal milestone for the community as the <strong>Victor Global Initiative (VGI)</strong> officially opens its doors. Founded by Pierre-Richard Victor, the organization is built on a mission: transforming at-risk youth into "Victors."</p>
 
-                        <p>“I know what it’s like to arrive in this country with nothing but a dream and the weight of hardship,” says Victor. “VGI is about providing the discipline of a soldier and the global perspective of a traveler to children who have only ever seen the four walls of their struggle.”</p>
-
-                        <p>The launch introduces the <strong>Victor Mentorship Model</strong>, a framework focusing on emotional resilience and career readiness. With an initial cohort of five local youth, VGI is hitting the ground running.</p>
+                        <p>“I know what it’s like to arrive in this country with nothing but a dream,” says Victor. “VGI is about providing a global perspective to children who have only ever seen the four walls of their struggle.”</p>
                         
                         <a href="about.html" class="read-more">Learn about our Founder →</a>
                     </div>
@@ -82,7 +82,7 @@
                     <div class="news-content">
                         <span class="news-date">February 2026</span>
                         <h3>The First Five: Mentorship Program Begins</h3>
-                        <p>Our first cohort of five youth have begun their 1-on-1 mentorship journey, focusing on setting academic and personal goals for the 2026 year.</p>
+                        <p>Our first cohort of five youth have begun their 1-on-1 mentorship journey, focusing on setting academic and personal goals.</p>
                         <a href="javascript:void(0)" class="read-more">View Milestones →</a>
                     </div>
                 </article>
@@ -92,7 +92,7 @@
                     <div class="news-content">
                         <span class="news-date">January 2026</span>
                         <h3>VGI Partners with Regional JROTC Programs</h3>
-                        <p>VGI has established strategic partnerships with two local JROTC programs to provide leadership workshops and resources to student-cadets.</p>
+                        <p>VGI has established strategic partnerships with local JROTC programs to provide leadership workshops and resources.</p>
                         <a href="initiatives.html" class="read-more">Explore Partnerships →</a>
                     </div>
                 </article>
@@ -107,16 +107,18 @@
     <script>
         async function loadComponents() {
             try {
+                // Fetch and inject Header
                 const headerResp = await fetch('header.html');
                 document.getElementById('header-placeholder').innerHTML = await headerResp.text();
                 
+                // Fetch and inject Footer
                 const footerResp = await fetch('footer.html');
                 document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
                 
-                // Initialize AOS after content is ready
+                // Initialize AOS
                 AOS.init({ duration: 1000, once: true });
 
-                // Highlight the "News" link in the nav
+                // Highlight the "News" link
                 const links = document.querySelectorAll('nav a');
                 links.forEach(link => {
                     if(link.innerText.toLowerCase().includes('news')) {
