@@ -5,53 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victor Global Initiative | Official Site</title>
     
-    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* Specific Styles for Impact Flip Cards */
-        .impact-card {
-            height: 250px;
-            perspective: 1000px;
-            cursor: pointer;
+        /* --- MASTER CSS (Required for alignment across all pages) --- */
+        :root {
+            --primary: #0a7d8c; 
+            --secondary: #32c6a6;
+            --dark: #222;
+            --light: #f4f7f8;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .impact-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: var(--white);
+            overflow-x: hidden;
         }
-        .impact-card.is-flipped .impact-card-inner {
-            transform: rotateY(180deg);
-        }
-        .impact-front, .impact-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            border-radius: 15px;
+
+        /* Navigation Styles (For the injected header) */
+        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
+        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
+        .logo { height: 50px; margin-right: 15px; }
+        .org-title { font-size: 1.2rem; font-weight: 700; }
+        nav { display: flex; align-items: center; }
+        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--secondary); }
+        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
+        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+
+        /* Hero & Content Styles */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/impact.jpg') center/cover;
+            height: 70vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            box-shadow: var(--shadow);
-        }
-        .impact-front {
-            background: var(--light);
-            border-bottom: 5px solid var(--primary);
-        }
-        .impact-back {
-            background: var(--primary);
+            justify-content: center;
+            text-align: center;
             color: white;
-            transform: rotateY(180deg);
-            padding: 25px;
+            padding: 0 20px;
         }
-        .impact-back p { font-size: 0.9rem; line-height: 1.4; }
+        .hero-title { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-btn { background: var(--secondary); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; }
+
+        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .card { background: var(--light); padding: 40px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--primary); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+        .counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
+
+        /* Footer Styles (For the injected footer) */
+        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; }
+        .footer-bottom { padding-top: 30px; text-align: center; }
+        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
+
+        /* Mobile Breakpoint */
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
+            nav.active { display: flex; }
+            nav a { margin: 15px 0; margin-left: 0; }
+            .grid, .footer-top { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
@@ -63,73 +88,35 @@
             <div class="hero-content" data-aos="fade-up">
                 <h1 class="hero-title">A Victor, Not a Victim</h1>
                 <p>Empowering the next generation to overcome their hardship.</p><br>
-                <a href="javascript:void(0)" onclick="openDonate()" class="hero-btn">Support the Mission</a>
+                <a href="#impact" class="hero-btn">See Our Impact</a>
             </div>
         </section>
 
         <section class="section-padding" id="impact">
-            <h2 style="text-align: center; margin-bottom: 10px;">Our Real-World Impact</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 40px;">Click a card to see how we're starting our journey.</p>
-            
+            <h2 style="text-align: center;">Our Real-World Impact</h2>
             <div class="grid">
-                <div class="impact-card" onclick="this.classList.toggle('is-flipped')" data-aos="fade-up">
-                    <div class="impact-card-inner">
-                        <div class="impact-front">
-                            <h3 class="counter" data-target="5">0</h3>
-                            <p>Youth Reached</p>
-                            <small style="color: var(--primary); margin-top: 10px;">Tap to learn more</small>
-                        </div>
-                        <div class="impact-front impact-back">
-                            <h3>Our Direct Reach</h3>
-                            <p>We have begun intensive 1-on-1 mentorship with 5 local youth, focusing on emotional resilience and goal setting.</p>
-                        </div>
-                    </div>
+                <div class="card" data-aos="fade-up">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Youth Reached</p>
                 </div>
-
-                <div class="impact-card" onclick="this.classList.toggle('is-flipped')" data-aos="fade-up" data-aos-delay="100">
-                    <div class="impact-card-inner">
-                        <div class="impact-front">
-                            <h3 class="counter" data-target="2">0</h3>
-                            <p>Community Partnerships</p>
-                            <small style="color: var(--primary); margin-top: 10px;">Tap to learn more</small>
-                        </div>
-                        <div class="impact-front impact-back">
-                            <h3>Strategic Alliances</h3>
-                            <p>Currently partnered with a local youth shelter and a regional JROTC program to streamline support services.</p>
-                        </div>
-                    </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="counter" data-target="25">0</h3>
+                    <p>Community Partnerships</p>
                 </div>
-
-                <div class="impact-card" onclick="this.classList.toggle('is-flipped')" data-aos="fade-up" data-aos-delay="200">
-                    <div class="impact-card-inner">
-                        <div class="impact-front">
-                            <h3 class="counter" data-target="3">0</h3>
-                            <p>Programs Supported</p>
-                            <small style="color: var(--primary); margin-top: 10px;">Tap to learn more</small>
-                        </div>
-                        <div class="impact-front impact-back">
-                            <h3>Active Initiatives</h3>
-                            <p>Supporting transition housing, leadership workshops, and vocational training pathways.</p>
-                        </div>
-                    </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="counter" data-target="12">0</h3>
+                    <p>Programs Supported</p>
                 </div>
             </div>
         </section>
     </main>
-
-    <div id="donateModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeDonate()">&times;</span>
-            <iframe src="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" width="100%" height="100%" frameborder="0"></iframe>
-        </div>
-    </div>
 
     <div id="footer-placeholder"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // 1. COMPONENT LOADER
+        // 1. COMPONENT LOADER (Header/Footer)
         async function loadComponents() {
             try {
                 const headerResp = await fetch('header.html');
@@ -138,16 +125,19 @@
                 const footerResp = await fetch('footer.html');
                 document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
                 
+                // Re-initialize scripts that depend on dynamic content
                 AOS.init({ duration: 1000, once: true });
                 initCounters();
             } catch (err) {
-                console.error("Load failed:", err);
+                console.error("Component load failed:", err);
             }
         }
 
-        // 2. MODAL LOGIC
-        function openDonate() { document.getElementById('donateModal').style.display = "block"; }
-        function closeDonate() { document.getElementById('donateModal').style.display = "none"; }
+        // 2. NAVIGATION TOGGLE (Must be global)
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            if(nav) nav.classList.toggle('active');
+        }
 
         // 3. COUNTER LOGIC
         function initCounters() {
@@ -159,10 +149,10 @@
                         const target = +counter.getAttribute('data-target');
                         const update = () => {
                             const c = +counter.innerText;
-                            const inc = target / 50; // Slower increment for smaller numbers
+                            const inc = target / 100;
                             if(c < target) {
-                                counter.innerText = Math.ceil(c + (inc || 1));
-                                setTimeout(update, 40);
+                                counter.innerText = Math.ceil(c + inc);
+                                setTimeout(update, 20);
                             } else { counter.innerText = target; }
                         };
                         update();
@@ -173,12 +163,7 @@
             counters.forEach(c => observer.observe(c));
         }
 
-        // 4. NAV TOGGLE
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
-        }
-
+        // Initialize on load
         window.onload = loadComponents;
     </script>
 </body>
