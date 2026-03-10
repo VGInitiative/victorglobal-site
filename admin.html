@@ -5,77 +5,132 @@
     <title>VGI Admin | Control Tower</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .admin-container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .admin-container { max-width: 1000px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: 250px 1fr; gap: 30px; }
+        .admin-sidebar { background: var(--primary); padding: 20px; border-radius: 15px; color: white; height: fit-content; sticky: top 100px; }
+        .admin-sidebar h4 { margin-bottom: 20px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px; }
+        .admin-nav-link { color: #ccc; text-decoration: none; display: block; margin-bottom: 15px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .admin-nav-link:hover, .admin-nav-link.active { color: var(--secondary); }
+        
         .admin-card { background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); margin-bottom: 30px; border-top: 5px solid var(--secondary); }
         .admin-group { margin-bottom: 20px; }
         .admin-group label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
-        .admin-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .save-status { margin-top: 10px; font-size: 0.9rem; font-weight: 600; }
+        .admin-input, .admin-textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .admin-textarea { height: 100px; resize: vertical; }
+        
+        .entry-row { display: flex; align-items: center; gap: 15px; padding: 15px; border-bottom: 1px solid #eee; }
+        .entry-row:last-child { border-bottom: none; }
+        .entry-thumb { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .action-btn { padding: 5px 12px; border-radius: 5px; cursor: pointer; border: none; font-weight: 600; }
+        .delete-btn { background: #ff4d4d; color: white; }
+        .edit-btn { background: var(--secondary); color: white; }
+        
+        .hidden { display: none; }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <main class="admin-container">
-        <h1 style="color: var(--primary); margin-bottom: 10px;">VGI Admin Dashboard</h1>
-        <p>Manage real-world impact and board member details.</p>
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <h4>Management</h4>
+            <div class="admin-nav-link active" onclick="showSection('impact-sec', this)">📈 Impact Stats</div>
+            <div class="admin-nav-link" onclick="showSection('board-sec', this)">👥 Board Members</div>
+            <div class="admin-nav-link" onclick="showSection('initiatives-sec', this)">🛡️ Initiatives</div>
+            <div class="admin-nav-link" onclick="showSection('gallery-sec', this)">📸 Gallery Images</div>
+        </aside>
 
-        <section class="admin-card">
-            <h3>📈 Update Real-World Impact</h3>
-            <div class="admin-group">
-                <label>Youth Reached</label>
-                <input type="number" id="youthCount" class="admin-input" value="5">
-            </div>
-            <div class="admin-group">
-                <label>Community Partnerships</label>
-                <input type="number" id="partnerCount" class="admin-input" value="2">
-            </div>
-            <div class="admin-group">
-                <label>Programs Supported</label>
-                <input type="number" id="programCount" class="admin-input" value="3">
-            </div>
-            <button class="donate-btn-nav" style="border:none; cursor:pointer;" onclick="saveImpact()">Update Live Stats</button>
-            <div id="impactStatus" class="save-status"></div>
-        </section>
-
-        <section class="admin-card">
-            <h3>👥 Board Member Management</h3>
-            <div id="board-admin-list">
+        <main>
+            <section id="impact-sec" class="admin-card">
+                <h3>Update Real-World Impact</h3>
+                <div class="admin-group">
+                    <label>Youth Reached</label>
+                    <input type="number" id="youthCount" class="admin-input" value="5">
                 </div>
-            <button class="btn-outline" style="margin-top:20px;">+ Add New Member</button>
-        </section>
-    </main>
+                <div class="admin-group">
+                    <label>Community Partnerships</label>
+                    <input type="number" id="partnerCount" class="admin-input" value="2">
+                </div>
+                <div class="admin-group">
+                    <label>Programs Supported</label>
+                    <input type="number" id="programCount" class="admin-input" value="3">
+                </div>
+                <button class="donate-btn-nav" onclick="saveData('Impact')">Update Stats</button>
+            </section>
+
+            <section id="board-sec" class="admin-card hidden">
+                <h3>Board Member Management</h3>
+                <div id="board-list">
+                    <div class="entry-row">
+                        <img src="assets/images/pierre.jpg" class="entry-thumb">
+                        <div style="flex-grow:1"><strong>Pierre-Richard Victor</strong><br><small>Founder & President</small></div>
+                        <button class="action-btn edit-btn">Edit</button>
+                    </div>
+                </div>
+                <hr style="margin:20px 0; opacity:0.2">
+                <h4>Add New Member</h4>
+                <div class="admin-group"><label>Name</label><input type="text" class="admin-input"></div>
+                <div class="admin-group"><label>Role</label><input type="text" class="admin-input"></div>
+                <div class="admin-group"><label>Profile Image (Azure URL)</label><input type="text" class="admin-input"></div>
+                <div class="admin-group"><label>Bio</label><textarea class="admin-textarea"></textarea></div>
+                <button class="donate-btn-nav">Add Member</button>
+            </section>
+
+            <section id="initiatives-sec" class="admin-card hidden">
+                <h3>Manage Initiatives</h3>
+                <div id="initiatives-list">
+                    <div class="entry-row">
+                        <span>🏠 Supporting Vulnerable Youth</span>
+                        <button class="action-btn edit-btn">Edit</button>
+                    </div>
+                </div>
+                <hr style="margin:20px 0; opacity:0.2">
+                <h4>Add Initiative</h4>
+                <div class="admin-group"><label>Icon (Emoji)</label><input type="text" class="admin-input" placeholder="e.g. 🎓"></div>
+                <div class="admin-group"><label>Title</label><input type="text" class="admin-input"></div>
+                <div class="admin-group"><label>Description</label><textarea class="admin-textarea"></textarea></div>
+                <button class="donate-btn-nav">Save Initiative</button>
+            </section>
+
+            <section id="gallery-sec" class="admin-card hidden">
+                <h3>Gallery: Programs in Action</h3>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                    <div style="position:relative">
+                        <img src="assets/images/program1.jpg" style="width:100%; border-radius:5px">
+                        <button class="delete-btn" style="position:absolute; top:5px; right:5px; padding:2px 5px; font-size:10px">X</button>
+                    </div>
+                </div>
+                <hr style="margin:20px 0; opacity:0.2">
+                <h4>Upload New Photo</h4>
+                <div class="admin-group"><label>Azure Blob URL</label><input type="text" class="admin-input"></div>
+                <button class="donate-btn-nav">Add to Gallery</button>
+            </section>
+        </main>
+    </div>
 
     <div id="footer-placeholder"></div>
 
     <script>
-        // Logic to talk to your Azure Functions API
-        async function saveImpact() {
-            const status = document.getElementById('impactStatus');
-            status.innerText = "Saving to Azure...";
-            status.style.color = "var(--primary)";
-
-            const data = {
-                youth: document.getElementById('youthCount').value,
-                partners: document.getElementById('partnerCount').value,
-                programs: document.getElementById('programCount').value
-            };
-
-            // In a real Azure setup, this points to your API folder
-            try {
-                const response = await fetch('/api/UpdateImpact', {
-                    method: 'POST',
-                    body: JSON.stringify(data)
-                });
-                if(response.ok) {
-                    status.innerText = "✅ Live Site Updated Successfully!";
-                    status.style.color = "var(--secondary)";
-                }
-            } catch (err) {
-                status.innerText = "❌ Connection Error. Check Azure Portal.";
-                status.style.color = "red";
-            }
+        // Tab Navigation
+        function showSection(sectionId, element) {
+            document.querySelectorAll('main section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            document.querySelectorAll('.admin-nav-link').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
         }
+
+        // Generic Save Logic
+        async function saveData(type) {
+            alert("Saving " + type + " data to Azure...");
+            // Logic for fetch('/api/Update' + type) goes here
+        }
+
+        // Modular Loader
+        async function loadComponents() {
+            const h = await fetch('header.html'); document.getElementById('header-placeholder').innerHTML = await h.text();
+            const f = await fetch('footer.html'); document.getElementById('footer-placeholder').innerHTML = await f.text();
+        }
+        window.onload = loadComponents;
     </script>
 </body>
 </html>
