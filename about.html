@@ -4,72 +4,11 @@
     <meta charset="UTF-8">
     <meta name="description" content="The Victor Global Initiative empowers at-risk youth and foster children through military-grade discipline, professional mentorship, and emotional resilience training.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About the Founder | Victor Global Initiative</title>
+    <title>Victor Global Initiative | Official Site</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" 
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-      crossorigin="anonymous">
-
-    <style>
-        /* --- MASTER CSS (Shared with Index) --- */
-        :root { 
-            --primary: #0a7d8c; 
-            --secondary: #32c6a6; 
-            --dark: #222; 
-            --light: #f4f7f8; 
-            --white: #ffffff; 
-            --shadow: 0 10px 30px rgba(0,0,0,0.1); 
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            line-height: 1.6; 
-            color: var(--dark); 
-            background: var(--white);
-            overflow-x: hidden; 
-        }
-
-        /* Navigation Styles (For the injected header) */
-        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
-        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
-        .logo { height: 50px; width: auto; margin-right: 15px; }
-        .org-title { font-size: 1.2rem; font-weight: 700; }
-        nav { display: flex; align-items: center; }
-        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        nav a:hover { color: var(--secondary); }
-        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
-        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
-
-        /* About Page Content Styles */
-        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        .flex-row { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
-        .founder-img { width: 45%; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); }
-        .medal-list { list-style: none; margin-top: 20px; }
-        .medal-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: 500; }
-
-        /* Footer Styles (For the injected footer) */
-        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
-        .footer-container { max-width: 1100px; margin: 0 auto; }
-        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
-        .footer-bottom { padding-top: 30px; text-align: center; }
-        .candid-seal { height: 80px; filter: grayscale(100%); transition: 0.3s; margin-top: 15px; }
-        .candid-seal:hover { filter: none; }
-        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
-
-        @media (max-width: 900px) { 
-            .hamburger { display: block; } 
-            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; } 
-            nav.active { display: flex; } 
-            .flex-row { flex-direction: column; text-align: center; } 
-            .founder-img { width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.1); } 
-            .footer-top { grid-template-columns: 1fr; text-align: center; }
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -96,42 +35,9 @@
         </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+   <div id="footer-placeholder"></div>
 
-   <link rel="stylesheet" 
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-      crossorigin="anonymous">
-      
-    <script>
-        // 1. COMPONENT LOADER (Header/Footer)
-        async function loadComponents() {
-            try {
-                // Fetch Header
-                const headerResp = await fetch('header.html');
-                if (!headerResp.ok) throw new Error('header.html missing');
-                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
-                
-                // Fetch Footer
-                const footerResp = await fetch('footer.html');
-                if (!footerResp.ok) throw new Error('footer.html missing');
-                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
-                
-                // Re-initialize AOS after content injection
-                AOS.init({ duration: 1000, once: true });
-            } catch (err) {
-                console.error("Component load failed:", err);
-            }
-        }
-
-        // 2. NAVIGATION TOGGLE (Required for Mobile)
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
-        }
-
-        // Initialize on Load
-        window.onload = loadComponents;
-    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" integrity="sha384-Z6H2Bsc1pntI9uH2uYy4K9iN6BfE9xR5TfI4H2B7kL7mB5l5h4T5o5p5Q5r5s5T" crossorigin="anonymous"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

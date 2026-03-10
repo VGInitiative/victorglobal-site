@@ -21,27 +21,29 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVIGATION BAR
+   2. GLOBAL NAVIGATION BAR
    ========================================================================== */
 header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
 .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-.brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
+.brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; transition: 0.3s; }
 .logo { height: 60px !important; width: auto !important; display: inline-block !important; vertical-align: middle; }
-.org-title { font-size: 1.85rem; /* Increased from 1.2rem to match logo height */
-    font-weight: 700; 
-    text-transform: uppercase; /* Optional: adds a more formal, military feel */
-    letter-spacing: 1.5px;
-    line-height: 1; /* Ensures text is vertically centered with the logo */
-    colr: var(--white);
-    /* subtle shadow:  Horizontal Offset | Vertical Offset | Blur Radius | Color */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3.25);
 
-    transition: 0.03s ease; /*Adds a smooth feel if you hover over it*/
+.org-title { 
+    font-size: 1.85rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px;
+    line-height: 1; 
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
 }
+
 .brand:hover .org-title {
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.35);
-    transform: translateY(-1px); /* A very slight 'lift' on hover */
+    transform: translateY(-1px);
 }
+
 nav { display: flex; align-items: center; }
 nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
 nav a:hover, nav a.active-link { color: var(--secondary); }
@@ -49,8 +51,15 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
 /* ==========================================================================
-   3. UNIVERSAL GRID SYSTEM
+   3. UNIVERSAL GRID, LAYOUT & HEADERS
    ========================================================================== */
+.section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
+
+/* Reusable Header Blocks for Sub-pages */
+.page-intro, .news-header, .legal-page-header { background: var(--light); text-align: center; padding: 80px 20px; border-bottom: 1px solid #eee; }
+.subtitle { display: block; text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; }
+.lead-text { font-size: 1.2rem; max-width: 800px; margin: 20px auto 0; color: #555; }
+
 .grid, .news-grid, .board-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -59,10 +68,10 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 }
 
 /* ==========================================================================
-   4. FLIP CARD STABILIZATION & ENGINE
+   4. INTERACTIVE FLIP ENGINE (Impact, Initiatives, Leadership)
    ========================================================================== */
 .flip-card, .initiative-card { 
-    height: 420px; /* Standard height for Desktop */
+    height: 420px; 
     perspective: 1000px; 
     background-color: transparent;
     cursor: pointer;
@@ -79,9 +88,7 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 }
 
 .flip-card.is-flipped .flip-card-inner, 
-.initiative-card.is-flipped .card-inner { 
-    transform: rotateY(180deg); 
-}
+.initiative-card.is-flipped .card-inner { transform: rotateY(180deg); }
 
 .flip-card-front, .flip-card-back, .card-front, .card-back { 
     position: absolute; 
@@ -98,189 +105,111 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
     box-shadow: var(--shadow); 
 }
 
-/* Front Styling */
-.flip-card-front, .card-front { 
-    background-color: var(--light); 
-    border-bottom: 5px solid var(--primary); 
-}
+.flip-card-front, .card-front { background-color: var(--light); border-bottom: 5px solid var(--primary); }
+.flip-card-back, .card-back { background-color: var(--primary); color: white; transform: rotateY(180deg); text-align: center; overflow-y: auto; }
 
-/* Back Styling */
-.flip-card-back, .card-back { 
-    background-color: var(--primary); 
-    color: white; 
-    transform: rotateY(180deg); 
-    text-align: center; 
-}
-
-.flip-card-back h3 { 
-    margin-bottom: 10px; 
-    border-bottom: 1px solid var(--secondary); 
-    padding-bottom: 5px; 
-    width: 100%; 
-}
-
-.flip-card-back p { 
-    font-size: 0.9rem; 
-    line-height: 1.4; 
-}
-
-.counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
+.flip-card-back h3, .card-back h3 { margin-bottom: 15px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px; width: 100%; }
+.card-back p { font-size: 0.95rem; line-height: 1.6; }
+.counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 5px; }
 
 /* ==========================================================================
-   5. NEWS CARD STYLING
+   5. MISSION GOAL TRACKER (Index Page)
    ========================================================================== */
-.news-card {
-    background: var(--white);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-}
+.goal-tracker { width: 90%; margin-top: 20px; background: rgba(255, 255, 255, 0.5); padding: 15px; border-radius: 10px; }
+.goal-bar { background: #e0e0e0; height: 10px; border-radius: 10px; overflow: hidden; margin-bottom: 10px; border: 1px solid #ddd; }
+.goal-progress { background: var(--secondary); height: 100%; transition: width 2s ease-in-out; }
+.goal-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--dark); font-weight: 700; text-transform: uppercase; }
 
+/* ==========================================================================
+   6. PAGE-SPECIFIC COMPONENTS
+   ========================================================================== */
+
+/* --- Leadership & About --- */
+.flex-row { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
+.founder-img { width: 45%; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); }
+.medal-list { list-style: none; margin-top: 20px; width: 100%; }
+.medal-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: 500; }
+.tier-label { text-align: center; color: var(--secondary); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 60px 0 30px; display: block; }
+.founder-container { display: flex; justify-content: center; margin-bottom: 20px; }
+.profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--secondary); object-fit: cover; margin-bottom: 20px; }
+.role { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px; }
+.bio-text { font-size: 0.9rem; line-height: 1.5; text-align: left; }
+
+/* --- Initiatives Gallery --- */
+.initiative-icon { font-size: 3.5rem; margin-bottom: 20px; display: block; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+.gallery-item { overflow: hidden; border-radius: 12px; height: 250px; box-shadow: var(--shadow); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.gallery-item:hover img { transform: scale(1.1); }
+
+/* --- News Articles --- */
+.news-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: 0.3s; }
 .news-image { width: 100%; height: 220px; object-fit: cover; }
-.news-content { padding: 25px; }
-.news-date { color: var(--secondary); font-weight: 700; font-size: 0.85rem; }
+.news-content { padding: 30px; }
+.news-date { color: var(--secondary); font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; display: block;}
 .read-more { color: var(--primary); font-weight: 700; text-decoration: none; margin-top: 15px; display: inline-block; }
+.lead-article { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.2fr; background: var(--white); border-radius: 15px; box-shadow: var(--shadow); margin-bottom: 40px; overflow: hidden; text-align: left; }
+.lead-article .news-image { width: 100%; height: 100%; min-height: 400px; object-fit: cover; }
+.media-resources-box { background: var(--light); border-radius: 15px; margin: 40px auto; padding: 40px; text-align: center; max-width: 1200px; }
+
+/* --- Contact Page --- */
+.contact-cta-area { margin: 40px 0; }
+.contact-button { background: var(--primary); color: white; padding: 20px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; transition: 0.3s; box-shadow: 0 5px 15px rgba(10, 125, 140, 0.2); }
+.contact-button:hover { background: var(--secondary); transform: translateY(-3px); box-shadow: var(--shadow); }
+.alt-contact { margin-top: 60px; padding-top: 40px; border-top: 1px solid #eee; }
+.alt-contact p { margin-bottom: 15px; font-size: 1.05rem; }
+.alt-contact a { color: var(--primary); text-decoration: none; font-weight: 600; }
+
+/* --- Donate / Stripe Modal --- */
+.donation-page-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; padding: 60px 20px; text-align: center; }
+.donation-card { margin: 40px auto !important; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+.modal-content { background: var(--white); margin: 5vh auto; width: 95%; max-width: 500px; height: 85vh; border-radius: 15px; overflow: hidden; position: relative; }
+#stripe-iframe { background-color: #ffffff; width: 100%; height: 100%; border: none; }
+.close-modal { position: absolute; top: 15px; right: 20px; font-size: 30px; font-weight: bold; cursor: pointer; color: #333; z-index: 10; }
+
+/* --- Legal / Privacy & Terms --- */
+.legal-container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+.legal-content h2 { color: var(--primary); font-size: 1.4rem; margin: 40px 0 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.legal-content p, .legal-content li { font-size: 1rem; margin-bottom: 15px; color: #444; }
+.legal-content ul { margin-bottom: 20px; padding-left: 25px; }
+.last-updated { font-size: 0.9rem; color: #888; font-style: italic; }
 
 /* ==========================================================================
-   6. FOOTER & ALIGNMENT
+   7. FOOTER STYLING
    ========================================================================== */
-footer { 
-    background: #1a1a1a; 
-    color: #bbb; 
-    padding: 35px 20px 20px; 
-    font-size: 0.85rem; 
-}
-
+footer { background: #1a1a1a; color: #ffffff; padding: 35px 20px 20px; font-size: 0.85rem; }
 .footer-container { max-width: 1100px; margin: 0 auto; }
-.footer-top { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 40px; 
-    border-bottom: 1px solid #333; 
-    padding-bottom: 20px; 
-    align-items: start; 
-}
-
-.footer-brand { display: flex; justify-content: flex-start; align-items: flex-start; }
-.candid-seal { height: 75px; width: auto; filter: grayscale(100%); transition: 0.3s; opacity: 0.8; }
-.candid-seal:hover { filter: none; opacity: 1; }
-.footer-contact p { margin-bottom: 8px; line-height: 1.4; }
-
-.footer-links h4 { color: var(--white); margin-bottom: 12px; font-size: 0.95rem; }
-.footer-links a { 
-    display: block; 
-    color: #ffffff; 
-    text-decoration: none; 
-    margin-bottom: 12px; 
-    transition: 0.3s; 
-    font-weight: 500; 
-}
+.footer-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; align-items: start; }
+.footer-links a { display: block; color: #ffffff; text-decoration: none; margin-bottom: 12px; transition: 0.3s; font-weight: 500; }
 .footer-links a:hover { color: var(--secondary); }
-
 .footer-bottom { padding-top: 15px; text-align: center; }
-.legal-disclaimer { color: #777; margin-top: 10px; font-size: 0.65rem; line-height: 1.3; }
+.legal-disclaimer { color: #777; margin-top: 10px; font-size: 0.65rem; }
 
 /* ==========================================================================
-   7. RESPONSIVE BREAKPOINTS
+   8. RESPONSIVE BREAKPOINTS (Mobile Optimization)
    ========================================================================== */
 @media (max-width: 900px) {
+    /* Navigation */
     .hamburger { display: block; }
-    nav { 
-        display: none; 
-        flex-direction: column; 
-        position: absolute; 
-        top: 80px; 
-        left: 0; 
-        width: 100%; 
-        background: var(--primary); 
-        padding: 20px 0; 
-    }
+    nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
     nav.active { display: flex; }
+    nav a { margin: 10px 0; margin-left: 0; }
     
+    /* Layouts */
+    .flex-row { flex-direction: column; text-align: center; }
+    .founder-img { width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
     .footer-top { grid-template-columns: 1fr; text-align: center; }
-    .footer-brand { justify-content: center; }
-
-    /* Mobile height adjustment for flip cards */
-    .flip-card, .initiative-card { 
-        height: 300px; 
-    }
-
-    /* ==========================================================================
-   8. INTERACTIVE FLIP ENGINE (Universal)
-   ========================================================================== */
-.flip-card { 
-    background-color: transparent; 
-    perspective: 1000px; 
-    cursor: pointer; 
-    height: 380px; /* Increased height to fit the tracker */
-    width: 100%;
+    
+    /* Grids & Cards */
+    .grid { grid-template-columns: 1fr; }
+    .flip-card, .initiative-card { height: 350px; }
+    .founder-container .flip-card { width: 100%; }
+    
+    /* News specific */
+    .lead-article { grid-template-columns: 1fr; }
+    .lead-article .news-image { min-height: 250px; }
+    
+    /* Spacing */
+    .section-padding { padding: 60px 20px; }
 }
-
-.flip-card-inner { 
-    position: relative; 
-    width: 100%; 
-    height: 100%; 
-    text-align: center; 
-    transition: transform 0.6s; 
-    transform-style: preserve-3d; 
-}
-
-.flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
-
-.flip-card-front, .flip-card-back { 
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
-    backface-visibility: hidden; 
-    -webkit-backface-visibility: hidden; 
-    border-radius: 15px; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    padding: 30px; 
-    box-shadow: var(--shadow); 
-}
-
-.flip-card-front { background: var(--light); border-bottom: 5px solid var(--primary); }
-.flip-card-back { background: var(--primary); color: white; transform: rotateY(180deg); text-align: center; }
-
-/* ==========================================================================
-   9. MISSION GOAL TRACKER
-   ========================================================================== */
-.goal-tracker {
-    width: 90%;
-    margin-top: 25px;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.goal-bar {
-    background: #e0e0e0;
-    height: 10px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-}
-
-.goal-progress {
-    background: var(--secondary);
-    height: 100%;
-    transition: width 2s ease-in-out;
-}
-
-.goal-stats {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: var(--dark);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-} /* Closing brace added here */

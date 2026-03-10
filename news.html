@@ -4,61 +4,11 @@
     <meta charset="UTF-8">
     <meta name="description" content="The Victor Global Initiative empowers at-risk youth and foster children through military-grade discipline, professional mentorship, and emotional resilience training.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News & Stories | Victor Global Initiative</title>
+    <title>Victor Global Initiative | Official Site</title>
     
-    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-   <link rel="stylesheet" 
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-      crossorigin="anonymous">
-      
-    <style>
-        .news-header { background: var(--light); text-align: center; padding: 80px 20px; border-bottom: 1px solid #eee; }
-        .subtitle { text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 2px; display: block; margin-bottom: 10px; }
-        .section-padding { padding: 60px 20px; max-width: 1200px; margin: auto; }
-        
-        /* --- THE NEWS GRID SYSTEM --- */
-        .news-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; 
-        }
-
-        /* --- LEAD ARTICLE: THE 2026 STANDARD --- */
-        .lead-article {
-            grid-column: 1 / -1; 
-            display: grid;
-            grid-template-columns: 1fr 1.2fr; /* Splits image and text side-by-side */
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
-            overflow: hidden;
-            text-align: left;
-        }
-
-        .lead-article .news-image {
-            width: 100%;
-            height: 100%;
-            min-height: 400px;
-            object-fit: cover;
-        }
-
-        /* --- SECONDARY NEWS CARDS --- */
-        .news-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: 0.3s; display: flex; flex-direction: column; }
-        .news-image { width: 100%; height: 220px; object-fit: cover; }
-        .news-content { padding: 30px; }
-        .news-date { color: var(--secondary); font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; display: block; }
-        .read-more { color: var(--primary); font-weight: 700; text-decoration: none; margin-top: 15px; display: inline-block; }
-
-        .media-resources-box { background: var(--light); border-radius: 15px; margin: 40px auto; padding: 40px; text-align: center; max-width: 1200px; }
-        
-        @media (max-width: 900px) {
-            .lead-article { grid-template-columns: 1fr; }
-            .lead-article .news-image { min-height: 250px; }
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -120,32 +70,10 @@
         </section>
     </main>
 
-    <div id="footer-placeholder"></div>
+ <div id="footer-placeholder"></div>
 
-   <link rel="stylesheet" 
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-      crossorigin="anonymous">
-      
-    <script>
-        async function loadComponents() {
-            try {
-                const headerResp = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
-                const footerResp = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
-                AOS.init({ duration: 1000, once: true });
-                const links = document.querySelectorAll('nav a');
-                links.forEach(link => {
-                    if(link.innerText.toLowerCase().includes('news')) link.classList.add('active-link');
-                });
-            } catch (err) { console.error("Load failed:", err); }
-        }
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
-        }
-        window.onload = loadComponents;
-    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" integrity="sha384-Z6H2Bsc1pntI9uH2uYy4K9iN6BfE9xR5TfI4H2B7kL7mB5l5h4T5o5p5Q5r5s5T" crossorigin="anonymous"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>
+

@@ -6,45 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victor Global Initiative | Official Site</title>
     
-    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" 
-          href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-          integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-          crossorigin="anonymous">
-      
-    <style>
-        /* --- PAGE SPECIFIC STYLES --- */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/impact.jpg') center/cover;
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-        .hero-title { font-size: 3.5rem; margin-bottom: 20px; }
-        .hero-btn { background: var(--secondary); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; }
-
-        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        
-        /* --- GOAL TRACKER --- */
-        .goal-tracker { width: 90%; margin-top: 20px; }
-        .goal-bar { background: #e0e0e0; height: 10px; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
-        .goal-progress { background: var(--secondary); height: 100%; transition: width 2s ease-in-out; }
-        .goal-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: #666; font-weight: 700; text-transform: uppercase; }
-
-        /* --- FLIP CARD ADJUSTMENT --- */
-        .flip-card { height: 380px; perspective: 1000px; cursor: pointer; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-        .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-shadow: var(--shadow); }
-        .flip-card-front { background: var(--light); border-bottom: 5px solid var(--primary); }
-        .flip-card-back { background: var(--primary); color: white; transform: rotateY(180deg); }
-        .counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 5px; }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -123,77 +87,11 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" 
-            integrity="sha384-Z6H2Bsc1pntI9uH2uYy4K9iN6BfE9xR5TfI4H2B7kL7mB5l5h4T5o5p5Q5r5s5T" 
-            crossorigin="anonymous"></script>
+   <div id="footer-placeholder"></div>
 
-   <script>
-    // 1. COMPONENT LOADER
-    async function loadComponents() {
-        try {
-            const headerResp = await fetch('header.html');
-            document.getElementById('header-placeholder').innerHTML = await headerResp.text();
-            const footerResp = await fetch('footer.html');
-            document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
-            
-            AOS.init({ duration: 1000, once: true });
-
-            // RUN THE COUNTERS IMMEDIATELY AND EVERY 500MS UNTIL DONE
-            const checkExist = setInterval(() => {
-                const counters = document.querySelectorAll('.counter:not(.counted)');
-                if (counters.length > 0) {
-                    initCounters();
-                }
-                // Once all are counted, stop checking
-                if (document.querySelectorAll('.counter').length === document.querySelectorAll('.counted').length) {
-                    clearInterval(checkExist);
-                }
-            }, 500);
-
-        } catch (err) { console.error("Load failed:", err); }
-    }
-
-    // 2. COUNTER ENGINE
-    function initCounters() {
-        const counters = document.querySelectorAll('.counter:not(.counted)');
-        
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            if (isNaN(target)) return;
-
-            counter.classList.add('counted');
-            let current = 0;
-            const duration = 2000; 
-            const steps = 50;
-            const increment = target / steps;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    counter.innerText = target;
-                    clearInterval(timer);
-                } else {
-                    counter.innerText = Math.ceil(current);
-                }
-            }, duration / steps);
-        });
-    }
-
-    // 3. FLIP LOGIC
-    function handleFlip(card) {
-        card.classList.toggle('is-flipped');
-        if(card.classList.contains('is-flipped')) {
-            setTimeout(() => card.classList.remove('is-flipped'), 8000);
-        }
-    }
-
-    // 4. NAV TOGGLE
-    function toggleMenu() {
-        const nav = document.getElementById('nav-menu');
-        if(nav) nav.classList.toggle('active');
-    }
-
-    window.onload = loadComponents;
-</script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" integrity="sha384-Z6H2Bsc1pntI9uH2uYy4K9iN6BfE9xR5TfI4H2B7kL7mB5l5h4T5o5p5Q5r5s5T" crossorigin="anonymous"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>
+
+   

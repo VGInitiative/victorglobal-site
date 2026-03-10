@@ -4,35 +4,11 @@
     <meta charset="UTF-8">
     <meta name="description" content="The Victor Global Initiative empowers at-risk youth and foster children through military-grade discipline, professional mentorship, and emotional resilience training.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadership | Victor Global Initiative</title>
+    <title>Victor Global Initiative | Official Site</title>
     
-    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-   <link rel="stylesheet" 
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-      crossorigin="anonymous">
-      
-    <style>
-        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        .tier-label { text-align: center; color: var(--secondary); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 60px 0 30px; display: block; }
-        
-        /* Founder Centering */
-        .founder-container { display: flex; justify-content: center; margin-bottom: 20px; }
-
-        /* Profile Details */
-        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--secondary); object-fit: cover; margin-bottom: 20px; }
-        .role { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px; }
-        .bio-text { font-size: 0.9rem; line-height: 1.5; }
-        
-        /* Back of card bio alignment */
-        .flip-card-back { text-align: left; padding: 25px; overflow-y: auto; }
-        .flip-card-back h3 { border-bottom: 1px solid var(--secondary); margin-bottom: 15px; padding-bottom: 5px; width: 100%; }
-
-        @media (max-width: 900px) {
-            .founder-container .flip-card { width: 100%; }
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -173,43 +149,9 @@
     </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+   <div id="footer-placeholder"></div>
 
-   <link rel="stylesheet" 
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-      crossorigin="anonymous">
-      
-    <script>
-        function handleFlip(card) {
-            if (card.classList.contains('is-flipped')) {
-                card.classList.remove('is-flipped');
-                return;
-            }
-            card.classList.add('is-flipped');
-            setTimeout(() => {
-                card.classList.remove('is-flipped');
-            }, 8000);
-        }
-
-        async function loadComponents() {
-            try {
-                const header = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await header.text();
-                const footer = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footer.text();
-                AOS.init({ duration: 1000, once: true });
-                const links = document.querySelectorAll('nav a');
-                links.forEach(link => {
-                    if(link.getAttribute('href') === 'leadership.html') link.classList.add('active-link');
-                });
-            } catch (err) { console.error("Error:", err); }
-        }
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
-        }
-        window.onload = loadComponents;
-    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" integrity="sha384-Z6H2Bsc1pntI9uH2uYy4K9iN6BfE9xR5TfI4H2B7kL7mB5l5h4T5o5p5Q5r5s5T" crossorigin="anonymous"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

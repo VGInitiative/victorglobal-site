@@ -4,62 +4,11 @@
     <meta charset="UTF-8">
     <meta name="description" content="The Victor Global Initiative empowers at-risk youth and foster children through military-grade discipline, professional mentorship, and emotional resilience training.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initiatives | Victor Global Initiative</title>
-    
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Victor Global Initiative | Official Site</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-   <link rel="stylesheet" 
-      href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
-      integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
-      crossorigin="anonymous">
-      
-    <style>
-        /* Page-specific styling for Initiative Flip Cards */
-        .page-intro { background: var(--light); text-align: center; padding: 80px 20px; }
-        .subtitle { display: block; text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; }
-        .lead-text { font-size: 1.2rem; max-width: 800px; margin: 20px auto 0; color: #555; }
-
-        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        
-        /* Interactive Flip Logic */
-        .initiative-card { height: 380px; perspective: 1000px; cursor: pointer; }
-        .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-        .initiative-card.is-flipped .card-inner { transform: rotateY(180deg); }
-        
-        .card-front, .card-back { 
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            backface-visibility: hidden; 
-            -webkit-backface-visibility: hidden;
-            border-radius: 15px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 30px; 
-            box-shadow: var(--shadow); 
-        }
-        
-        .card-front { background: var(--white); border-bottom: 5px solid var(--primary); }
-        .card-back { background: var(--primary); color: white; transform: rotateY(180deg); text-align: center; }
-        
-        .initiative-icon { font-size: 3.5rem; margin-bottom: 20px; display: block; }
-        .card-back h3 { margin-bottom: 15px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px; width: 100%; }
-        .card-back p { font-size: 0.95rem; line-height: 1.6; }
-
-        /* Gallery Styling */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
-        .gallery-item { overflow: hidden; border-radius: 12px; height: 250px; box-shadow: var(--shadow); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .gallery-item:hover img { transform: scale(1.1); }
-
-        @media (max-width: 900px) {
-            .grid { grid-template-columns: 1fr; }
-            .initiative-card { height: 320px; }
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -138,55 +87,9 @@
       integrity="sha384-p86U60I6L8V6oD4R4uW4N4M4f4L4U4k4S4T4O4R4i4N4G4H4t4M4l4O4p4S4D4I" 
       crossorigin="anonymous">
       
-    <script>
-        // 1. AUTO-FLIP LOGIC (8-Second Reset)
-        function handleFlip(card) {
-            // If already flipped, flip it back manually
-            if (card.classList.contains('is-flipped')) {
-                card.classList.remove('is-flipped');
-                return;
-            }
+  <div id="footer-placeholder"></div>
 
-            // Flip the card
-            card.classList.add('is-flipped');
-
-            // Set timer to flip back after 8 seconds
-            setTimeout(() => {
-                card.classList.remove('is-flipped');
-            }, 8000);
-        }
-
-        // 2. COMPONENT LOADER (Header/Footer/AOS)
-        async function loadComponents() {
-            try {
-                const headerResp = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
-                
-                const footerResp = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
-                
-                // Initialize AOS after content is ready
-                AOS.init({ duration: 1000, once: true });
-
-                // Highlight active link
-                const links = document.querySelectorAll('nav a');
-                links.forEach(link => {
-                    if(link.getAttribute('href') === 'initiatives.html') {
-                        link.classList.add('active-link');
-                    }
-                });
-            } catch (err) {
-                console.error("Component load failed:", err);
-            }
-        }
-
-        // 3. NAV TOGGLE
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
-        }
-
-        window.onload = loadComponents;
-    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" integrity="sha384-Z6H2Bsc1pntI9uH2uYy4K9iN6BfE9xR5TfI4H2B7kL7mB5l5h4T5o5p5Q5r5s5T" crossorigin="anonymous"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>
