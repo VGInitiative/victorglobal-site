@@ -5,45 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victor Global Initiative | Official Site</title>
     
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* --- MASTER CSS (Required for alignment across all pages) --- */
-        :root {
-            --primary: #0a7d8c; 
-            --secondary: #32c6a6;
-            --dark: #222;
-            --light: #f4f7f8;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* --- PAGE-SPECIFIC IMPACT CARD STYLES --- */
+        .impact-card { 
+            height: 300px; 
+            perspective: 1000px; 
+            cursor: pointer; 
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .impact-card-inner { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            text-align: center; 
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+            transform-style: preserve-3d; 
+        }
+        .impact-card.is-flipped .impact-card-inner { 
+            transform: rotateY(180deg); 
+        }
+        .impact-front, .impact-back { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            backface-visibility: hidden; 
+            -webkit-backface-visibility: hidden; 
+            border-radius: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 30px; 
+            box-shadow: var(--shadow); 
+        }
+        .impact-front { 
+            background: var(--light); 
+            border-bottom: 5px solid var(--primary); 
+        }
+        .impact-back { 
+            background: var(--primary); 
+            color: white; 
+            transform: rotateY(180deg); 
+            padding: 30px; 
+        }
+        .impact-back h3 { 
+            margin-bottom: 10px; 
+            font-size: 1.2rem; 
+            border-bottom: 1px solid var(--secondary);
+            padding-bottom: 5px;
+        }
+        .impact-back p { 
+            font-size: 0.9rem; 
+            line-height: 1.5; 
+        }
         
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            line-height: 1.6; 
-            color: var(--dark); 
-            background: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Navigation Styles (For the injected header) */
-        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
-        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
-        .logo { height: 50px; margin-right: 15px; }
-        .org-title { font-size: 1.2rem; font-weight: 700; }
-        nav { display: flex; align-items: center; }
-        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        nav a:hover { color: var(--secondary); }
-        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
-        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
-
-        /* Hero & Content Styles */
+        /* Hero Section Styling */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/impact.jpg') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/impact.jpg') center/cover;
             height: 70vh;
             display: flex;
             align-items: center;
@@ -51,31 +72,6 @@
             text-align: center;
             color: white;
             padding: 0 20px;
-        }
-        .hero-title { font-size: 3.5rem; margin-bottom: 20px; }
-        .hero-btn { background: var(--secondary); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; }
-
-        .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .card { background: var(--light); padding: 40px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--primary); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
-        .counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
-
-        /* Footer Styles (For the injected footer) */
-        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
-        .footer-container { max-width: 1100px; margin: 0 auto; }
-        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; }
-        .footer-bottom { padding-top: 30px; text-align: center; }
-        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
-
-        /* Mobile Breakpoint */
-        @media (max-width: 900px) {
-            .hamburger { display: block; }
-            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
-            nav.active { display: flex; }
-            nav a { margin: 15px 0; margin-left: 0; }
-            .grid, .footer-top { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -93,19 +89,50 @@
         </section>
 
         <section class="section-padding" id="impact">
-            <h2 style="text-align: center;">Our Real-World Impact</h2>
+            <h2 style="text-align: center; margin-bottom: 10px;">Our Real-World Impact</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">Click a card to see the mission in detail. Cards reset automatically.</p>
+            
             <div class="grid">
-                <div class="card" data-aos="fade-up">
-                    <h3 class="counter" data-target="5">0</h3>
-                    <p>Youth Reached</p>
+                <div class="impact-card" data-aos="fade-up" onclick="handleFlip(this)">
+                    <div class="impact-card-inner">
+                        <div class="impact-front">
+                            <h3 class="counter" data-target="5">0</h3>
+                            <p>Youth Reached</p>
+                            <small style="color: var(--primary); margin-top: 15px;">Tap for Story</small>
+                        </div>
+                        <div class="impact-back">
+                            <h3>Direct Reach</h3>
+                            <p>We are currently providing intensive 1-on-1 mentorship to 5 local youth, helping them navigate transitional challenges with resilience.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="counter" data-target="5">0</h3>
-                    <p>Community Partnerships</p>
+
+                <div class="impact-card" data-aos="fade-up" data-aos-delay="100" onclick="handleFlip(this)">
+                    <div class="impact-card-inner">
+                        <div class="impact-front">
+                            <h3 class="counter" data-target="2">0</h3>
+                            <p>Community Partnerships</p>
+                            <small style="color: var(--primary); margin-top: 15px;">Tap for Story</small>
+                        </div>
+                        <div class="impact-back">
+                            <h3>Strategic Alliances</h3>
+                            <p>Establishing vital connections with regional JROTC programs and youth shelters to expand our support network.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="counter" data-target="2">0</h3>
-                    <p>Programs Supported</p>
+
+                <div class="impact-card" data-aos="fade-up" data-aos-delay="200" onclick="handleFlip(this)">
+                    <div class="impact-card-inner">
+                        <div class="impact-front">
+                            <h3 class="counter" data-target="3">0</h3>
+                            <p>Programs Supported</p>
+                            <small style="color: var(--primary); margin-top: 15px;">Tap for Story</small>
+                        </div>
+                        <div class="impact-back">
+                            <h3>Active Initiatives</h3>
+                            <p>Focused support for transitional housing, leadership development, and foundational financial literacy workshops.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -114,9 +141,22 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
-        // 1. COMPONENT LOADER (Header/Footer)
+        // 1. AUTO-FLIP LOGIC (8-Second Reset)
+        function handleFlip(card) {
+            if (card.classList.contains('is-flipped')) {
+                card.classList.remove('is-flipped');
+                return;
+            }
+            card.classList.add('is-flipped');
+            
+            // Automatically flip back after 8 seconds
+            setTimeout(() => {
+                card.classList.remove('is-flipped');
+            }, 8000);
+        }
+
+        // 2. COMPONENT LOADER (Header/Footer)
         async function loadComponents() {
             try {
                 const headerResp = await fetch('header.html');
@@ -125,7 +165,6 @@
                 const footerResp = await fetch('footer.html');
                 document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
                 
-                // Re-initialize scripts that depend on dynamic content
                 AOS.init({ duration: 1000, once: true });
                 initCounters();
             } catch (err) {
@@ -133,13 +172,13 @@
             }
         }
 
-        // 2. NAVIGATION TOGGLE (Must be global)
+        // 3. NAVIGATION TOGGLE
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             if(nav) nav.classList.toggle('active');
         }
 
-        // 3. COUNTER LOGIC
+        // 4. COUNTER LOGIC
         function initCounters() {
             const counters = document.querySelectorAll('.counter');
             const observer = new IntersectionObserver((entries) => {
@@ -149,11 +188,13 @@
                         const target = +counter.getAttribute('data-target');
                         const update = () => {
                             const c = +counter.innerText;
-                            const inc = target / 100;
+                            const inc = target / 50; // Balanced speed for small numbers
                             if(c < target) {
-                                counter.innerText = Math.ceil(c + inc);
-                                setTimeout(update, 20);
-                            } else { counter.innerText = target; }
+                                counter.innerText = Math.ceil(c + (inc || 1));
+                                setTimeout(update, 40);
+                            } else { 
+                                counter.innerText = target; 
+                            }
                         };
                         update();
                         observer.unobserve(counter);
@@ -163,7 +204,6 @@
             counters.forEach(c => observer.observe(c));
         }
 
-        // Initialize on load
         window.onload = loadComponents;
     </script>
 </body>

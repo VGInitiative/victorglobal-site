@@ -5,71 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Initiatives | Victor Global Initiative</title>
     
+    <link rel="stylesheet" href="assets/css/style.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <style>
-        /* --- MASTER CSS --- */
-        :root {
-            --primary: #0a7d8c; 
-            --secondary: #32c6a6;
-            --dark: #222;
-            --light: #f4f7f8;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            line-height: 1.6; 
-            color: var(--dark); 
-            background: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Nav & Footer Styles (Required in main page for injected content) */
-        header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
-        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-        .brand { display: flex; align-items: center; text-decoration: none; color: white; }
-        .logo { height: 50px; margin-right: 15px; }
-        .org-title { font-size: 1.2rem; font-weight: 700; }
-        nav { display: flex; align-items: center; }
-        nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        nav a:hover, nav a.active-link { color: var(--secondary); }
-        .donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
-        .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
-
-        /* Initiatives Content */
+        /* Page-specific styling for Initiative Flip Cards */
         .page-intro { background: var(--light); text-align: center; padding: 80px 20px; }
         .subtitle { display: block; text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; }
         .lead-text { font-size: 1.2rem; max-width: 800px; margin: 20px auto 0; color: #555; }
 
         .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .card { background: var(--white); padding: 40px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
-        .initiative-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+        
+        /* Interactive Flip Logic */
+        .initiative-card { height: 380px; perspective: 1000px; cursor: pointer; }
+        .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .initiative-card.is-flipped .card-inner { transform: rotateY(180deg); }
+        
+        .card-front, .card-back { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            backface-visibility: hidden; 
+            -webkit-backface-visibility: hidden;
+            border-radius: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 30px; 
+            box-shadow: var(--shadow); 
+        }
+        
+        .card-front { background: var(--white); border-bottom: 5px solid var(--primary); }
+        .card-back { background: var(--primary); color: white; transform: rotateY(180deg); text-align: center; }
+        
+        .initiative-icon { font-size: 3.5rem; margin-bottom: 20px; display: block; }
+        .card-back h3 { margin-bottom: 15px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px; width: 100%; }
+        .card-back p { font-size: 0.95rem; line-height: 1.6; }
 
+        /* Gallery Styling */
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
         .gallery-item { overflow: hidden; border-radius: 12px; height: 250px; box-shadow: var(--shadow); }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .gallery-item:hover img { transform: scale(1.1); }
 
-        /* Footer Alignment */
-        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 30px; font-size: 0.85rem; }
-        .footer-container { max-width: 1100px; margin: 0 auto; }
-        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid #333; padding-bottom: 40px; text-align: left; }
-        .footer-bottom { padding-top: 30px; text-align: center; }
-        .legal-disclaimer { font-size: 0.7rem; color: #777; margin-top: 15px; }
-
         @media (max-width: 900px) {
-            .hamburger { display: block; }
-            nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
-            nav.active { display: flex; }
-            nav a { margin: 10px 0; margin-left: 0; }
-            .grid, .footer-top { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .initiative-card { height: 320px; }
         }
     </style>
 </head>
@@ -79,35 +63,61 @@
 
     <main>
         <section class="page-intro" data-aos="fade-up">
-            <span class="subtitle">What We Do</span>
-            <h1>Our Initiatives</h1>
+            <span class="subtitle">Our Mission in Motion</span>
+            <h1>Strategic Initiatives</h1>
             <p class="lead-text">Empowering at-risk youth and foster children through structured support, military-grade discipline, and professional mentorship.</p>
         </section>
 
         <section class="section-padding">
             <div class="grid">
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <span class="initiative-icon">🏠</span>
-                    <h3>Supporting Vulnerable Youth</h3>
-                    <p>We partner with youth shelters and transitional programs to provide the stability needed for a successful transition to adulthood and independence.</p>
+                <div class="initiative-card" data-aos="fade-up" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span class="initiative-icon">🏠</span>
+                            <h3>Supporting Vulnerable Youth</h3>
+                            <small style="color: var(--primary); font-weight: 600;">Tap to explore</small>
+                        </div>
+                        <div class="card-back">
+                            <h3>Shelter Outreach</h3>
+                            <p>We partner with youth shelters and transitional programs to provide the stability needed for a successful transition to adulthood and independence.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <span class="initiative-icon">🛡️</span>
-                    <h3>Fostering Discipline & Duty</h3>
-                    <p>By supporting JROTC programs, we encourage the next generation to embrace leadership, civic responsibility, and the discipline required for success.</p>
+                <div class="initiative-card" data-aos="fade-up" data-aos-delay="100" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span class="initiative-icon">🛡️</span>
+                            <h3>Fostering Discipline & Duty</h3>
+                            <small style="color: var(--primary); font-weight: 600;">Tap to explore</small>
+                        </div>
+                        <div class="card-back">
+                            <h3>JROTC Support</h3>
+                            <p>By supporting JROTC programs, we encourage the next generation to embrace leadership, civic responsibility, and the discipline required for success.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card" data-aos="fade-up" data-aos-delay="300">
-                    <span class="initiative-icon">🎓</span>
-                    <h3>The Victor Mentorship Model</h3>
-                    <p>A holistic approach focusing on emotional resilience, financial literacy, and career preparation—mentoring the whole individual.</p>
+                <div class="initiative-card" data-aos="fade-up" data-aos-delay="200" onclick="handleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span class="initiative-icon">🎓</span>
+                            <h3>The Victor Mentorship Model</h3>
+                            <small style="color: var(--primary); font-weight: 600;">Tap to explore</small>
+                        </div>
+                        <div class="card-back">
+                            <h3>Holistic Mentoring</h3>
+                            <p>A 3-pillar approach focusing on emotional resilience, financial literacy, and career preparation—mentoring the whole individual.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="section-padding" style="background: var(--light);">
-            <h2 class="text-center" data-aos="fade-up">Programs in Action</h2>
+            <h2 class="text-center" data-aos="fade-up" style="text-align: center;">Programs in Action</h2>
+            <p style="text-align: center; color: #666;">A look at our community engagement and mentorship highlights.</p>
+            
             <div class="gallery">
                 <div class="gallery-item" data-aos="zoom-in"><img src="assets/images/program1.jpg" alt="VGI Mentorship"></div>
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="assets/images/program2.jpg" alt="JROTC Support"></div>
@@ -121,21 +131,48 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // 1. AUTO-FLIP LOGIC (8-Second Reset)
+        function handleFlip(card) {
+            // If already flipped, flip it back manually
+            if (card.classList.contains('is-flipped')) {
+                card.classList.remove('is-flipped');
+                return;
+            }
+
+            // Flip the card
+            card.classList.add('is-flipped');
+
+            // Set timer to flip back after 8 seconds
+            setTimeout(() => {
+                card.classList.remove('is-flipped');
+            }, 8000);
+        }
+
+        // 2. COMPONENT LOADER (Header/Footer/AOS)
         async function loadComponents() {
             try {
-                const header = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await header.text();
+                const headerResp = await fetch('header.html');
+                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
                 
-                const footer = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footer.text();
+                const footerResp = await fetch('footer.html');
+                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
                 
-                // Initialize AOS after content is injected
+                // Initialize AOS after content is ready
                 AOS.init({ duration: 1000, once: true });
+
+                // Highlight active link
+                const links = document.querySelectorAll('nav a');
+                links.forEach(link => {
+                    if(link.getAttribute('href') === 'initiatives.html') {
+                        link.classList.add('active-link');
+                    }
+                });
             } catch (err) {
-                console.error("Failed to load header/footer:", err);
+                console.error("Component load failed:", err);
             }
         }
 
+        // 3. NAV TOGGLE
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             if(nav) nav.classList.toggle('active');
