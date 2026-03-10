@@ -124,66 +124,75 @@
     <div id="footer-placeholder"></div>
 
     <script>
-        // 1. TAB NAVIGATION
-        function openTab(evt, tabName) {
-            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-            document.getElementById(tabName).style.display = 'block';
-            document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
-            evt.currentTarget.classList.add('active');
+       // 1. TAB NAVIGATION
+function openTab(evt, tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+    document.getElementById(tabName).style.display = 'block';
+    document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
+    evt.currentTarget.classList.add('active');
+}
+
+// 2. IMAGE PREVIEW
+function previewImage(input, previewId) {
+    const preview = document.getElementById(previewId);
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => { preview.src = reader.result; }
+    if (file) { reader.readAsDataURL(file); }
+}
+
+// 3. THE UNIVERSAL SAVE FUNCTION (Handles Text & Photos)
+async function saveData(category) {
+    const msg = document.getElementById('status-msg');
+    msg.innerText = "🛰️ Connecting to VGI Cloud Vault...";
+    msg.style.color = "var(--primary)";
+
+    const formData = new FormData();
+    formData.append('type', category);
+
+    // Dynamic Data Collection based on which tab you are on
+    if (category === 'impact') {
+        formData.append('youth', document.getElementById('stat-youth').value);
+        formData.append('news', document.getElementById('news-title').value);
+    } else if (category === 'leadership') {
+        formData.append('name', document.getElementById('board-name').value);
+        formData.append('role', document.getElementById('board-role').value);
+        formData.append('bio', document.getElementById('board-bio').value);
+        formData.append('image', document.getElementById('board-photo').files[0]);
+    } else if (category === 'initiatives') {
+        formData.append('title', document.getElementById('init-title').value);
+        formData.append('desc', document.getElementById('init-desc').value);
+        formData.append('image', document.getElementById('init-photo').files[0]);
+    }
+
+    try {
+        const response = await fetch(`/api/UpdateSiteContent`, {
+            method: 'POST',
+            body: formData // No headers needed; FormData sets them automatically
+        });
+
+        if (response.ok) {
+            alert("✅ MISSION SUCCESS: The VGI Live Site has been updated!");
+            msg.innerText = "Update successful.";
+            msg.style.color = "#28a745";
+        } else {
+            const errorText = await response.text();
+            alert("❌ AZURE REJECTION: " + response.status + " - " + errorText);
+            msg.innerText = "Vault Refused Connection: " + response.status;
         }
+    } catch (e) {
+        alert("❌ OFFLINE: Could not reach the Azure API. Check your internet or Azure Portal status.");
+        console.error("VGI Sync Error:", e);
+    }
+}
 
-        // 2. IMAGE PREVIEW LOGIC
-        function previewImage(input, previewId) {
-            const preview = document.getElementById(previewId);
-            const file = input.files[0];
-            const reader = new FileReader();
-            reader.onloadend = () => { preview.src = reader.result; }
-            if (file) { reader.readAsDataURL(file); }
-        }
-
-        // 3. SECURE DATA SYNC
-        async function saveData(category) {
-            const msg = document.getElementById('status-msg');
-            msg.innerText = "🛰️ Connecting to VGI Cloud Vault...";
-            msg.style.color = "var(--primary)";
-
-            // Logic to package both text and file data
-            const formData = new FormData();
-            formData.append('type', category);
-            
-            // Example: Adding Board data
-            if(category === 'leadership') {
-                formData.append('name', document.getElementById('board-name').value);
-                formData.append('image', document.getElementById('board-photo').files[0]);
-            }
-
-            try {
-                // Pointing to your Azure Function
-                const response = await fetch(`/api/UpdateSiteContent`, {
-                    method: 'POST',
-                    body: formData // Correctly handles binary images + text
-                });
-                
-                if(response.ok) {
-                    msg.innerText = "✅ Global Update Successful!";
-                    msg.style.color = "#28a745";
-                }
-            } catch (e) {
-                msg.innerText = "❌ Connection Error: Check Azure Environment Variables";
-                msg.style.color = "#dc3545";
-            }
-        }
-
-        // 4. LOAD COMPONENTS
-        async function loadComponents() {
-            try {
-                const header = await fetch('header.html').then(r => r.text());
-                const footer = await fetch('footer.html').then(r => r.text());
-                document.getElementById('header-placeholder').innerHTML = header;
-                document.getElementById('footer-placeholder').innerHTML = footer;
-            } catch (err) { console.warn("Component load failed."); }
-        }
-        window.onload = loadComponents;
-    </script>
-</body>
-</html>
+// 4. LOAD HEADER/FOOTER
+async function loadComponents() {
+    try {
+        const header = await fetch('header.html').then(r => r.text());
+        const footer = await fetch('footer.html').then(r => r.text());
+        document.getElementById('header-placeholder').innerHTML = header;
+        document.getElementById('footer-placeholder').innerHTML = footer;
+    } catch (err) { console.warn("Layout components not found."); }
+}
+window.onload = loadComponents;
