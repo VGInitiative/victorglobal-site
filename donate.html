@@ -8,104 +8,30 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-
-    <style>
-        /* Specific Page Refinements */
-        .section-padding { padding: 80px 20px; text-align: center; max-width: 1200px; margin: auto; }
-        
-        .donation-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-        }
-
-        .donation-card { 
-            background: var(--white); 
-            padding: 60px 40px; 
-            border-radius: 20px; 
-            box-shadow: var(--shadow); 
-            max-width: 650px; 
-            width: 100%;
-            border-top: 8px solid var(--secondary);
-            position: relative;
-        }
-
-        .donate-btn-large { 
-            background: var(--secondary); 
-            color: white; 
-            padding: 22px 60px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: 700; 
-            font-size: 1.3rem; 
-            display: inline-block; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 15px rgba(50, 198, 166, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .donate-btn-large:hover { 
-            background: #28a88d; 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 25px rgba(50, 198, 166, 0.4);
-        }
-        
-        .tax-disclaimer { 
-            margin-top: 40px; 
-            font-size: 0.85rem; 
-            color: #777; 
-            border-top: 1px solid #eee; 
-            padding-top: 25px; 
-            line-height: 1.5;
-        }
-
-        .ein-badge {
-            background: var(--light);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 5px;
-            font-weight: 700;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 600px) {
-            .donation-card { padding: 40px 20px; }
-            .donate-btn-large { width: 100%; padding: 20px 30px; font-size: 1.1rem; }
-        }
-    </style>
 </head>
 <body>
 
     <div id="header-placeholder"></div>
 
-    <main class="section-padding">
-        <div class="donation-container">
-            <div data-aos="fade-up">
-                <h1 style="color:var(--primary); font-size: 2.8rem; margin-bottom: 15px;">A Victor, Not a Victim</h1>
-                <p style="font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 30px;">
-                    Your investment directly supports at-risk youth and foster children, providing the mentorship and discipline needed for a successful future.
-                </p>
-            </div>
+    <main style="padding: 100px 20px; text-align: center;">
+        <div data-aos="fade-up">
+            <h1 style="color:var(--primary); font-size: 2.8rem; margin-bottom: 15px;">A Victor, Not a Victim</h1>
+            <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto 40px;">
+                Your investment directly supports at-risk youth and foster children.
+            </p>
+        </div>
 
-            <div class="donation-card" data-aos="zoom-in" data-aos-delay="100">
-                <h2 style="margin-bottom: 20px; color: var(--dark);">Make Your Impact</h2>
-                <p style="margin-bottom: 35px; color: #666; font-size: 1.1rem;">
-                    Join us in building a safety net of resilience. Select a donation method below.
-                </p>
-                
-                <button onclick="openDonate()" class="donate-btn-large">
-                    Donate Securely with Stripe
-                </button>
+        <div class="donation-card" data-aos="zoom-in">
+            <h2 style="margin-bottom: 20px;">Make Your Impact</h2>
+            <p style="margin-bottom: 35px; color: #666;">Support our mission securely via Stripe checkout below.</p>
+            
+            <button onclick="openDonate()" class="donate-btn-large">
+                Donate Now
+            </button>
 
-                <div class="tax-disclaimer">
-                    <p><strong>Victor Global Initiative</strong> is a registered 501(c)(3) nonprofit.</p>
-                    <p>Contributions are tax-deductible to the full extent of the law.</p>
-                    <div class="ein-badge">EIN: 41-3649085</div>
-                </div>
+            <div style="margin-top: 30px; font-size: 0.85rem; color: #777;">
+                <p>Victor Global Initiative is a 501(c)(3) nonprofit.</p>
+                <div class="ein-badge">EIN: 41-3649085</div>
             </div>
         </div>
     </main>
@@ -127,18 +53,18 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. MODAL LOGIC (Ensures users stay on victorglobal.org)
+        // Modal Logic
         function openDonate() {
             document.getElementById('donateModal').style.display = "block";
-            document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+            document.body.style.overflow = "hidden"; // Prevent background scroll
         }
 
         function closeDonate() {
             document.getElementById('donateModal').style.display = "none";
-            document.body.style.overflow = "auto"; // Re-enable scrolling
+            document.body.style.overflow = "auto";
         }
 
-        // Close modal if user clicks outside of the content box
+        // Close modal if user clicks outside of the white box
         window.onclick = function(event) {
             let modal = document.getElementById('donateModal');
             if (event.target == modal) {
@@ -146,33 +72,15 @@
             }
         }
 
-        // 2. MODULAR COMPONENT LOADER
+        // Component Loader
         async function loadComponents() {
             try {
-                const headerResp = await fetch('header.html');
-                document.getElementById('header-placeholder').innerHTML = await headerResp.text();
-                
-                const footerResp = await fetch('footer.html');
-                document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
-                
+                const header = await fetch('header.html');
+                document.getElementById('header-placeholder').innerHTML = await header.text();
+                const footer = await fetch('footer.html');
+                document.getElementById('footer-placeholder').innerHTML = await footer.text();
                 AOS.init({ duration: 1000, once: true });
-
-                // Highlight the "Donate" link in the nav
-                const links = document.querySelectorAll('nav a');
-                links.forEach(link => {
-                    if(link.innerText.toLowerCase().includes('donate')) {
-                        link.classList.add('active-link');
-                    }
-                });
-            } catch (err) {
-                console.error("Component load failed:", err);
-            }
-        }
-
-        // 3. NAVIGATION TOGGLE
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            if(nav) nav.classList.toggle('active');
+            } catch (err) { console.error("Load failed:", err); }
         }
 
         window.onload = loadComponents;
