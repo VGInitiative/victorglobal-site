@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     env:
+      # This line kills the Node.js 20 warning
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout Repository
@@ -30,10 +31,10 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
+          ###### Repository/Build Configurations ######
           app_location: "/" 
           api_location: "api" 
           output_location: "/" 
-          # --- CHANGE THESE TWO LINES ---
-          skip_app_build: false
-          skip_api_build: true  # This tells Azure "Don't overthink the API, just zip it."
-          # ------------------------------
+          # This tells Azure: "Just take my files, don't try to install things during the zip phase"
+          skip_api_build: true 
+          ###### End of Repository/Build Configurations ######
