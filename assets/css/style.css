@@ -207,4 +207,80 @@ footer {
     .flip-card, .initiative-card { 
         height: 300px; 
     }
+
+    /* ==========================================================================
+   8. INTERACTIVE FLIP ENGINE (Universal)
+   ========================================================================== */
+.flip-card { 
+    background-color: transparent; 
+    perspective: 1000px; 
+    cursor: pointer; 
+    height: 380px; /* Increased height to fit the tracker */
+    width: 100%;
+}
+
+.flip-card-inner { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    transition: transform 0.6s; 
+    transform-style: preserve-3d; 
+}
+
+.flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+
+.flip-card-front, .flip-card-back { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden; 
+    border-radius: 15px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 30px; 
+    box-shadow: var(--shadow); 
+}
+
+.flip-card-front { background: var(--light); border-bottom: 5px solid var(--primary); }
+.flip-card-back { background: var(--primary); color: white; transform: rotateY(180deg); text-align: center; }
+
+/* ==========================================================================
+   9. MISSION GOAL TRACKER
+   ========================================================================== */
+.goal-tracker {
+    width: 90%;
+    margin-top: 25px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.goal-bar {
+    background: #e0e0e0;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.goal-progress {
+    background: var(--secondary);
+    height: 100%;
+    transition: width 2s ease-in-out;
+}
+
+.goal-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 } /* Closing brace added here */
