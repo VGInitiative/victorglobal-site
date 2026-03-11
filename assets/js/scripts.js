@@ -52,7 +52,7 @@ async function loadComponents() {
 }
 
 /* ==========================================================================
-   INTERACTIVE FLIP ENGINE (Initiatives, Leadership, Impact)
+   INTERACTIVE FLIP ENGINE (Initiatives, Board, Impact)
    ========================================================================== */
 function handleFlip(card) {
     if (card.classList.contains('is-flipped')) {

@@ -5,7 +5,7 @@ User-agent: *
 Allow: /index.html
 Allow: /about.html
 Allow: /initiatives.html
-Allow: /leadership.html
+Allow: /board.html
 Allow: /news.html
 Allow: /donate.html
 

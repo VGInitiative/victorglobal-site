@@ -68,7 +68,7 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 }
 
 /* ==========================================================================
-   4. INTERACTIVE FLIP ENGINE (Impact, Initiatives, Leadership)
+   4. INTERACTIVE FLIP ENGINE (Impact, Initiatives, Board)
    ========================================================================== */
 .flip-card, .initiative-card { 
     height: 420px; 
@@ -173,7 +173,7 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 @media (max-width: 900px) {
     .hero-title { font-size: 2.2rem; }
 }
-/* --- Leadership & About --- */
+/* --- Board & About --- */
 .flex-row { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
 .founder-img { width: 45%; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); }
 .medal-list { list-style: none; margin-top: 20px; width: 100%; }
