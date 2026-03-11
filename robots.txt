@@ -1,19 +1,19 @@
-# Victor Global Initiative - robots.txt (Updated March 2026)
+# ==========================================
+# Victor Global Initiative - Robots Control
+# ==========================================
+
 User-agent: *
+Allow: /
 
-# Allow indexing of all public mission pages
-Allow: /index.html
-Allow: /about.html
-Allow: /initiatives.html
-Allow: /board.html
-Allow: /news.html
-Allow: /donate.html
-
-# Disallow indexing of internal logic and project assets
-Disallow: /assets/js/
+# Directives for specific sections
 Disallow: /assets/css/
-Disallow: /private/
-Disallow: /dev/
+Disallow: /assets/js/
+Disallow: /assets/vendor/
 
-# Link to the official mission flight plan
+# The Mission Flight Plan (Sitemap)
 Sitemap: https://victorglobal.org/sitemap.xml
+
+# Prevent indexing of specific system files
+Disallow: /staticconfig.json
+Disallow: /_headers
+Disallow: /README.md
