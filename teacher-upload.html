@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Recommendation Upload | Victor Global Initiative</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .upload-wrapper { max-width: 600px; margin: 80px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 5px solid var(--secondary); }
+        .upload-box { background: var(--light); padding: 30px; border-radius: 8px; margin-top: 20px; }
+        .form-control { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Montserrat', sans-serif; }
+        #upload-status { margin-top: 20px; padding: 15px; border-radius: 6px; display: none; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <section class="upload-wrapper" data-aos="zoom-in">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="color: var(--primary);">Educator Recommendation Portal</h2>
+                <p>Supporting the <strong>Lucianne Horace Memorial Scholarship</strong>.</p>
+            </div>
+            
+            <p>Please enter the 6-digit <strong>Secret Code</strong> provided by your student and their email address to securely upload your recommendation letter.</p>
+            
+            <div class="upload-box">
+                <label for="teacher-code"><strong>Student Secret Code</strong></label>
+                <input type="text" id="teacher-code" class="form-control" placeholder="VGI-XXXX">
+                
+                <label for="student-email"><strong>Student's Email Address</strong></label>
+                <input type="email" id="student-email" class="form-control" placeholder="candidate@email.com">
+                
+                <label for="rec-letter"><strong>Recommendation Letter (PDF preferred)</strong></label>
+                <input type="file" id="rec-letter" class="form-control" accept=".pdf,.doc,.docx">
+                
+                <button onclick="verifyAndUpload()" class="btn-secondary" style="width: 100%; padding: 15px;">Securely Upload Recommendation</button>
+            </div>
+            
+            <div id="upload-status"></div>
+            
+            <div style="margin-top: 30px; font-size: 0.85rem; color: #666; text-align: center;">
+                <p>Need assistance? Contact the Selection Committee at <a href="mailto:info@victorglobal.org">info@victorglobal.org</a></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/scripts.js"></script>
+    <script>
+        async function verifyAndUpload() {
+            const code = document.getElementById('teacher-code').value.trim();
+            const email = document.getElementById('student-email').value.trim();
+            const file = document.getElementById('rec-letter').files[0];
+            const statusDiv = document.getElementById('upload-status');
+
+            // Basic Validation
+            if (!code || !email || !file) {
+                showStatus("Error: All fields and the file upload are required for the Victor Standard.", "error");
+                return;
+            }
+
+            showStatus("Verifying code and establishing secure connection...", "success");
+            statusDiv.style.display = "block";
+
+            // Logic: This would typically call your Azure Function API
+            // For now, we simulate the 'Aviation-Grade' handshake
+            setTimeout(() => {
+                if (code.startsWith("VGI-")) {
+                    showStatus(`Success! Recommendation for ${email} has been securely received. Thank you for your leadership and support of this Victor candidate.`, "success");
+                    // Clear inputs after success
+                    document.getElementById('teacher-code').value = "";
+                    document.getElementById('student-email').value = "";
+                    document.getElementById('rec-letter').value = "";
+                } else {
+                    showStatus("Error: Secret Code not found. Please verify the code with your student.", "error");
+                }
+            }, 2000);
+        }
+
+        function showStatus(msg, type) {
+            const statusDiv = document.getElementById('upload-status');
+            statusDiv.innerHTML = msg;
+            statusDiv.className = type;
+            statusDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>

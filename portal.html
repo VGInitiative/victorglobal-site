@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Portal | Victor Global Initiative</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .portal-wrapper { max-width: 600px; margin: 80px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+        .dashboard-card { background: var(--light); padding: 25px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--secondary); }
+        .secret-code-display { font-size: 1.4rem; letter-spacing: 2px; color: var(--secondary); background: #fff; padding: 10px; border-radius: 4px; display: inline-block; margin: 10px 0; border: 1px dashed var(--secondary); }
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+        .status-pending { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <div class="portal-wrapper" data-aos="fade-up">
+            <div id="auth-section">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <img src="assets/images/logo.png" alt="VGI Logo" style="width: 80px;">
+                    <h2>Candidate Login</h2>
+                    <p>Enter your credentials to manage your "Victors Journey."</p>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="user" placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="pass" placeholder="••••••••">
+                </div>
+                <button onclick="portalLogin()" class="btn-primary" style="width: 100%;">Sign In to Portal</button>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                    Don't have an account? <a href="scholarship.html#apply" style="color: var(--secondary); font-weight: 700;">Start Application</a>
+                </p>
+            </div>
+
+            <div id="dashboard-section" style="display:none;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Candidate Dashboard</h3>
+                    <span class="status-badge status-pending" id="app-status">Under Review</span>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h4>Teacher Recommendation</h4>
+                    <p>Provide this 6-digit <strong>Secret Code</strong> and the link below to your teacher (e.g., SFC Royal or MAJ Bartiste).</p>
+                    <div class="secret-code-display" id="student-code">VGI-8842</div>
+                    <input type="text" readonly value="https://victorglobal.org/teacher-upload.html" 
+                           style="width: 100%; background: #eee; border: none; padding: 10px; font-size: 0.8rem; margin-top: 10px;">
+                </div>
+
+                <hr style="margin: 30px 0;">
+
+                <h4>Required Documents</h4>
+                <div class="form-group">
+                    <label>Personal Essay (PDF Only)</label>
+                    <input type="file" id="essay-upload" accept=".pdf">
+                    <button onclick="uploadDocument('essay')" class="btn-secondary" style="margin-top: 10px; font-size: 0.8rem;">Upload Essay</button>
+                </div>
+                
+                <div class="form-group">
+                    <label>School Transcript</label>
+                    <input type="file" id="transcript-upload" accept=".pdf">
+                    <button onclick="uploadDocument('transcript')" class="btn-secondary" style="margin-top: 10px; font-size: 0.8rem;">Upload Transcript</button>
+                </div>
+
+                <button onclick="location.reload()" class="btn-outline" style="width: 100%; margin-top: 20px;">Sign Out</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/scripts.js"></script>
+    <script>
+        // Portal Specific Logic
+        async function portalLogin() {
+            const user = document.getElementById('user').value;
+            const pass = document.getElementById('pass').value;
+
+            // In production, this calls your Azure Function API
+            if(user === "victor2026" && pass === "discipline") {
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('dashboard-section').style.display = 'block';
+                // Trigger AOS refresh to ensure dashboard elements animate
+                if(typeof AOS !== 'undefined') AOS.refresh();
+            } else {
+                alert("Invalid credentials. Please follow the Victor Standard of accuracy.");
+            }
+        }
+
+        function uploadDocument(type) {
+            const fileInput = document.getElementById(`${type}-upload`);
+            if(fileInput.files.length === 0) {
+                alert(`Please select your ${type} first.`);
+                return;
+            }
+            alert(`${type.toUpperCase()} received. The VGI Selection Committee will review your file.`);
+            // Backend logic: POST to /api/upload-document
+        }
+    </script>
+</body>
+</html>

@@ -132,4 +132,37 @@ document.addEventListener('click', (e) => {
     if (e.target.classList.contains('modal')) closeDonate();
 });
 
+/* ==========================================================================
+   SCHOLARSHIP INTAKE ENGINE
+   ========================================================================== */
+
+// 1. Teacher Upload Verification Logic
+async function verifyTeacherCode() {
+    const code = document.getElementById('teacher-code').value;
+    const statusDiv = document.getElementById('upload-status');
+    
+    if (code.length !== 6 && !code.startsWith('VGI-')) {
+        statusDiv.innerHTML = "<p style='color:red;'>Invalid Code Format. Must be VGI-XXXX.</p>";
+        return;
+    }
+
+    statusDiv.innerHTML = "<p style='color:var(--secondary);'>Verifying Code with VGI Database...</p>";
+    
+    // Simulate Azure Function Call
+    setTimeout(() => {
+        statusDiv.innerHTML = "<p style='color:green;'>Code Verified. You are uploading for Candidate: [Student Name].</p>";
+        // Proceed to show file upload button
+    }, 1500);
+}
+
+// 2. Automated Secret Code Generator (For New Registrations)
+function generateSecretCode() {
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let code = 'VGI-';
+    for (let i = 0; i < 4; i++) {
+        code += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return code;
+}
+
 window.onload = loadComponents;
