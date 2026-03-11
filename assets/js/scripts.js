@@ -73,13 +73,19 @@ function handleFlip(card) {
 function initCounters() {
     const counters = document.querySelectorAll('.counter:not(.counted)');
     
-    // We use an IntersectionObserver so numbers only climb when scrolled into view
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
                 const target = parseInt(counter.getAttribute('data-target'));
                 if (isNaN(target)) return;
+
+                // Find the associated Goal and Progress Bar in this specific card
+                const card = counter.closest('.flip-card-front');
+                const goalTracker = card.querySelector('.goal-tracker');
+                const goalValue = parseInt(goalTracker.getAttribute('data-goal'));
+                const progressBar = card.querySelector('.goal-progress');
+                const accomplishedSpan = card.querySelector('.accomplished-text');
 
                 counter.classList.add('counted');
                 let current = 0;
@@ -90,14 +96,32 @@ function initCounters() {
                 const timer = setInterval(() => {
                     current += increment;
                     if (current >= target) {
-                        counter.innerText = target;
+                        const finalVal = target;
+                        counter.innerText = finalVal;
+                        
+                        // Update the "Accomplished" span and bar width at the end
+                        if (accomplishedSpan) accomplishedSpan.innerText = finalVal;
+                        if (progressBar && goalValue) {
+                            const percent = (finalVal / goalValue) * 100;
+                            progressBar.style.width = percent + "%";
+                        }
+                        
                         clearInterval(timer);
                     } else {
-                        counter.innerText = Math.ceil(current);
+                        const currentCeil = Math.ceil(current);
+                        counter.innerText = currentCeil;
+                        
+                        // Sync the small text while it counts
+                        if (accomplishedSpan) accomplishedSpan.innerText = currentCeil;
+                        
+                        // Sync the bar width while it counts
+                        if (progressBar && goalValue) {
+                            const percent = (currentCeil / goalValue) * 100;
+                            progressBar.style.width = percent + "%";
+                        }
                     }
                 }, duration / steps);
                 
-                // Stop observing once counted
                 observer.unobserve(counter);
             }
         });
