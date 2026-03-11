@@ -1,6 +1,18 @@
+staticwebapp
 {
   "globalHeaders": {
-    "Content-Security-Policy": "default-src 'self'; script-src 'self' unpkg.com https://www.googletagmanager.com https://tagassistant.google.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com unpkg.com; img-src 'self' data: widgets.guidestar.org https://www.google-analytics.com https://www.google.com https://google.com; frame-src 'self' donate.stripe.com forms.office.com https://tagassistant.google.com; font-src 'self' fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://google.com https://tagassistant.google.com;",
-    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload"
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com unpkg.com; img-src 'self' data: widgets.guidestar.org https://www.google-analytics.com https://www.google.com https://google.com; frame-src 'self' donate.stripe.com forms.office.com; font-src 'self' fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://google.com;",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Content-Type-Options": "nosniff",
+    "X-XSS-Protection": "1; mode=block",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "geolocation=(), camera=(), microphone=(), interest-cohort=()"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "mimeTypes": {
+    ".pdf": "application/pdf"
   }
 }
