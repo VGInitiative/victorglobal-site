@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Victor Global Initiative empowers at-risk youth and foster children through military-grade discipline, professional mentorship, and emotional resilience training.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victor Global Initiative | Official Site</title>
+    <title>Invest in Potential | Victor Global Initiative</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -13,36 +12,69 @@
 
     <div id="header-placeholder"></div>
 
-    <main class="donation-page-wrapper">
-        <div data-aos="fade-up">
-            <h1 style="color:var(--primary); font-size: 2.8rem; margin-bottom: 15px;">A Victor, Not a Victim</h1>
-            <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto;">
-                Your investment directly supports at-risk youth and foster children.
+    <main>
+        <section class="legal-page-header" style="padding: 60px 20px;" data-aos="fade-down">
+            <span class="subtitle">Fuel the Mission</span>
+            <h1 style="margin: 10px 0;">Invest in Potential</h1>
+            <p style="max-width: 800px; margin: 15px auto 0; line-height: 1.6; font-size: 1.1rem;">
+                Your partnership provides the tools necessary for at-risk youth to navigate life's challenges 
+                and emerge as leaders. We do not create dependency; we create capability.
             </p>
-        </div>
+        </section>
 
-        <div class="donation-card" data-aos="zoom-in" data-aos-delay="200">
-            <h2 style="margin-bottom: 20px; color: var(--dark);">Make Your Impact</h2>
-            <p style="margin-bottom: 35px; color: #666;">Support our mission securely via Stripe checkout below.</p>
-            
-            <button onclick="openDonate()" class="donate-btn-large">
-                Donate Now
-            </button>
-
-            <div style="margin-top: 30px; font-size: 0.85rem; color: #777;">
-                <p>Victor Global Initiative is a 501(c)(3) nonprofit.</p>
-                <div class="ein-badge">EIN: 41-3649085</div>
-                <p style="margin-top: 15px;">
-                    <a href="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" target="_blank" style="color: var(--primary); text-decoration: underline;">
-                        Trouble with the popup? Click here to donate directly.
-                    </a>
+        <section class="section-padding" style="padding-top: 40px; text-align: center;">
+            <div class="container" style="max-width: 900px; margin: 0 auto;" data-aos="fade-up">
+                <p style="font-size: 1.3rem; color: var(--primary); font-weight: 600; font-style: italic;">
+                    "Charity should never feel like shame."
+                </p>
+                <p style="color: #666; margin-top: 15px; line-height: 1.8;">
+                    At VGI, we believe that every resource provided is a tool designed to help a young person 
+                    write their own victory story. Your investment supports our Tampa-based operations 
+                    including shelter outreach, JROTC mentorship, and our 5-year goal of global expansion 
+                    to the Caribbean and Africa.
                 </p>
             </div>
-        </div>
+        </section>
+
+        <section class="section-padding" style="background: var(--light); padding: 60px 20px;">
+            <div class="container" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <div class="content-card" data-aos="zoom-in" style="background: var(--white); padding: 50px; border-radius: 15px; box-shadow: var(--shadow); border-top: 6px solid var(--secondary);">
+                    <h2 style="color: var(--primary); margin-bottom: 10px;">Make Your Impact</h2>
+                    <p style="color: #777; margin-bottom: 30px;">Support the Victor Mentorship Model securely via Stripe.</p>
+                    
+                    <button onclick="openDonate()" class="contact-button" style="width: 100%; font-size: 1.2rem;">
+                        Donate Now
+                    </button>
+
+                    <div style="margin-top: 30px; font-size: 0.85rem; color: #888;">
+                        <p style="font-weight: 700; color: var(--dark);">Victor Global Initiative is a 501(c)(3) nonprofit.</p>
+                        <div style="background: #eee; display: inline-block; padding: 5px 15px; border-radius: 5px; margin: 10px 0; font-weight: 700;">
+                            EIN: 41-3649085
+                        </div>
+                        <p style="margin-top: 15px;">
+                            <a href="https://donate.stripe.com/14A00l3BiePw7zjeMgcZa00" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">
+                                Problems with the popup? Click here to donate directly.
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding" style="text-align: center;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;" data-aos="fade-up">
+                <span class="subtitle">The Victor Standard</span>
+                <h3 style="margin-bottom: 20px;">Fiscal Stewardship</h3>
+                <p style="color: #666; font-size: 0.95rem;">
+                    We are governed by a dedicated Board of Directors committed to fiscal transparency. 
+                    Every dollar is allocated to building bridges over obstacles for youth in transition.
+                </p>
+            </div>
+        </section>
     </main>
 
     <div id="donateModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 15px;">
             <span class="close-modal" onclick="closeDonate()">&times;</span>
             <iframe 
                 id="stripe-iframe"
@@ -55,7 +87,7 @@
         </div>
     </div>
 
-<div id="footer-placeholder"></div>
-<script src="assets/js/scripts.js"></script>
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

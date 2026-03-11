@@ -415,3 +415,158 @@ footer { background: #1a1a1a; color: #ffffff; padding: 35px 20px 20px; font-size
         font-size: 2.2rem;
     }
 }
+
+/* Specific sizing for the Core Values line */
+.value-card {
+    height: 220px !important; /* Smaller cards for the 6-wide row */
+}
+
+.value-card .flip-card-front h1 {
+    margin: 0;
+    line-height: 1;
+}
+
+/* Ensure cards flip back on second click/tap */
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Mobile adjustments for the 6-card row */
+@media (max-width: 1000px) {
+    .grid[style*="repeat(6, 1fr)"] {
+        grid-template-columns: repeat(3, 1fr) !important; /* 3x2 on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .grid[style*="repeat(6, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2x3 on mobile */
+    }
+    .value-card {
+        height: 180px !important;
+    }
+}
+
+/* ==========================================================================
+   MOBILE-SPECIFIC REFINEMENTS
+   ========================================================================== */
+
+/* 1. Hero Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        height: 45vh !important; /* Slightly smaller for mobile height */
+        min-height: 350px !important;
+        padding: 40px 20px;
+    }
+
+    .hero-title {
+        font-size: 2rem !important; /* Prevents title overflow */
+        margin-bottom: 10px;
+    }
+
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .hero-btn {
+        margin-left: 0 !important; /* Removes the 15px side margin from desktop */
+        width: 100%;
+        padding: 12px 20px;
+    }
+}
+
+/* 2. VICTOR Core Values Grid (Mobile Stack) */
+/* This targets the specific 6-column grid on the index page */
+@media (max-width: 1024px) {
+    .grid[style*="repeat(6, 1fr)"] {
+        grid-template-columns: repeat(3, 1fr) !important; /* 3x2 on Tablets */
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid[style*="repeat(6, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2x3 on Mobile */
+        gap: 10px;
+    }
+
+    .value-card {
+        height: 180px !important; /* Smaller cards for mobile thumbs */
+    }
+
+    .value-card .flip-card-front h1 {
+        font-size: 2.2rem !important;
+    }
+}
+
+/* 3. Three Pillars & General Grid */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr !important; /* Vertical stack for pillars */
+        gap: 20px;
+    }
+
+    .flip-card {
+        height: 320px !important; /* Tighter cards for easier scrolling */
+    }
+
+    .section-padding {
+        padding: 40px 15px !important; /* Reduced padding for mobile vertical space */
+    }
+}
+
+/* 4. Join the Movement (CTA) Mobile Spacing */
+@media (max-width: 600px) {
+    section[style*="background: var(--primary)"] {
+        padding: 35px 15px !important;
+    }
+
+    section[style*="background: var(--primary)"] h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Prevent the 'Our Story' link from breaking into two lines */
+.no-stack {
+    white-space: nowrap !important;
+}
+
+/* Enhancing the bold initials in the organization title */
+.org-title strong {
+    font-weight: 800;
+    color: inherit; /* Keeps it matching your existing text color */
+}
+/* ==========================================================================
+   MOBILE FOOTER OPTIMIZATION (THE VICTOR STANDARD)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column !important; /* Stacks brand, contact, and legal vertically */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-links div {
+        align-items: center; /* Centers the legal links for thumb-tapping */
+        gap: 8px !important; /* Adds slight breathing room back for mobile accessibility */
+        font-size: 13px !important; /* Bumps 11px to 13px for mobile legibility */
+    }
+
+    .footer-contact {
+        font-size: 13px !important; /* Increases contact info for better field use */
+    }
+
+    .candid-seal {
+        margin: 0 auto;
+    }
+
+    .legal-disclaimer {
+        font-size: 11px !important; /* Keeps disclaimer small but readable */
+        padding: 0 10px;
+    }
+}

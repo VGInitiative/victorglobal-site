@@ -1,6 +1,7 @@
-# ==========================================
-# Victor Global Initiative - Robots Control
-# ==========================================
+# ==========================================================================
+# VICTOR GLOBAL INITIATIVE - ROBOTS CONTROL
+# "Focusing the lens on youth potential, not the past."
+# ==========================================================================
 
 User-agent: *
 Allow: /
@@ -12,6 +13,9 @@ Disallow: /assets/vendor/
 Disallow: /staticconfig.json
 Disallow: /_headers
 Disallow: /README.md
+
+# Protected Governance Documents (Optional: if you want to keep them off SERPs)
+# Disallow: /conflict-of-interest.html
 
 # The Mission Flight Plan (Beacon)
 Sitemap: https://victorglobal.org/sitemap.xml
