@@ -2,6 +2,21 @@
  * Victor Global Initiative - Master Script Engine
  * Handles Modular Components, Dynamic Counters, Flip Cards, and Donation Modal
  */
+
+// Google Analytics 4 Deployment - Victor Global Initiative
+(function() {
+    var gaId = 'G-DER09HHGKX'; // Replace with your actual Measurement ID
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', gaId);
+})();
+
 const VGI_CONFIG = {
     name: "Victor Global Initiative",
     ein: "41-3649085",
