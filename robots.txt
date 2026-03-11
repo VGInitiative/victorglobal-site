@@ -5,15 +5,13 @@
 User-agent: *
 Allow: /
 
-# Directives for specific sections
+# Disallow system and raw asset folders to optimize crawl budget
 Disallow: /assets/css/
 Disallow: /assets/js/
 Disallow: /assets/vendor/
-
-# The Mission Flight Plan (Sitemap)
-Sitemap: https://victorglobal.org/sitemap.xml
-
-# Prevent indexing of specific system files
 Disallow: /staticconfig.json
 Disallow: /_headers
 Disallow: /README.md
+
+# The Mission Flight Plan (Beacon)
+Sitemap: https://victorglobal.org/sitemap.xml
