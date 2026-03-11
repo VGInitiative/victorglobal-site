@@ -23,6 +23,13 @@ async function loadComponents() {
             AOS.init({ duration: 1000, once: true });
         }
 
+        // 3. Inject Favicon Globally
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/png';
+        favicon.href = 'assets/images/favicon.png';
+        document.head.appendChild(favicon);
+
         // 3. Highlight Active Navigation Link Automatically
         const currentPage = window.location.pathname.split("/").pop() || "index.html";
         const navLinks = document.querySelectorAll('nav a');
