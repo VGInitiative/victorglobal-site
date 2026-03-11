@@ -224,6 +224,54 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 .legal-content ul { margin-bottom: 20px; padding-left: 25px; }
 .last-updated { font-size: 0.9rem; color: #888; font-style: italic; }
 
+/* Global Image Reset - The "Safety Net" */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Founder / President Image (The large bio image) */
+.founder-img { 
+    width: 100%; 
+    max-width: 450px; /* Prevents it from becoming a giant on large screens */
+    border-radius: 15px; 
+    box-shadow: 20px 20px 0 var(--secondary); 
+    margin: 0 auto;
+}
+
+/* Board Member Portraits (Flip Cards) */
+.leader-img { 
+    width: 160px; 
+    height: 160px; 
+    border-radius: 50%; /* Keeps them perfectly circular */
+    border: 4px solid var(--secondary); 
+    object-fit: cover; /* Prevents squishing/stretching */
+    margin: 0 auto 20px; 
+    box-shadow: var(--shadow);
+}
+
+/* Special Case: The President Card image on Board.html */
+/* This makes the President's headshot slightly larger than the others but still controlled */
+.flip-card-front .leader-img {
+    max-width: 180px;
+    max-height: 180px;
+}
+
+/* Junior Board / Advisor Portraits (The smaller circles) */
+.profile-img { 
+    width: 140px; 
+    height: 140px; 
+    border-radius: 50%; 
+    border: 3px solid var(--secondary); 
+    object-fit: cover; 
+    margin: 0 auto 20px; 
+}
+
+/* Medal List Fixes */
+.medal-list { list-style: none; margin-top: 20px; width: 100%; }
+.medal-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: 500; }
+
 /* ==========================================================================
    7. FOOTER STYLING
    ========================================================================== */
