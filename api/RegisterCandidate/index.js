@@ -1,6 +1,13 @@
 const { CosmosClient } = require("@azure/cosmos");
 
 module.exports = async function (context, req) {
+    // This allows the Function to talk to your Ledger
+    const endpoint = process.env.AZURE_COSMOS_DB_ENDPOINT;
+    const key = process.env.AZURE_COSMOS_DB_KEY;
+    const client = new CosmosClient({ endpoint, key });
+    
+    // ... rest of your registration logic
+
     context.log('VGI Engine: Processing live candidate registration to Cosmos DB.');
 
     const { fullName, email, password } = req.body || {};
