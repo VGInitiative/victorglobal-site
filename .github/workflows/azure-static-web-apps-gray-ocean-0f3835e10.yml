@@ -29,9 +29,11 @@ jobs:
           app_location: "/" 
           api_location: "api" 
           output_location: "" 
-        env: # <--- ADD THESE TWO LINES
-          NODE_VERSION: '20.x'
-          AZURE_FUNCTIONS_ENVIRONMENT: 'Production'
+          # FORCE THE ENGINE HERE
+          app_build_command: "npm install"
+          api_build_command: "npm install"
+        env:
+          NODE_VERSION: '20.11.0' # Stricter versioning
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
