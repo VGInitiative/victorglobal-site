@@ -30,12 +30,12 @@ jobs:
 
           ###### PATH CONFIG ######
           app_location: "/"
-          api_location: ""
+          api_location: "api"
           output_location: ""
 
           ###### BUILD CONTROL ######
           skip_app_build: true
-          skip_api_build: true
+          skip_api_build: false
 
           ###### DEPLOYMENT ######
           production_branch: "main"
@@ -51,3 +51,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           action: "close"
+
