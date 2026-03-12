@@ -189,5 +189,62 @@ function generateSecretCode() {
     return code;
 }
 
+/* ==========================================================================
+   VAULT UPLOAD ENGINE (Direct-to-Azure Blob Storage)
+   ========================================================================== */
+
+/**
+ * Handles the secure transmission of files to Azure Blob Storage
+ * @param {string} fileInputId - The ID of the HTML input element
+ * @param {string} feedbackId - The ID of the element to show status updates
+ */
+async function uploadFile(fileInputId, feedbackId) {
+    const fileInput = document.getElementById(fileInputId);
+    const feedback = document.getElementById(feedbackId);
+    
+    if (!fileInput || !fileInput.files[0]) {
+        feedback.innerText = "The Victor Standard requires a file selection first.";
+        feedback.style.color = "red";
+        return;
+    }
+
+    const file = fileInput.files[0];
+    feedback.innerText = "Requesting secure clearance from the Vault...";
+    feedback.style.color = "var(--white)"; // Matches your site typography
+
+    try {
+        // 1. Fetch the time-limited SAS Token from our Azure Function
+        const response = await fetch(`/api/GetUploadToken?file=${encodeURIComponent(file.name)}`);
+        
+        if (!response.ok) throw new Error("Could not obtain secure token.");
+        
+        const { uploadUrl } = await response.json();
+
+        feedback.innerText = "Clearance granted. Transmitting to VGI Vault...";
+
+        // 2. Perform the Direct-to-Blob Upload
+        const uploadResponse = await fetch(uploadUrl, {
+            method: 'PUT',
+            headers: {
+                'x-ms-blob-type': 'BlockBlob',
+                'Content-Type': file.type
+            },
+            body: file
+        });
+
+        if (uploadResponse.ok) {
+            feedback.innerText = "Success: Document secured in the Vault.";
+            feedback.style.color = "var(--secondary)"; // Using your mint seafoam success color
+        } else {
+            throw new Error("Vault rejected transmission.");
+        }
+
+    } catch (err) {
+        console.error("VGI Vault Error:", err);
+        feedback.innerText = "Error: Connection to the Vault failed. Please re-authenticate.";
+        feedback.style.color = "red";
+    }
+}
+
 // Ignition
 window.onload = loadComponents;

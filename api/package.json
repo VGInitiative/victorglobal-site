@@ -6,6 +6,7 @@
     "start": "func start"
   },
   "dependencies": {
-    "@azure/cosmos": "^4.0.0"
+    "@azure/cosmos": "^4.0.0",
+    "@azure/storage-blob": "^12.12.0"
   }
 }
