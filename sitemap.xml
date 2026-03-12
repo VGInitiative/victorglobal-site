@@ -5,7 +5,6 @@
     <lastmod>2026-03-12</lastmod>
     <priority>1.00</priority>
   </url>
-
   <url>
     <loc>https://victorglobal.org/our-story.html</loc>
     <lastmod>2026-03-12</lastmod>
@@ -21,17 +20,10 @@
     <lastmod>2026-03-12</lastmod>
     <priority>0.85</priority>
   </url>
-  
   <url>
     <loc>https://victorglobal.org/scholarship.html</loc>
     <lastmod>2026-03-12</lastmod>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://victorglobal.org/about.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <priority>0.75</priority>
+    <priority>0.70</priority>
   </url>
   <url>
     <loc>https://victorglobal.org/board.html</loc>
@@ -43,36 +35,14 @@
     <lastmod>2026-03-12</lastmod>
     <priority>0.75</priority>
   </url>
-
   <url>
     <loc>https://victorglobal.org/contact.html</loc>
     <lastmod>2026-03-12</lastmod>
-    <priority>0.65</priority>
+    <priority>0.70</priority>
   </url>
   <url>
     <loc>https://victorglobal.org/donate.html</loc>
     <lastmod>2026-03-12</lastmod>
-    <priority>0.65</priority>
-  </url>
-
-  <url>
-    <loc>https://victorglobal.org/conflict-of-interest.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <priority>0.50</priority>
-  </url>
-  <url>
-    <loc>https://victorglobal.org/donor-policy.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://victorglobal.org/privacy.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <priority>0.30</priority>
-  </url>
-  <url>
-    <loc>https://victorglobal.org/terms.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <priority>0.30</priority>
+    <priority>0.70</priority>
   </url>
 </urlset>

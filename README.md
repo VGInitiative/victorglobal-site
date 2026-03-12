@@ -1,64 +1,107 @@
+
+---
+
 # Victor Global Initiative (VGI) - Digital Headquarters
 
 **"Building Victors, Not Victims. From Surviving to Thriving."**
 
-Welcome to the official repository for the Victor Global Initiative web platform. This digital headquarters is engineered to provide absolute transparency to our donors, a seamless application process for our JROTC scholars, and a clear articulation of our mission to empower at-risk youth.
+Welcome to the official repository for the Victor Global Initiative web platform. This digital headquarters is engineered to provide absolute transparency to our donors and a clear articulation of our 2026 mission to build operational infrastructure for at-risk youth mentorship.
 
 ---
 
 ## 🦅 Mission Overview
-Victor Global Initiative was founded by **Pierre-Richard Victor** to honor the legacy of Lucianne Horace. Her "X" signature was not a symbol of limitation, but a multiplier of opportunity. VGI exists to provide foster children and youth in transition with:
-1. **A Sanctuary:** Stability for those in transition.
+
+Victor Global Initiative was founded by **Pierre-Richard Victor** to honor the legacy of Lucianne Horace. Her "X" signature was not a symbol of limitation, but a multiplier of opportunity. Our 2026 focus is on establishing a resilient foundation in Florida to provide youth in transition with:
+
+1. **A Sanctuary:** Stability for those in transition through local shelter outreach.
 2. **A Mentor:** Guidance rooted in lived experience and military-grade discipline.
-3. **A Path to Victory:** Resources to build a global future.
+3. **A Path to Victory:** Resources to build a national and Caribbean future.
 
 ---
 
-## 📂 Digital Architecture (The Flight Plan)
+## 📂 Digital Architecture (The 2026 Flight Plan)
 
-This repository is built using clean, high-performance HTML5, CSS3, and Vanilla JavaScript. It requires no heavy backend frameworks to execute its front-end mission.
+This repository uses a lean, high-performance stack: **HTML5, CSS3, Vanilla JavaScript, and Node.js 20**. It is deployed via **Azure Static Web Apps**.
 
-### Core Routing
-* `/index.html` - Mission Control (Home Page)
+### Core Operational Routes
+
+* `/index.html` - Mission Control (Home Page & 2026 Infrastructure Milestone)
 * `/our-story.html` - The Founder's Journey & The Legacy of the "X"
-* `/initiatives.html` - Phase 1 Programs & Operational Impact
-* `/impact.html` - 5-Year Scaling Roadmap & Transparency Metrics
+* `/initiatives.html` - Phase 1 Programs (Shelter Outreach & JROTC Alliances)
+* `/impact.html` - 5-Year Roadmap (Focus: National & Caribbean Expansion)
 * `/board.html` - Governance, Advisors, and Strategic Leadership
+* `/news.html` - **Operational Log** (Live updates on mission progress)
 
-### Scholarship Infrastructure
-* `/scholarship.html` - The "X" Promise Scholarship details and 100-point Evaluation Rubric
-* `/portal.html` - Secure Candidate Dashboard for document and video impact statement uploads
-* `/teacher-upload.html` - Dedicated portal for JROTC Instructors and Educators
+### Future Legacy Infrastructure (WIP)
 
-### Assets & Styling
-* `/assets/css/style.css` - The "Victor Standard" master stylesheet. Contains global variables, mobile-responsive grid stacking, and a CSS-only 3D Flip Engine.
-* `/assets/js/scripts.js` - Lightweight client-side interactions and portal authentication routing.
-* `/assets/images/` - Brand assets, board headshots, and mission photography.
+* `/scholarship.html` - Upcoming Legacy Programs (Planned for 2027)
+* `/portal.html` - Candidate Portal (Work in Progress - Authentication Upcoming)
+* `/teacher-upload.html` - Educator Portal (Work in Progress)
 
----
+### Assets & Security
 
-## 🛠️ The "Victor Standard" UI/UX Specifications
-
-To maintain the highest level of professionalism, all future commits must adhere to these established design parameters:
-
-* **Brand Typography:** Montserrat (Weights: 400 Regular, 600 Semi-Bold, 700 Bold, 900 Black).
-* **Color Palette:** * Deep Teal (`var(--primary)`: `#0a7d8c`)
-  * Mint Seafoam (`var(--secondary)`: `#32c6a6`)
-  * Navy Blue (`var(--navy)`: `#002147`) - Reserved strictly for the VGI Stacked Branding and Logo ring.
-* **Component Mechanics:** The 3D Flip Engine used on the Board, Impact, and Initiatives pages is driven purely by CSS `:hover` states to ensure maximum compatibility across all mobile and desktop devices without Javascript dependency.
-* **Responsive Integrity:** Grids automatically collapse from 3-column (desktop) to 2-column (tablet) to 1-column (mobile) using CSS Grid flex-wrapping.
+* `/assets/css/style.css` - Master stylesheet with the **Victor Standard** UI variables.
+* `/assets/js/scripts.js` - Global tracking (GA4), component injection, and interactive logic.
+* `/staticwebapp.config.json` - Azure routing logic, security headers (CSP), and MIME type enforcement.
+* `/robots.txt` & `/sitemap.xml` - Search engine optimization and WIP portal protection.
 
 ---
 
-## 🚀 Deployment Protocol
+## 🛠️ The "Victor Standard" Specifications
 
-This platform is configured for immediate static deployment via GitHub Pages, Azure Static Web Apps, or AWS Amplify. 
+To maintain institutional integrity, all commits must adhere to these design parameters:
 
-1. Clone the repository to your local command center.
-2. Ensure `sitemap.xml` and `robots.txt` remain in the root directory for SEO indexing.
-3. Push to the `main` branch to trigger automatic deployment.
+* **Brand Typography:** Montserrat (Weights: 400, 600, 700, 900).
+* **Color Palette:** * Deep Teal (`#0a7d8c`) - Primary
+* Mint Seafoam (`#32c6a6`) - Secondary
+* Navy Blue (`#002147`) - Branding & Headers
+
+
+* **Path Alignment:** All internal links **must** use absolute paths (starting with `/`) to ensure compatibility with Azure's serverless routing.
+* **Component Mechanics:** 3D Flip Engines are CSS-driven (`:hover`) to ensure maximum mobile performance without unnecessary JS overhead.
+
+---
+
+## 🚀 Deployment & Engine Status
+
+The platform is synchronized with **Azure Static Web Apps** using a GitHub Actions CI/CD pipeline.
+
+* **API Runtime:** Node.js 20
+* **Functions Runtime:** Version ~4
+* **Deployment Branch:** `main`
+
+### Tactical Deployment Commands
+
+To update the Digital HQ, execute the following from the command center:
 
 ```bash
+# 1. Stage the mission updates
 git add .
-git commit -m "Routine maintenance and strategic updates"
+
+# 2. Log the milestone
+git commit -m "Strategic realignment: Infrastructure Focus & WIP Status"
+
+# 3. Deploy to Azure Production
 git push origin main
+
+```
+
+---
+
+## ⚖️ Governance & Compliance
+
+Victor Global Initiative is a registered **501(c)(3)** nonprofit organization.
+
+**EIN:** 41-3649085
+
+**Florida Registration:** #CH81888
+
+*This headquarters is governed by a Board of Directors committed to fiscal transparency and the "Eyes Forward" philosophy.*
+
+---
+
+**Mission Status:** Operational.
+
+**Current Phase:** Phase 1 (Operational Base / Tampa, FL).
+
+**Upcoming:** 2027 Inaugural Legacy Cycle.

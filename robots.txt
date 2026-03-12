@@ -1,21 +1,31 @@
 # ==========================================================================
-# VICTOR GLOBAL INITIATIVE - ROBOTS CONTROL
-# "Focusing the lens on youth potential, not the past."
+# VICTOR GLOBAL INITIATIVE - MISSION CONTROL (ROBOTS.TXT)
+# "Building Victors, Not Victims. Focusing on potential."
 # ==========================================================================
 
 User-agent: *
+
+# ALLOW: High-priority access to our core mission storytelling
 Allow: /
+Allow: /index.html
+Allow: /our-story.html
+Allow: /initiatives.html
+Allow: /impact.html
+Allow: /board.html
+Allow: /news.html
+Allow: /donate.html
 
-# Disallow system files to optimize crawl budget
-# Note: CSS and JS directories are intentionally allowed so Google can verify our mobile layout
-Disallow: /assets/vendor/
-Disallow: /staticconfig.json
-Disallow: /_headers
-Disallow: /README.md
-
-# Prevent indexing of the backend portals to keep public search results clean
+# DISALLOW: Protect the integrity of WIP portals until the 2027 launch
 Disallow: /portal.html
 Disallow: /teacher-upload.html
+Disallow: /scholarship.html
 
-# The Mission Flight Plan (Beacon)
+# DISALLOW: Secure the engine and internal documentation
+Disallow: /api/
+Disallow: /README.md
+Disallow: /staticwebapp.config.json
+Disallow: /LICENSE
+Disallow: /_headers
+
+# SITEMAP: The tactical flight plan for search engine crawlers
 Sitemap: https://victorglobal.org/sitemap.xml
