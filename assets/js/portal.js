@@ -57,32 +57,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Register Action
-    const submitReg = document.getElementById('submit-register');
-    if (submitReg) {
-        submitReg.addEventListener('click', async () => {
-            const fullName = document.getElementById('reg-name').value;
-            const email = document.getElementById('reg-email').value;
-            const password = document.getElementById('reg-pass').value;
+    // Updated Register Action for assets/js/portal.js
+const submitReg = document.getElementById('submit-register');
+if (submitReg) {
+    submitReg.addEventListener('click', async () => {
+        const fullName = document.getElementById('reg-name').value;
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-pass').value;
 
-            if (!fullName || !email || !password) return alert("All fields are mandatory.");
+        if (!fullName || !email || !password) return alert("All fields are mandatory.");
 
-            try {
-                const response = await fetch('/api/RegisterCandidate/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ fullName, email, password })
-                });
-                if (response.ok) {
-                    alert("Account Created. Please Sign In.");
-                    switchView('login-view');
-                } else {
-                    const d = await response.json();
-                    alert(d.message);
-                }
-            } catch (err) {
-                alert("Registration currently offline.");
+        try {
+            const response = await fetch('/api/RegisterCandidate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ fullName, email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Mission Success: " + data.message);
+                switchView('login-view');
+            } else {
+                // This tells us if the DB is failing or the API is failing
+                alert("Engine Alert: " + (data.message || "Unknown Error"));
             }
-        });
-    }
-});
+        } catch (err) {
+            // This triggers if the API can't be reached at all
+            console.error("Critical Connection Error:", err);
+            alert("Connection Lost: The VGI Engine is not responding at /api/RegisterCandidate. Check the Azure 'Functions' tab status.");
+        }
+    });
+}
