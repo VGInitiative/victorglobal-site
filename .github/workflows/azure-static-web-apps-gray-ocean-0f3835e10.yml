@@ -25,13 +25,15 @@ jobs:
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_OCEAN_0F3835E10 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/" 
-          api_location: "api" 
-          output_location: "." # <-- CHANGE THIS FROM "" TO "."
-          skip_app_build: true # <-- ADD THIS LINE to tell Azure "Don't try to detect a language"
+          ###### Repository/Build Configurations - These are case-sensitive ######
+          app_location: "/" # App source code path
+          api_location: "api" # Api source code path
+          output_location: "" # Leave this empty since we are skipping the build
+          skip_app_build: true
+          skip_api_build: false
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -44,4 +46,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           action: "close"
+
 
