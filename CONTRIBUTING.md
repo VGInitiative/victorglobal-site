@@ -31,7 +31,23 @@ You do not need special software to update the site. You can make updates direct
 
 ## 📄 News Article Template
 
-
+<article class="news-card" data-aos="fade-up">
+    <div class="news-image-fallback" style="background: var(--secondary); height: 10px;"></div>
+    <div class="news-content" style="padding: 25px;">
+        <span class="news-date" style="font-size: 0.8rem; color: var(--secondary); font-weight: 700;">
+            MONTH DATE, 2026
+        </span>
+        <h4 style="margin: 10px 0; color: var(--primary);">
+            TITLE OF THE MISSION UPDATE
+        </h4>
+        <p style="font-size: 0.9rem; color: #555;">
+            Enter 2-3 sentences here detailing the specific impact, shelter visit, or infrastructure milestone.
+        </p>
+        <a href="/initiatives.html" class="read-more" style="font-size: 0.85rem; font-weight: 700;">
+            See Impact Details →
+        </a>
+    </div>
+</article>
 ---
 
 ## ⚖ The Victor Standard (Operational Rules)
