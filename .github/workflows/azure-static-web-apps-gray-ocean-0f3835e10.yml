@@ -30,7 +30,8 @@ jobs:
           action: "upload"
           app_location: "/" 
           api_location: "api" 
-          output_location: ""
+          output_location: "." # <-- CHANGE THIS FROM "" TO "."
+          skip_app_build: true # <-- ADD THIS LINE to tell Azure "Don't try to detect a language"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -43,3 +44,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           action: "close"
+
