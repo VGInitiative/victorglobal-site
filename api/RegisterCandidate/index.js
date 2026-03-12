@@ -1,50 +1,68 @@
-// VGI Build Version 1.0.2 - Forced Refresh
+// VGI Build Version 1.0.3 - Logic Alignment
 const { CosmosClient } = require("@azure/cosmos");
 
 module.exports = async function (context, req) {
-    // This allows the Function to talk to your Ledger
-    const endpoint = process.env.AZURE_COSMOS_DB_ENDPOINT;
-    const key = process.env.AZURE_COSMOS_DB_KEY;
-    const client = new CosmosClient({ endpoint, key });
+    context.log('VGI Engine: Processing live candidate registration.');
+
+    // --- 1. HANDLE CORS PRE-FLIGHT (The 405 Fix) ---
+    // If the browser is just "checking" the door, tell it the door is open for POST.
+    if (req.method === "OPTIONS") {
+        context.res = {
+            status: 204,
+            headers: {
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type"
+            }
+        };
+        return;
+    }
+
+    // --- 2. CONNECT TO THE LEDGER ---
+    // Using the primary connection string is the most reliable "Victor Standard" method.
+    const connectionString = process.env.COSMOS_DB_CONNECTION_STRING;
     
-    // ... rest of your registration logic
+    if (!connectionString) {
+        context.log.error("Missing COSMOS_DB_CONNECTION_STRING in Environment Variables.");
+        context.res = { status: 500, body: { message: "Ledger configuration error." } };
+        return;
+    }
 
-    context.log('VGI Engine: Processing live candidate registration to Cosmos DB.');
+    const client = new CosmosClient(connectionString);
+    const container = client.database("vgi-scholarships").container("candidates");
 
+    // --- 3. VALIDATE PAYLOAD ---
     const { fullName, email, password } = req.body || {};
 
     if (!fullName || !email || !password) {
-        context.res = { status: 400, body: { message: "The Victor Standard requires all fields to be completed." } };
+        context.res = { 
+            status: 400, 
+            body: { message: "The Victor Standard requires all fields to be completed." } 
+        };
         return;
     }
 
     try {
-        // 1. Connect to the Ledger
-        const client = new CosmosClient(process.env.COSMOS_DB_CONNECTION_STRING);
-        const container = client.database("vgi-scholarships").container("candidates");
-
-        // 2. Generate the unique VGI Secret Code
+        // --- 4. GENERATE VGI SECRET CODE ---
         const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let secretCode = 'VGI-';
         for (let i = 0; i < 4; i++) {
             secretCode += chars[Math.floor(Math.random() * chars.length)];
         }
 
-        // 3. Construct the Cadet Payload
+        // --- 5. CONSTRUCT CADET PAYLOAD ---
         const newCandidate = {
-            id: email.toLowerCase(), // Using email as the unique ID prevents duplicate registrations
-            email: email.toLowerCase(), // This is our Partition Key
-            fullName: fullName,
-            password: password, // Note: For MVP. Phase 3 will involve hashing this for maximum security.
+            id: email.toLowerCase().trim(), 
+            email: email.toLowerCase().trim(),
+            fullName: fullName.trim(),
+            password: password, 
             secretCode: secretCode,
             status: "Incomplete",
             registrationDate: new Date().toISOString()
         };
 
-        // 4. Save to Cosmos DB
+        // --- 6. SAVE TO COSMOS DB ---
         await container.items.create(newCandidate);
 
-        // 5. Return success to the portal
         context.res = {
             status: 200,
             body: { 
@@ -52,19 +70,24 @@ module.exports = async function (context, req) {
                 candidateData: {
                     name: fullName,
                     email: newCandidate.email,
-                    secretCode: secretCode,
-                    status: "Incomplete"
+                    secretCode: secretCode
                 }
             }
         };
 
     } catch (error) {
         context.log.error("Database Error: ", error);
-        // If the error is a conflict (status 409), the email is already registered
+        
         if (error.code === 409) {
-            context.res = { status: 409, body: { message: "A candidate with this email is already registered." } };
+            context.res = { 
+                status: 409, 
+                body: { message: "A candidate with this email is already registered." } 
+            };
         } else {
-            context.res = { status: 500, body: { message: "Internal server error connecting to the Ledger." } };
+            context.res = { 
+                status: 500, 
+                body: { message: "Internal server error connecting to the Ledger." } 
+            };
         }
     }
 };
