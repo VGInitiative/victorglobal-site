@@ -1,0 +1,9 @@
+{
+  "name": "vgi-backend-engine",
+  "version": "1.0.0",
+  "description": "Serverless API for Victor Global Initiative",
+  "scripts": {
+    "start": "func start"
+  },
+  "dependencies": {}
+}
