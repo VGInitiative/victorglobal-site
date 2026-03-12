@@ -13,15 +13,11 @@
       "*.js",
       "*.css",
       "*.png",
-      "*.jpg",
-      "*.svg"
+      "*.jpg"
     ]
   },
   "mimeTypes": {
     ".js": "application/javascript",
     ".css": "text/css"
-  },
-  "platform": {
-    "apiRuntime": "node:20"
   }
 }
