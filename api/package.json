@@ -1,9 +1,10 @@
 {
   "name": "vgi-api",
   "version": "1.0.0",
+  "main": "RegisterCandidate/index.js",
   "dependencies": {
     "@azure/cosmos": "^4.0.0",
-    "@azure/functions": "^4.0.0" 
+    "@azure/functions": "^4.0.0"
   },
   "engines": {
     "node": "20.x"
