@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* This forces the portal to the absolute front of the screen */
+        #vgi-shield {
+            position: relative;
+            z-index: 9999 !important;
+            pointer-events: all !important;
+            margin-top: 100px;
+            text-align: center;
+        }
+        .view-card { 
+            background: white; 
+            padding: 40px; 
+            display: inline-block; 
+            border: 2px solid #0a7d8c; 
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
 <body>
-    <h1>VGI Diagnostic Portal</h1>
-    
-    <div id="view1">
-        <h3>Login View</h3>
-        <button onclick="document.getElementById('view1').style.display='none'; document.getElementById('view2').style.display='block';">
-            CLICK HERE TO REGISTER
-        </button>
+    <div id="header-placeholder"></div>
+
+    <div id="vgi-shield">
+        
+        <div id="login-box" class="view-card">
+            <h1>Login View</h1>
+            <p>Ready to move to Registration?</p>
+            <button type="button" 
+                    style="padding: 20px; cursor: pointer; background: #0a7d8c; color: white; font-weight: bold; border: none; border-radius: 5px;"
+                    onclick="console.log('Login Clicked'); document.getElementById('login-box').style.display='none'; document.getElementById('reg-box').style.display='block';">
+                CLICK HERE TO REGISTER
+            </button>
+        </div>
+
+        <div id="reg-box" class="view-card" style="display:none;">
+            <h1>Registration View</h1>
+            <p>Ready to go back to Login?</p>
+            <button type="button" 
+                    style="padding: 20px; cursor: pointer; background: #32c6a6; color: white; font-weight: bold; border: none; border-radius: 5px;"
+                    onclick="console.log('Reg Clicked'); document.getElementById('reg-box').style.display='none'; document.getElementById('login-box').style.display='block';">
+                CLICK HERE TO LOGIN
+            </button>
+        </div>
+
     </div>
 
-    <div id="view2" style="display:none;">
-        <h3>Registration View</h3>
-        <button onclick="document.getElementById('view2').style.display='none'; document.getElementById('view1').style.display='block';">
-            CLICK HERE TO LOGIN
-        </button>
-    </div>
-
-    <script>
-        console.log("Diagnostic Script Loaded");
-        alert("If you see this, JavaScript is WORKING on your browser.");
-    </script>
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>
