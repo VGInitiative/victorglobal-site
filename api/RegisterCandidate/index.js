@@ -78,16 +78,13 @@ module.exports = async function (context, req) {
     } catch (error) {
         context.log.error("Database Error: ", error);
         
-        if (error.code === 409) {
-            context.res = { 
-                status: 409, 
-                body: { message: "A candidate with this email is already registered." } 
-            };
-        } else {
-            context.res = { 
-                status: 500, 
-                body: { message: "Internal server error connecting to the Ledger." } 
-            };
-        }
+        // This will tell us the EXACT reason for the "Offline" status
+        context.res = { 
+            status: 500, 
+            body: { 
+                message: "Ledger Error: " + error.message,
+                detail: error.code || "No code" 
+            } 
+        };
     }
 };
