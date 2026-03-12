@@ -1,10 +1,11 @@
 {
   "name": "vgi-api",
   "version": "1.0.0",
+  "dependencies": {
+    "@azure/cosmos": "^4.0.0",
+    "@azure/functions": "^4.0.0" 
+  },
   "engines": {
     "node": "20.x"
-  },
-  "dependencies": {
-    "@azure/cosmos": "^4.0.0"
   }
 }
