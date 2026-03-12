@@ -1,12 +1,13 @@
 {
-  "name": "vgi-backend-engine",
+  "name": "vgi-api",
   "version": "1.0.0",
-  "description": "Serverless API for Victor Global Initiative",
+  "description": "Victor Global Initiative Backend",
+  "main": "index.js",
   "scripts": {
-    "start": "func start"
+    "start": "func start",
+    "test": "echo \"No tests yet\""
   },
   "dependencies": {
-    "@azure/cosmos": "^4.0.0",
-    "@azure/storage-blob": "^12.12.0"
+    "@azure/cosmos": "^4.0.0"
   }
 }
