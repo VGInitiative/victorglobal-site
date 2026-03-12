@@ -1,3 +1,4 @@
+// VGI Build Version 1.0.2 - Forced Refresh
 const { CosmosClient } = require("@azure/cosmos");
 
 module.exports = async function (context, req) {
