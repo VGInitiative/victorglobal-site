@@ -11,8 +11,15 @@
       "/api/*",
       "/assets/*",
       "*.js",
-      "*.css"
+      "*.css",
+      "*.png",
+      "*.jpg",
+      "*.svg"
     ]
+  },
+  "mimeTypes": {
+    ".js": "application/javascript",
+    ".css": "text/css"
   },
   "platform": {
     "apiRuntime": "node:20"
