@@ -9,7 +9,9 @@
     "rewrite": "/index.html",
     "exclude": [
       "/api/*",
-      "/assets/*"
+      "/assets/*",
+      "*.js",
+      "*.css"
     ]
   },
   "platform": {
