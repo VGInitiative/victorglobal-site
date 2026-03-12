@@ -1,6 +1,6 @@
 {
   "globalHeaders": {
-    "Content-Security-Policy": "default-src 'self'; script-src 'self' unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com unpkg.com; img-src 'self' data: widgets.guidestar.org https://www.google-analytics.com https://www.google.com https://google.com; frame-src 'self' donate.stripe.com forms.office.com; font-src 'self' fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://google.com;",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com unpkg.com; img-src 'self' data: widgets.guidestar.org https://www.google-analytics.com https://www.google.com https://google.com; frame-src 'self' donate.stripe.com forms.office.com; font-src 'self' fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://google.com *.documents.azure.com *.blob.core.windows.net;",
     "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
     "X-Frame-Options": "SAMEORIGIN",
     "X-Content-Type-Options": "nosniff",
@@ -9,7 +9,8 @@
     "Permissions-Policy": "geolocation=(), camera=(), microphone=(), interest-cohort=()"
   },
   "navigationFallback": {
-    "rewrite": "/index.html"
+    "rewrite": "/index.html",
+    "exclude": ["/api/*", "/assets/*"]
   },
   "mimeTypes": {
     ".pdf": "application/pdf"
