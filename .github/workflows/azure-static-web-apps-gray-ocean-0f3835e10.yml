@@ -27,11 +27,16 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
+          ###### Path Configurations ######
           app_location: "/" 
           api_location: "api" 
           output_location: "" 
+          ###### THE MISSING ENGINE INFO ######
+          api_runtime_version: "node:20" # This satisfies the error in Build #67
+          ###### Build Controls ######
           skip_app_build: true
           skip_api_build: true
+          production_branch: "main"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -44,6 +49,7 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           action: "close"
+
 
 
 
