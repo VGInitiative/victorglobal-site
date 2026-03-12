@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - - name: Build And Deploy
+      - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -29,9 +29,9 @@ jobs:
           app_location: "/" 
           api_location: "api" 
           output_location: "" 
-        env: # <--- ADD THIS SECTION
-          ACTIONS_RUNNER_DEBUG: true
+        env: # <--- ADD THESE TWO LINES
           NODE_VERSION: '20.x'
+          AZURE_FUNCTIONS_ENVIRONMENT: 'Production'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
