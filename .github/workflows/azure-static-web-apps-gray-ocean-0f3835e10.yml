@@ -28,14 +28,16 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
+          ###### Path Configurations ######
           app_location: "/" 
           api_location: "api" 
           output_location: "" 
+          ###### Build Controls ######
           skip_app_build: true
           skip_api_build: false
+          ###### FORCE DEPLOYMENT ######
           production_branch: "main"
-          deployment_environment: "production" # Forces the distribution engine to the right shelf
-
+          deployment_environment: "production"
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
@@ -47,6 +49,7 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           action: "close"
+
 
 
 
