@@ -1,9 +1,11 @@
 /**
  * Victor Global Initiative - Master Script Engine
- * Handles Modular Components, Tracking, Dynamic Counters, and Governance
+ * Handles Modular Components, Tracking, Dynamic Animations, and Governance
  */
 
+// ==========================================================================
 // 1. GLOBAL TRACKING INITIALIZATION (Aviation-Grade Integrity)
+// ==========================================================================
 (function() {
     const GA_ID = 'G-DER09HHGKX';
     const AW_TAG = 'AW-17894206414';
@@ -34,9 +36,12 @@ const VGI_CONFIG = {
     address: "11507 Dr MLK Blvd Unit 34, Mango, FL 33550"
 };
 
+// ==========================================================================
+// 2. COMPONENT INJECTION & INITIALIZATION
+// ==========================================================================
 async function loadComponents() {
     try {
-        // 1. Inject Header & Footer
+        // Inject Header & Footer dynamically
         const [headerResp, footerResp] = await Promise.all([
             fetch('header.html'),
             fetch('footer.html')
@@ -45,31 +50,38 @@ async function loadComponents() {
         if (headerResp.ok) document.getElementById('header-placeholder').innerHTML = await headerResp.text();
         if (footerResp.ok) document.getElementById('footer-placeholder').innerHTML = await footerResp.text();
 
-        // 2. Favicon & CSS Assets
+        // Inject Favicon
         const favicon = document.createElement('link');
         favicon.rel = 'icon'; favicon.type = 'image/png'; favicon.href = 'assets/images/favicon.png';
         document.head.appendChild(favicon);
 
+        // Inject AOS CSS
         const aosCSS = document.createElement('link');
         aosCSS.rel = 'stylesheet'; aosCSS.href = 'https://unpkg.com/aos@2.3.1/dist/aos.css';
         document.head.appendChild(aosCSS);
 
-        // 3. Navigation Activity
+        // Highlight Active Navigation Link
         const currentPage = window.location.pathname.split("/").pop() || "index.html";
-        document.querySelectorAll('nav a').forEach(link => {
-            if (link.getAttribute('href') === currentPage) link.classList.add('active-link');
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active-link');
+            }
         });
 
-        // 4. Initialize AOS (Animate on Scroll)
+        // Initialize AOS (Animate on Scroll)
         const aosJS = document.createElement('script');
         aosJS.src = 'https://unpkg.com/aos@2.3.1/dist/aos.js';
-        aosJS.onload = () => { if (typeof AOS !== 'undefined') AOS.init({ duration: 1000, once: true }); };
+        aosJS.onload = () => { 
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true, offset: 100 });
+                // Refresh AOS after DOM shifting to ensure accurate scroll triggers
+                setTimeout(() => AOS.refresh(), 500); 
+            }
+        };
         document.body.appendChild(aosJS);
 
-        // 5. Impact Counters
+        // Initialize Counters & Meta Tags
         setTimeout(initCounters, 300);
-
-        // 6. Meta Tags (Social/SEO)
         injectMetaTags();
 
     } catch (err) {
@@ -93,7 +105,9 @@ function injectMetaTags() {
     }
 }
 
-/* INTERACTIVE LOGIC (Counters, Modals, Flips) */
+// ==========================================================================
+// 3. INTERACTIVE LOGIC (Counters, Modals, Mobile Nav)
+// ==========================================================================
 function initCounters() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -117,6 +131,7 @@ function initCounters() {
     document.querySelectorAll('.counter').forEach(c => observer.observe(c));
 }
 
+// Donation Modal Logic
 function openDonate() { 
     document.getElementById('donateModal').style.display = "block"; 
     document.body.style.overflow = "hidden"; 
@@ -127,35 +142,44 @@ function closeDonate() {
     document.body.style.overflow = "auto"; 
 }
 
+// Global Click Listener (Hamburger Menu & Modal Exits)
 document.addEventListener('click', (e) => {
-    if (e.target.closest('.hamburger')) document.querySelector('nav').classList.toggle('active');
-    if (e.target.classList.contains('modal')) closeDonate();
+    // FIX: Targets the '.nav-list' to match the updated style.css
+    if (e.target.closest('.hamburger')) {
+        const navList = document.querySelector('.nav-list');
+        if(navList) navList.classList.toggle('active');
+    }
+    
+    // Close modal if clicking outside the modal content
+    if (e.target.classList.contains('modal')) {
+        closeDonate();
+    }
 });
 
-/* ==========================================================================
-   SCHOLARSHIP INTAKE ENGINE
-   ========================================================================== */
+// ==========================================================================
+// 4. SCHOLARSHIP INTAKE ENGINE
+// ==========================================================================
 
-// 1. Teacher Upload Verification Logic
+// Teacher Upload Verification Logic
 async function verifyTeacherCode() {
     const code = document.getElementById('teacher-code').value;
     const statusDiv = document.getElementById('upload-status');
     
-    if (code.length !== 6 && !code.startsWith('VGI-')) {
-        statusDiv.innerHTML = "<p style='color:red;'>Invalid Code Format. Must be VGI-XXXX.</p>";
+    if (code.length !== 8 || !code.startsWith('VGI-')) { // Updated to match length of VGI-XXXX
+        statusDiv.innerHTML = "<p style='color:red; font-weight: 600;'>Invalid Code Format. Must be VGI-XXXX.</p>";
         return;
     }
 
-    statusDiv.innerHTML = "<p style='color:var(--secondary);'>Verifying Code with VGI Database...</p>";
+    statusDiv.innerHTML = "<p style='color:var(--secondary); font-weight: 600;'>Verifying Code with VGI Database...</p>";
     
-    // Simulate Azure Function Call
+    // Simulate Azure Function Call Delay
     setTimeout(() => {
-        statusDiv.innerHTML = "<p style='color:green;'>Code Verified. You are uploading for Candidate: [Student Name].</p>";
-        // Proceed to show file upload button
+        statusDiv.innerHTML = "<p style='color:green; font-weight: 600;'>Code Verified. System ready for document transmission.</p>";
+        // Logic to reveal file upload input would go here
     }, 1500);
 }
 
-// 2. Automated Secret Code Generator (For New Registrations)
+// Automated Secret Code Generator (For New Candidate Registrations)
 function generateSecretCode() {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let code = 'VGI-';
@@ -165,4 +189,5 @@ function generateSecretCode() {
     return code;
 }
 
+// Ignition
 window.onload = loadComponents;
