@@ -6,16 +6,16 @@
 User-agent: *
 Allow: /
 
-# Disallow system and raw asset folders to optimize crawl budget
-Disallow: /assets/css/
-Disallow: /assets/js/
+# Disallow system files to optimize crawl budget
+# Note: CSS and JS directories are intentionally allowed so Google can verify our mobile layout
 Disallow: /assets/vendor/
 Disallow: /staticconfig.json
 Disallow: /_headers
 Disallow: /README.md
 
-# Protected Governance Documents (Optional: if you want to keep them off SERPs)
-# Disallow: /conflict-of-interest.html
+# Prevent indexing of the backend portals to keep public search results clean
+Disallow: /portal.html
+Disallow: /teacher-upload.html
 
 # The Mission Flight Plan (Beacon)
 Sitemap: https://victorglobal.org/sitemap.xml
