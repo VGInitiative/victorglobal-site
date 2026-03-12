@@ -3,128 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Portal | Victor Global Initiative</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>VGI Candidate Portal</title>
     <style>
-        .portal-wrapper { max-width: 600px; margin: 60px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
-        .auth-card { display: none; }
-        .auth-card.active { display: block; animation: fadeIn 0.3s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 0.8rem; }
-        .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
-        .auth-toggle { margin-top: 25px; text-align: center; }
-        .auth-toggle button { background: none; border: none; color: var(--secondary); font-weight: 700; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
-        .dashboard-card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--secondary); margin-bottom: 20px; }
-        .secret-code-display { font-size: 1.5rem; color: var(--secondary); font-weight: 700; border: 2px dashed var(--secondary); padding: 10px; display: inline-block; margin: 10px 0; border-radius: 4px; }
+        :root { --primary: #0a7d8c; --secondary: #32c6a6; }
+        body { font-family: sans-serif; background: #f4f7f6; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .portal-box { background: white; width: 100%; max-width: 400px; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
+        .view { display: none; }
+        .view.active { display: block; }
+        h2 { margin-top: 0; color: var(--primary); text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .btn-main { background: var(--primary); color: white; }
+        .btn-sub { background: var(--secondary); color: white; }
+        .toggle-text { text-align: center; margin-top: 15px; font-size: 14px; }
+        .link { color: var(--secondary); cursor: pointer; text-decoration: underline; background: none; border: none; font-size: 14px; }
     </style>
 </head>
 <body>
-    <div id="header-placeholder"></div>
 
-    <main class="container">
-        <div class="portal-wrapper">
-            
-            <div id="login-view" class="auth-card active">
-                <h2 style="text-align:center; color: var(--primary);">Candidate Login</h2>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="login-email" placeholder="cadet@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="login-pass" placeholder="••••••••">
-                </div>
-                <button type="button" id="btn-login" class="hero-btn" style="width:100%; background: var(--primary);">Sign In</button>
-                <div class="auth-toggle">
-                    New? <button type="button" id="to-register">Register Now</button>
-                </div>
+    <div class="portal-box">
+        <div id="login-view" class="view active">
+            <h2>VGI Login</h2>
+            <input type="email" id="l-email" placeholder="Email Address">
+            <input type="password" id="l-pass" placeholder="Password">
+            <button class="btn-main" id="do-login">Sign In</button>
+            <div class="toggle-text">
+                New? <button class="link" onclick="swap('register-view')">Register Now</button>
             </div>
-
-            <div id="register-view" class="auth-card">
-                <h2 style="text-align:center; color: var(--primary);">Create Account</h2>
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="reg-name" placeholder="John Doe">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="reg-email" placeholder="cadet@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="reg-pass" placeholder="Min. 8 chars">
-                </div>
-                <button type="button" id="btn-register" class="hero-btn" style="width:100%; background: var(--secondary);">Register</button>
-                <div class="auth-toggle">
-                    Member? <button type="button" id="to-login">Sign In</button>
-                </div>
-            </div>
-
-            <div id="dashboard-view" class="auth-card">
-                <h3 id="welcome-msg">Welcome, Candidate</h3>
-                <div class="dashboard-card">
-                    <p>Instructor Code:</p>
-                    <div id="display-secret-code" class="secret-code-display">VGI-XXXX</div>
-                </div>
-                <button onclick="location.reload()" style="width:100%; cursor:pointer;">Sign Out</button>
-            </div>
-
         </div>
-    </main>
 
-    <div id="footer-placeholder"></div>
+        <div id="register-view" class="view">
+            <h2>VGI Register</h2>
+            <input type="text" id="r-name" placeholder="Full Name">
+            <input type="email" id="r-email" placeholder="Email Address">
+            <input type="password" id="r-pass" placeholder="Password">
+            <button class="btn-sub" id="do-register">Create Account</button>
+            <div class="toggle-text">
+                Member? <button class="link" onclick="swap('login-view')">Sign In</button>
+            </div>
+        </div>
+
+        <div id="dashboard-view" class="view">
+            <h2>Welcome Back</h2>
+            <p style="text-align:center;">Your dashboard is active.</p>
+            <button class="btn-main" onclick="location.reload()">Sign Out</button>
+        </div>
+    </div>
 
     <script>
-        // --- VIEW SWITCHING LOGIC ---
-        function showView(id) {
-            document.querySelectorAll('.auth-card').forEach(c => c.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
+        // Internal View Swapper
+        function swap(id) {
+            console.log("Navigating to: " + id);
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
 
-        // Add Listeners after DOM loads
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('to-register').addEventListener('click', () => showView('register-view'));
-            document.getElementById('to-login').addEventListener('click', () => showView('login-view'));
-            
-            // Login Action
-            document.getElementById('btn-login').addEventListener('click', async () => {
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-pass').value;
-                
-                try {
-                    const res = await fetch('/api/LoginCandidate', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ email, password })
-                    });
-                    const data = await res.json();
-                    if(data.authorized) {
-                        document.getElementById('display-secret-code').innerText = data.secretCode;
-                        showView('dashboard-view');
-                    } else { alert(data.message); }
-                } catch(e) { alert("API Connection Error"); }
-            });
+        // Action Handlers
+        document.getElementById('do-login').onclick = function() {
+            const email = document.getElementById('l-email').value;
+            if(email) swap('dashboard-view');
+            else alert("Enter email");
+        };
 
-            // Register Action
-            document.getElementById('btn-register').addEventListener('click', async () => {
-                const fullName = document.getElementById('reg-name').value;
-                const email = document.getElementById('reg-email').value;
-                const password = document.getElementById('reg-pass').value;
-                
-                try {
-                    const res = await fetch('/api/RegisterCandidate', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ fullName, email, password })
-                    });
-                    if(res.ok) { alert("Success! Please Login."); showView('login-view'); }
-                    else { const d = await res.json(); alert(d.message); }
-                } catch(e) { alert("Registration Error"); }
-            });
-        });
+        document.getElementById('do-register').onclick = function() {
+            alert("Registration logic triggered!");
+            swap('login-view');
+        };
     </script>
-    <script src="assets/js/scripts.js"></script>
 </body>
 </html>
