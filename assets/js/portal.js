@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!fullName || !email || !password) return alert("All fields are mandatory.");
 
             try {
-                const response = await fetch('/api/RegisterCandidate', {
+                const response = await fetch('/api/RegisterCandidate/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ fullName, email, password })

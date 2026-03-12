@@ -6,7 +6,7 @@
     "X-Content-Type-Options": "nosniff"
   },
   "navigationFallback": {
-    "rewrite": "/index.html",
-    "exclude": ["/api/*", "/assets/*"]
-  }
+  "rewrite": "/index.html",
+  "exclude": ["/api/*", "/assets/*"]
+}
 }
