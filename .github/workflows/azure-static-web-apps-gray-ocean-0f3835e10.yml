@@ -31,7 +31,7 @@ jobs:
           ###### Path Configurations ######
           app_location: "/" 
           api_location: "api" 
-          output_location: "" 
+          output_location: "build" 
           ###### Build Controls ######
           skip_app_build: true
           skip_api_build: false
@@ -49,6 +49,7 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.VGI_DEPLOY_TOKEN }}
           action: "close"
+
 
 
 
