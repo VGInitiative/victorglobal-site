@@ -14,10 +14,10 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
-    env: # <-- ADDED THIS TO SILENCE THE WARNING
+    env: 
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v4 # <-- UPGRADED FROM v3 TO v4
+      - uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
