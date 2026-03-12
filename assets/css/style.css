@@ -2,12 +2,14 @@
    1. CORE THEME & VARIABLES
    ========================================================================== */
 :root {
-    --primary: #0a7d8c; 
-    --secondary: #32c6a6;
+    --primary: #0a7d8c;      /* Deep Teal */
+    --secondary: #32c6a6;    /* Mint Seafoam */
+    --navy: #002147;         /* Navy Blue for VGI Branding */
     --dark: #222;
     --light: #f4f7f8;
     --white: #ffffff;
     --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,89 +22,168 @@ body {
     overflow-x: hidden; 
 }
 
-/* ==========================================================================
-   2. GLOBAL NAVIGATION BAR
-   ========================================================================== */
-header { background: var(--primary); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: var(--shadow); }
-.header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 20px; }
-.brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; transition: 0.3s; }
-.logo { height: 60px !important; width: auto !important; display: inline-block !important; vertical-align: middle; }
+img { max-width: 100%; height: auto; display: block; }
 
+/* ==========================================================================
+   2. GLOBAL NAVIGATION & STACKED BRANDING
+   ========================================================================== */
+header { 
+    background: var(--primary); 
+    padding: 10px 0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 2000; 
+    box-shadow: var(--shadow); 
+}
+
+.header-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: auto; 
+    padding: 0 20px; 
+}
+
+/* --- Logo & Navy Circle --- */
+.brand { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+
+.logo { 
+    height: 100px !important; /* Circular frame size remains the same */
+    width: 100px !important;  
+    object-fit: contain;
+    border: 4px solid var(--navy); /* The circle boundary */
+    border-radius: 50%; 
+    padding: 2px; /* Redesigned: Reduced padding makes the image inside significantly larger */
+    background: transparent !important; 
+    transition: var(--transition);
+}
+
+/* --- Stacked Org Name --- */
 .org-title { 
-    font-size: 1.85rem; 
+    display: flex;
+    flex-direction: column; 
+    gap: 4px; /* Adds a tiny bit of breathing room between the stacked words */
+    font-size: 1.15rem; 
     font-weight: 700; 
     text-transform: uppercase; 
     letter-spacing: 1.5px;
-    line-height: 1; 
     color: var(--white);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease;
 }
 
-.brand:hover .org-title {
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.35);
-    transform: translateY(-1px);
+/* Flexbox aligns the large initial vertically with the smaller text */
+.org-title span {
+    display: flex;
+    align-items: center; 
+    line-height: 1;
 }
 
-nav { display: flex; align-items: center; }
-nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-nav a:hover, nav a.active-link { color: var(--secondary); }
-.donate-btn-nav { background: var(--secondary); padding: 8px 20px; border-radius: 50px; }
-.hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+.vgi-letter { 
+    color: var(--navy); 
+    font-size: 2.2rem; /* Significantly increases the size of the V, G, and I */
+    font-weight: 900;
+    display: inline-block;
+    width: 40px; /* Creates a dedicated, uniform column for the initials */
+    text-align: center; /* Centers the initials perfectly over one another */
+    margin-right: 1px; /* Space between the giant initial and the rest of the word */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Keeps them popping off the background */
+}
+
+/* --- Navigation Links --- */
+.nav-list { display: flex; align-items: center; list-style: none; gap: 20px; margin: 0;}
+
+.nav-link, .dropdown-trigger { 
+    color: var(--white); 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    transition: var(--transition);
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover, .dropdown:hover .dropdown-trigger { color: var(--secondary); }
+
+/* --- Scholarship Dropdown --- */
+.dropdown { position: relative; }
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 220px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    z-index: 1000;
+    border-top: 3px solid var(--secondary);
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    list-style: none;
+    padding: 10px 0;
+}
+
+.dropdown:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-content li a { color: var(--primary); padding: 12px 20px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 600; }
+.dropdown-content li a:hover { background: var(--light); color: var(--secondary); }
+
+.donate-btn-nav { 
+    background: var(--secondary); 
+    color: var(--primary) !important; 
+    padding: 10px 22px; 
+    border-radius: 50px; 
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    transition: var(--transition);
+}
+
+.donate-btn-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: var(--white);
+}
+
+.hamburger { display: none; cursor: pointer; color: white; font-size: 1.8rem; }
+.hamburger span { display: block; width: 25px; height: 3px; background: #fff; margin: 5px 0; transition: 0.4s; }
 
 /* ==========================================================================
-   3. UNIVERSAL GRID, LAYOUT & HEADERS
+   3. UNIVERSAL GRID & PAGE HEADERS
    ========================================================================== */
 .section-padding { padding: 80px 20px; max-width: 1200px; margin: auto; }
 
-/* Reusable Header Blocks for Sub-pages */
 .page-intro, .news-header, .legal-page-header { background: var(--light); text-align: center; padding: 80px 20px; border-bottom: 1px solid #eee; }
 .subtitle { display: block; text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; }
 .lead-text { font-size: 1.2rem; max-width: 800px; margin: 20px auto 0; color: #555; }
 
-.grid, .news-grid, .board-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 30px; 
-    width: 100%;
-}
+.grid, .news-grid, .board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%; }
 
 /* ==========================================================================
-   4. INTERACTIVE FLIP ENGINE (Impact, Initiatives, Board)
+   4. INTERACTIVE FLIP ENGINE (UNIFIED - HOVER FIX APPLIED)
    ========================================================================== */
-.flip-card, .initiative-card { 
-    height: 420px; 
-    perspective: 1000px; 
-    background-color: transparent;
-    cursor: pointer;
-    width: 100%;
-}
+.flip-card, .initiative-card { height: 420px; perspective: 1000px; cursor: pointer; width: 100%; }
 
 .flip-card-inner, .card-inner {
     position: relative;
     height: 100%;
     width: 100%;
     text-align: center;
-    transition: transform 0.6s;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
 }
 
-.flip-card.is-flipped .flip-card-inner, 
-.initiative-card.is-flipped .card-inner { transform: rotateY(180deg); }
+/* FIX: Rely on CSS hover for card flipping across all pages */
+.flip-card:hover .flip-card-inner,
+.initiative-card:hover .card-inner { 
+    transform: rotateY(180deg); 
+}
 
 .flip-card-front, .flip-card-back, .card-front, .card-back { 
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
-    backface-visibility: hidden; 
-    -webkit-backface-visibility: hidden;
-    border-radius: 15px; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    padding: 30px; 
-    box-shadow: var(--shadow); 
+    position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; 
+    display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-shadow: var(--shadow); 
 }
 
 .flip-card-front, .card-front { background-color: var(--light); border-bottom: 5px solid var(--primary); }
@@ -112,165 +193,55 @@ nav a:hover, nav a.active-link { color: var(--secondary); }
 .card-back p { font-size: 0.95rem; line-height: 1.6; }
 .counter { font-size: 3rem; color: var(--primary); font-weight: 700; margin-bottom: 5px; }
 
+/* Scholarship Badge */
+.active-cycle { transform: scale(1.05); z-index: 10; }
+
 /* ==========================================================================
-   5. MISSION GOAL TRACKER (Index Page)
+   5. PAGE-SPECIFIC COMPONENTS
    ========================================================================== */
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/impact.jpg') center/cover;
+    height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px;
+}
+.hero-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+.hero-title { font-size: 3.5rem; margin-bottom: 15px; line-height: 1.2; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); }
+.hero-btn { background: var(--secondary); color: var(--white); padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 15px; transition: 0.3s ease; box-shadow: var(--shadow); }
+.hero-btn:hover { background: var(--primary); transform: translateY(-3px); }
+
+/* --- Mission Tracker --- */
 .goal-tracker { width: 90%; margin-top: 20px; background: rgba(255, 255, 255, 0.5); padding: 15px; border-radius: 10px; }
 .goal-bar { background: #e0e0e0; height: 10px; border-radius: 10px; overflow: hidden; margin-bottom: 10px; border: 1px solid #ddd; }
 .goal-progress { background: var(--secondary); height: 100%; transition: width 2s ease-in-out; }
 .goal-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--dark); font-weight: 700; text-transform: uppercase; }
 
-/* ==========================================================================
-   6. PAGE-SPECIFIC COMPONENTS
-   ========================================================================== */
-
-   /* --- Hero Section (Index Page) --- */
-.hero {
-    /* Notice the updated image path: ../images/impact.jpg */
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/impact.jpg') center/cover;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--white);
-    padding: 0 20px;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Forces the button to center perfectly */
-}
-
-.hero-title { 
-    font-size: 3.5rem; 
-    margin-bottom: 15px; 
-    line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Makes text pop over the image */
-}
-
-.hero-btn { 
-    background: var(--secondary); 
-    color: var(--white); 
-    padding: 15px 40px; 
-    border-radius: 50px; 
-    text-decoration: none; 
-    font-weight: 700; 
-    display: inline-block; 
-    margin-top: 15px;
-    transition: 0.3s ease; 
-    box-shadow: var(--shadow);
-}
-
-.hero-btn:hover { 
-    background: var(--primary); 
-    transform: translateY(-3px); 
-}
-
-@media (max-width: 900px) {
-    .hero-title { font-size: 2.2rem; }
-}
-/* --- Board & About --- */
+/* --- Age-Specific Components & Board Profiles --- */
 .flex-row { display: flex; align-items: flex-start; gap: 60px; margin-top: 40px; }
-.founder-img { width: 45%; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); }
+.founder-img { width: 100%; max-width: 450px; border-radius: 15px; box-shadow: 20px 20px 0 var(--secondary); margin: 0 auto; }
+.leader-img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--secondary); object-fit: cover; margin: 0 auto 20px; box-shadow: var(--shadow); }
+.profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--secondary); object-fit: cover; margin: 0 auto 20px; }
+.flip-card-front .leader-img { max-width: 180px; max-height: 180px; }
+
 .medal-list { list-style: none; margin-top: 20px; width: 100%; }
 .medal-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: 500; }
 .tier-label { text-align: center; color: var(--secondary); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 60px 0 30px; display: block; }
-.founder-container { display: flex; justify-content: center; margin-bottom: 20px; }
-.profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--secondary); object-fit: cover; margin-bottom: 20px; }
 .role { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px; }
 .bio-text { font-size: 0.9rem; line-height: 1.5; text-align: left; }
 
-/* --- Initiatives Gallery --- */
-.initiative-icon { font-size: 3.5rem; margin-bottom: 20px; display: block; }
-.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
-.gallery-item { overflow: hidden; border-radius: 12px; height: 250px; box-shadow: var(--shadow); }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.gallery-item:hover img { transform: scale(1.1); }
-
-/* --- News Articles --- */
+/* --- Contact & News --- */
+.contact-button { background: var(--primary); color: white; padding: 20px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; transition: 0.3s; box-shadow: 0 5px 15px rgba(10, 125, 140, 0.2); }
+.contact-button:hover { background: var(--secondary); transform: translateY(-3px); box-shadow: var(--shadow); }
 .news-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: 0.3s; }
 .news-image { width: 100%; height: 220px; object-fit: cover; }
 .news-content { padding: 30px; }
-.news-date { color: var(--secondary); font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; display: block;}
-.read-more { color: var(--primary); font-weight: 700; text-decoration: none; margin-top: 15px; display: inline-block; }
-.lead-article { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.2fr; background: var(--white); border-radius: 15px; box-shadow: var(--shadow); margin-bottom: 40px; overflow: hidden; text-align: left; }
-.lead-article .news-image { width: 100%; height: 100%; min-height: 400px; object-fit: cover; }
-.media-resources-box { background: var(--light); border-radius: 15px; margin: 40px auto; padding: 40px; text-align: center; max-width: 1200px; }
 
-/* --- Contact Page --- */
-.contact-cta-area { margin: 40px 0; }
-.contact-button { background: var(--primary); color: white; padding: 20px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; transition: 0.3s; box-shadow: 0 5px 15px rgba(10, 125, 140, 0.2); }
-.contact-button:hover { background: var(--secondary); transform: translateY(-3px); box-shadow: var(--shadow); }
-.alt-contact { margin-top: 60px; padding-top: 40px; border-top: 1px solid #eee; }
-.alt-contact p { margin-bottom: 15px; font-size: 1.05rem; }
-.alt-contact a { color: var(--primary); text-decoration: none; font-weight: 600; }
-
-/* --- Donate / Stripe Modal --- */
-.donation-page-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; padding: 60px 20px; text-align: center; }
-.donation-card { margin: 40px auto !important; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
-.modal-content { background: var(--white); margin: 5vh auto; width: 95%; max-width: 500px; height: 85vh; border-radius: 15px; overflow: hidden; position: relative; }
-#stripe-iframe { background-color: #ffffff; width: 100%; height: 100%; border: none; }
-.close-modal { position: absolute; top: 15px; right: 20px; font-size: 30px; font-weight: bold; cursor: pointer; color: #333; z-index: 10; }
-
-/* --- Legal / Privacy & Terms --- */
-.legal-container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-.legal-content h2 { color: var(--primary); font-size: 1.4rem; margin: 40px 0 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-.legal-content p, .legal-content li { font-size: 1rem; margin-bottom: 15px; color: #444; }
-.legal-content ul { margin-bottom: 20px; padding-left: 25px; }
-.last-updated { font-size: 0.9rem; color: #888; font-style: italic; }
-
-/* Global Image Reset - The "Safety Net" */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Founder / President Image (The large bio image) */
-.founder-img { 
-    width: 100%; 
-    max-width: 450px; /* Prevents it from becoming a giant on large screens */
-    border-radius: 15px; 
-    box-shadow: 20px 20px 0 var(--secondary); 
-    margin: 0 auto;
-}
-
-/* Board Member Portraits (Flip Cards) */
-.leader-img { 
-    width: 160px; 
-    height: 160px; 
-    border-radius: 50%; /* Keeps them perfectly circular */
-    border: 4px solid var(--secondary); 
-    object-fit: cover; /* Prevents squishing/stretching */
-    margin: 0 auto 20px; 
-    box-shadow: var(--shadow);
-}
-
-/* Special Case: The President Card image on Board.html */
-/* This makes the President's headshot slightly larger than the others but still controlled */
-.flip-card-front .leader-img {
-    max-width: 180px;
-    max-height: 180px;
-}
-
-/* Junior Board / Advisor Portraits (The smaller circles) */
-.profile-img { 
-    width: 140px; 
-    height: 140px; 
-    border-radius: 50%; 
-    border: 3px solid var(--secondary); 
-    object-fit: cover; 
-    margin: 0 auto 20px; 
-}
-
-/* Medal List Fixes */
-.medal-list { list-style: none; margin-top: 20px; width: 100%; }
-.medal-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; font-weight: 500; }
+/* ==========================================================================
+   6. IMPACT GALLERY SYSTEM
+   ========================================================================== */
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px auto 0; max-width: 1200px; }
+.gallery-item { overflow: hidden; border-radius: 12px; box-shadow: var(--shadow); height: 250px; background: #ddd; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+.gallery-item:hover img { transform: scale(1.1); }
 
 /* ==========================================================================
    7. FOOTER STYLING
@@ -284,289 +255,60 @@ footer { background: #1a1a1a; color: #ffffff; padding: 35px 20px 20px; font-size
 .legal-disclaimer { color: #777; margin-top: 10px; font-size: 0.65rem; }
 
 /* ==========================================================================
-   8. RESPONSIVE BREAKPOINTS (Mobile Optimization)
+   8. MOBILE-SPECIFIC REFINEMENTS & OPTIMIZATION
    ========================================================================== */
+@media (max-width: 1024px) {
+    /* VICTOR Core Values Grid (Tablet Stack) */
+    .grid[style*="repeat(6, 1fr)"] { grid-template-columns: repeat(3, 1fr) !important; gap: 10px; }
+}
+
 @media (max-width: 900px) {
     /* Navigation */
     .hamburger { display: block; }
-    nav { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary); padding: 20px 0; text-align: center; }
-    nav.active { display: flex; }
-    nav a { margin: 10px 0; margin-left: 0; }
+    .nav-list { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--primary); padding: 40px 0; text-align: center; }
+    .nav-list.active { display: flex; }
+    .donate-btn-nav { margin: 20px 0; }
+    .dropdown-content { position: static; background: rgba(0,0,0,0.1); opacity: 1; visibility: visible; transform: none; box-shadow: none; padding-left: 20px; }
+    .dropdown-content li a { color: white; text-align: center; }
     
     /* Layouts */
     .flex-row { flex-direction: column; text-align: center; }
     .founder-img { width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-    .footer-top { grid-template-columns: 1fr; text-align: center; }
-    
-    /* Grids & Cards */
-    .grid { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr !important; }
     .flip-card, .initiative-card { height: 350px; }
-    .founder-container .flip-card { width: 100%; }
+    .section-padding { padding: 40px 15px !important; }
     
-    /* News specific */
-    .lead-article { grid-template-columns: 1fr; }
-    .lead-article .news-image { min-height: 250px; }
-    
-    /* Spacing */
-    .section-padding { padding: 60px 20px; }
-}
-/* ==========================================================================
-   INITIATIVE CARDS (3D FLIP SYSTEM)
-   ========================================================================== */
-.initiative-card {
-    background-color: transparent;
-    width: 100%;
-    height: 350px;
-    perspective: 1000px; /* Essential for 3D effect */
-    cursor: pointer;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-    box-shadow: var(--shadow);
-    border-radius: 15px;
-}
-
-/* This class is toggled by scripts.js */
-.initiative-card.is-flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari support */
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    border-radius: 15px;
-}
-
-.card-front {
-    background-color: var(--white);
-    color: var(--dark);
-}
-
-.card-back {
-    background-color: var(--primary);
-    color: var(--white);
-    transform: rotateY(180deg);
-}
-
-.card-back h3 {
-    color: var(--secondary);
-    margin-bottom: 15px;
-}
-
-/* ==========================================================================
-   IMPACT GALLERY SYSTEM
-   ========================================================================== */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin: 40px auto 0;
-    max-width: 1200px;
-}
-
-.gallery-item {
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    height: 250px;
-    background: #ddd; /* Placeholder color while loading */
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    display: block;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-/* Responsive centering for the roadmap section */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    /* Hero */
+    .hero { height: 45vh !important; min-height: 350px !important; padding: 40px 20px; }
+    .hero-title { font-size: 2rem !important; margin-bottom: 10px; }
+    .hero-btns { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 280px; }
+    .hero-btn { margin-left: 0 !important; width: 100%; padding: 12px 20px; }
 }
 
 @media (max-width: 768px) {
-    .initiative-card {
-        height: 300px;
-    }
-    
-    .hero-title {
-        font-size: 2.2rem;
-    }
-}
-
-/* Specific sizing for the Core Values line */
-.value-card {
-    height: 220px !important; /* Smaller cards for the 6-wide row */
-}
-
-.value-card .flip-card-front h1 {
-    margin: 0;
-    line-height: 1;
-}
-
-/* Ensure cards flip back on second click/tap */
-.flip-card.is-flipped .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Mobile adjustments for the 6-card row */
-@media (max-width: 1000px) {
-    .grid[style*="repeat(6, 1fr)"] {
-        grid-template-columns: repeat(3, 1fr) !important; /* 3x2 on tablets */
-    }
+    /* Mobile Footer Optimization (The Victor Standard) */
+    .footer-top { flex-direction: column !important; text-align: center; gap: 30px; grid-template-columns: 1fr; }
+    .footer-links div { align-items: center; gap: 8px !important; font-size: 13px !important; }
+    .footer-contact { font-size: 13px !important; }
+    .candid-seal { margin: 0 auto; }
+    .legal-disclaimer { font-size: 11px !important; padding: 0 10px; }
 }
 
 @media (max-width: 600px) {
-    .grid[style*="repeat(6, 1fr)"] {
-        grid-template-columns: repeat(2, 1fr) !important; /* 2x3 on mobile */
-    }
-    .value-card {
-        height: 180px !important;
-    }
+    /* VICTOR Core Values Grid (Mobile Stack) */
+    .grid[style*="repeat(6, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+    .value-card { height: 180px !important; }
+    .value-card .flip-card-front h1 { font-size: 2.2rem !important; }
+    
+    /* CTA Stack */
+    section[style*="background: var(--primary)"] { padding: 35px 15px !important; }
+    section[style*="background: var(--primary)"] h2 { font-size: 1.5rem; }
+    
+    /* Branding Resize */
+    .org-title { font-size: 1rem; }
+    .logo { height: 75px !important; width: 75px !important; }
+    .vgi-letter { font-size: 1.8rem; width: 30px; } /* Scales down the big initials */
 }
 
-/* ==========================================================================
-   MOBILE-SPECIFIC REFINEMENTS
-   ========================================================================== */
-
-/* 1. Hero Adjustments */
-@media (max-width: 768px) {
-    .hero {
-        height: 45vh !important; /* Slightly smaller for mobile height */
-        min-height: 350px !important;
-        padding: 40px 20px;
-    }
-
-    .hero-title {
-        font-size: 2rem !important; /* Prevents title overflow */
-        margin-bottom: 10px;
-    }
-
-    .hero-btns {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .hero-btn {
-        margin-left: 0 !important; /* Removes the 15px side margin from desktop */
-        width: 100%;
-        padding: 12px 20px;
-    }
-}
-
-/* 2. VICTOR Core Values Grid (Mobile Stack) */
-/* This targets the specific 6-column grid on the index page */
-@media (max-width: 1024px) {
-    .grid[style*="repeat(6, 1fr)"] {
-        grid-template-columns: repeat(3, 1fr) !important; /* 3x2 on Tablets */
-        gap: 10px;
-    }
-}
-
-@media (max-width: 600px) {
-    .grid[style*="repeat(6, 1fr)"] {
-        grid-template-columns: repeat(2, 1fr) !important; /* 2x3 on Mobile */
-        gap: 10px;
-    }
-
-    .value-card {
-        height: 180px !important; /* Smaller cards for mobile thumbs */
-    }
-
-    .value-card .flip-card-front h1 {
-        font-size: 2.2rem !important;
-    }
-}
-
-/* 3. Three Pillars & General Grid */
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr !important; /* Vertical stack for pillars */
-        gap: 20px;
-    }
-
-    .flip-card {
-        height: 320px !important; /* Tighter cards for easier scrolling */
-    }
-
-    .section-padding {
-        padding: 40px 15px !important; /* Reduced padding for mobile vertical space */
-    }
-}
-
-/* 4. Join the Movement (CTA) Mobile Spacing */
-@media (max-width: 600px) {
-    section[style*="background: var(--primary)"] {
-        padding: 35px 15px !important;
-    }
-
-    section[style*="background: var(--primary)"] h2 {
-        font-size: 1.5rem;
-    }
-}
-
-/* Prevent the 'Our Story' link from breaking into two lines */
-.no-stack {
-    white-space: nowrap !important;
-}
-
-/* Enhancing the bold initials in the organization title */
-.org-title strong {
-    font-weight: 800;
-    color: inherit; /* Keeps it matching your existing text color */
-}
-/* ==========================================================================
-   MOBILE FOOTER OPTIMIZATION (THE VICTOR STANDARD)
-   ========================================================================== */
-
-@media (max-width: 768px) {
-    .footer-top {
-        flex-direction: column !important; /* Stacks brand, contact, and legal vertically */
-        text-align: center;
-        gap: 30px;
-    }
-
-    .footer-links div {
-        align-items: center; /* Centers the legal links for thumb-tapping */
-        gap: 8px !important; /* Adds slight breathing room back for mobile accessibility */
-        font-size: 13px !important; /* Bumps 11px to 13px for mobile legibility */
-    }
-
-    .footer-contact {
-        font-size: 13px !important; /* Increases contact info for better field use */
-    }
-
-    .candid-seal {
-        margin: 0 auto;
-    }
-
-    .legal-disclaimer {
-        font-size: 11px !important; /* Keeps disclaimer small but readable */
-        padding: 0 10px;
-    }
-}
+/* Prevent text breaking */
+.no-stack { white-space: nowrap !important; }
