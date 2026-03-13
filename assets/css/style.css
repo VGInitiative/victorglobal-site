@@ -310,5 +310,45 @@ footer { background: #1a1a1a; color: #ffffff; padding: 35px 20px 20px; font-size
     .vgi-letter { font-size: 1.8rem; width: 30px; } /* Scales down the big initials */
 }
 
+/* 1. FONT LOADING OPTIMIZATION */
+/* Add 'swap' to ensure text is visible while fonts load (Fixes CLS) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* 2. ACCESSIBILITY: CONTRAST RATIO FIXES */
+:root {
+    --primary: #0a7d8c;   /* Deep Teal */
+    --secondary: #28a086; /* Darker Seafoam for better contrast ratio */
+    --navy: #001a38;      /* Deepened Navy for legibility */
+    --white: #ffffff;
+}
+
+/* Ensure the Donate button text is readable */
+.donate-btn-nav {
+    background-color: var(--primary);
+    color: var(--white) !important;
+    font-weight: 700;
+}
+
+/* Hero Button Accessibility */
+.hero-btn {
+    background-color: var(--primary);
+    color: var(--white) !important;
+    border: 2px solid var(--primary);
+}
+
+/* 3. CLS FIX: IMAGE DIMENSIONS */
+/* Force the logo and candid seal to have reserved space */
+.logo {
+    width: 88px;
+    height: 59px;
+    aspect-ratio: 88 / 59;
+}
+
+.candid-seal {
+    width: 110px;
+    height: 110px;
+    aspect-ratio: 1 / 1;
+}
+
 /* Prevent text breaking */
 .no-stack { white-space: nowrap !important; }
